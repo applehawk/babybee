@@ -1,0 +1,35 @@
+{
+"mainTitle" : "Игры для ребенка",
+"groupsCount" : 4,
+"groups" :
+    [
+     {
+        "groupName" : "от 0 до 3 месяцев",
+        "minAgeOfMonth" : 0,
+        "maxAgeOfMonth" : 3,
+        "file" : "group0",
+        "headerPicture" : "headerScreen0"
+     },
+     {
+        "groupName" : "от 3 до 6 месяцев",
+        "minAgeOfMonth" : 3,
+        "maxAgeOfMonth" : 6,
+        "file" : "group1",
+        "headerPicture" : "headerScreen1"
+     },
+     {
+        "groupName" : "от 6 до 9 месяцев",
+        "minAgeOfMonth" : 6,
+        "maxAgeOfMonth" : 9,
+        "file" : "group2",
+        "headerPicture" : "headerScreen2"
+     },
+     {
+        "groupName" : "от 9 до 12 месяцев",
+        "minAgeOfMonth" : 9,
+        "maxAgeOfMonth" : 12,
+        "file" : "group3",
+        "headerPicture" : "headerScreen3"
+     }
+    ]
+}

@@ -1,0 +1,732 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0508FB0E1D7360E40052647A /* group1.json in Resources */ = {isa = PBXBuildFile; fileRef = 0508FB0D1D7360E40052647A /* group1.json */; };
+		0508FB101D736F160052647A /* group2.json in Resources */ = {isa = PBXBuildFile; fileRef = 0508FB0F1D736F160052647A /* group2.json */; };
+		0508FB121D7376020052647A /* group3.json in Resources */ = {isa = PBXBuildFile; fileRef = 0508FB111D7376020052647A /* group3.json */; };
+		0534FE771D70D44200FE964A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0534FE761D70D44200FE964A /* AppDelegate.swift */; };
+		0534FE7C1D70D44200FE964A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0534FE7A1D70D44200FE964A /* Main.storyboard */; };
+		0534FE7E1D70D44200FE964A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0534FE7D1D70D44200FE964A /* Assets.xcassets */; };
+		0534FE811D70D44200FE964A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0534FE7F1D70D44200FE964A /* LaunchScreen.storyboard */; };
+		0534FE961D70D97E00FE964A /* Arimo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0534FE8F1D70D97E00FE964A /* Arimo-Bold.ttf */; };
+		0534FE971D70D97E00FE964A /* Arimo-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0534FE901D70D97E00FE964A /* Arimo-BoldItalic.ttf */; };
+		0534FE981D70D97E00FE964A /* Arimo-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0534FE911D70D97E00FE964A /* Arimo-Italic.ttf */; };
+		0534FE991D70D97E00FE964A /* Arimo-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0534FE921D70D97E00FE964A /* Arimo-Regular.otf */; };
+		0534FE9A1D70D97E00FE964A /* FGroteskMobile.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0534FE931D70D97E00FE964A /* FGroteskMobile.otf */; };
+		0534FE9B1D70D97E00FE964A /* fgrouble-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0534FE941D70D97E00FE964A /* fgrouble-Regular.otf */; };
+		0534FE9C1D70D97E00FE964A /* LavaPro-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0534FE951D70D97E00FE964A /* LavaPro-RegularItalic.otf */; };
+		0534FE9F1D70DD8F00FE964A /* CGMainScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0534FE9D1D70DD8F00FE964A /* CGMainScreenCell.swift */; };
+		0534FEA01D70DD8F00FE964A /* CGMainScreenCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0534FE9E1D70DD8F00FE964A /* CGMainScreenCell.xib */; };
+		0534FEA41D70E89A00FE964A /* CGGamesScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0534FEA31D70E89A00FE964A /* CGGamesScreenCell.swift */; };
+		0534FEA61D70E8E300FE964A /* CGGamesScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0534FEA51D70E8E300FE964A /* CGGamesScreenViewController.swift */; };
+		0534FEA81D70E99200FE964A /* CGGamesScreenCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0534FEA71D70E99200FE964A /* CGGamesScreenCell.xib */; };
+		0534FEAF1D71A08000FE964A /* CGDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0534FEAE1D71A08000FE964A /* CGDataModel.swift */; };
+		0534FEB11D71A26700FE964A /* CGDataModelJSONAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0534FEB01D71A26700FE964A /* CGDataModelJSONAdapter.swift */; };
+		0534FEB51D71CDB500FE964A /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 0534FEB41D71CDB500FE964A /* Podfile */; };
+		0534FEBA1D7236EA00FE964A /* CGMainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0534FEB91D7236EA00FE964A /* CGMainScreenViewController.swift */; };
+		0534FEC01D72389900FE964A /* group0.json in Resources */ = {isa = PBXBuildFile; fileRef = 0534FEBE1D72389900FE964A /* group0.json */; };
+		0534FEC11D72389900FE964A /* mums.json in Resources */ = {isa = PBXBuildFile; fileRef = 0534FEBF1D72389900FE964A /* mums.json */; };
+		0534FEC41D7238A200FE964A /* bg_mainScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 0534FEC21D7238A200FE964A /* bg_mainScreen.png */; };
+		0534FEC91D725BBD00FE964A /* CGContentScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0534FEC81D725BBD00FE964A /* CGContentScreenViewController.swift */; };
+		0534FECB1D72630100FE964A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0534FECA1D72630100FE964A /* WebKit.framework */; };
+		0534FECD1D7271DF00FE964A /* CGDataModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0534FECC1D7271DF00FE964A /* CGDataModelProtocol.swift */; };
+		0536AE6D1D7742F700941357 /* BeeAppIconIcon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0536AE611D7742F700941357 /* BeeAppIconIcon-60@2x.png */; };
+		0536AE6E1D7742F700941357 /* BeeAppIconIcon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0536AE621D7742F700941357 /* BeeAppIconIcon-60@3x.png */; };
+		0536AE6F1D7742F700941357 /* BeeAppIconIcon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 0536AE631D7742F700941357 /* BeeAppIconIcon-76.png */; };
+		0536AE701D7742F700941357 /* BeeAppIconIcon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0536AE641D7742F700941357 /* BeeAppIconIcon-76@2x.png */; };
+		0536AE711D7742F700941357 /* BeeAppIconIcon-Small-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 0536AE651D7742F700941357 /* BeeAppIconIcon-Small-40.png */; };
+		0536AE721D7742F700941357 /* BeeAppIconIcon-Small-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0536AE661D7742F700941357 /* BeeAppIconIcon-Small-40@2x.png */; };
+		0536AE731D7742F700941357 /* BeeAppIconIcon-Small-40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0536AE671D7742F700941357 /* BeeAppIconIcon-Small-40@3x.png */; };
+		0536AE741D7742F700941357 /* BeeAppIconIcon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 0536AE681D7742F700941357 /* BeeAppIconIcon-Small.png */; };
+		0536AE751D7742F700941357 /* BeeAppIconIcon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0536AE691D7742F700941357 /* BeeAppIconIcon-Small@2x.png */; };
+		0536AE761D7742F700941357 /* BeeAppIconIcon-Small@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0536AE6A1D7742F700941357 /* BeeAppIconIcon-Small@3x.png */; };
+		0536AE771D7742F700941357 /* BeeAppIconiTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 0536AE6B1D7742F700941357 /* BeeAppIconiTunesArtwork.png */; };
+		0536AE781D7742F700941357 /* BeeAppIconiTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0536AE6C1D7742F700941357 /* BeeAppIconiTunesArtwork@2x.png */; };
+		0536AE7A1D77526900941357 /* OptJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536AE791D77526900941357 /* OptJSON.swift */; };
+		0536AE7E1D775F9600941357 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536AE7D1D775F9600941357 /* NSDate.swift */; };
+		0536AE821D77870B00941357 /* NSString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536AE811D77870B00941357 /* NSString.swift */; };
+		0536AE841D7801A400941357 /* Cocon_Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0536AE831D7801A400941357 /* Cocon_Bold.otf */; };
+		0536AE871D780FDA00941357 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0536AE851D780FDA00941357 /* GoogleService-Info.plist */; };
+		0536AE911D7815E700941357 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536AE901D7815E700941357 /* UIViewController.swift */; };
+		0536AE941D78309900941357 /* headerScreen0.png in Resources */ = {isa = PBXBuildFile; fileRef = 0536AE921D78309900941357 /* headerScreen0.png */; };
+		0536AE971D7834C300941357 /* headerScreen3.png in Resources */ = {isa = PBXBuildFile; fileRef = 0536AE961D7834C300941357 /* headerScreen3.png */; };
+		0536AE9B1D7835CC00941357 /* CGHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0536AE9A1D7835CC00941357 /* CGHeaderView.xib */; };
+		0536AE9D1D783C8A00941357 /* headerScreen2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0536AE9C1D783C8A00941357 /* headerScreen2.png */; };
+		0536AE9F1D783E9100941357 /* CGHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536AE9E1D783E9100941357 /* CGHeaderView.swift */; };
+		05E41FA11D78952F00F5BCCC /* CGAboutUsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E41F9F1D78952F00F5BCCC /* CGAboutUsCell.swift */; };
+		05E41FA21D78952F00F5BCCC /* CGAboutUsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05E41FA01D78952F00F5BCCC /* CGAboutUsCell.xib */; };
+		85B7691405C442402447056B /* Pods_BabyBee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 800F6E1A8D50C44163695A6A /* Pods_BabyBee.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0508FB0D1D7360E40052647A /* group1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = group1.json; path = Resources/Content/group1.json; sourceTree = "<group>"; };
+		0508FB0F1D736F160052647A /* group2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = group2.json; path = Resources/Content/group2.json; sourceTree = "<group>"; };
+		0508FB111D7376020052647A /* group3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = group3.json; path = Resources/Content/group3.json; sourceTree = "<group>"; };
+		0534FE731D70D44200FE964A /* BabyBee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyBee.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0534FE761D70D44200FE964A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0534FE7B1D70D44200FE964A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0534FE7D1D70D44200FE964A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0534FE801D70D44200FE964A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0534FE8F1D70D97E00FE964A /* Arimo-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Arimo-Bold.ttf"; path = "Resources/Fonts/Arimo-Bold.ttf"; sourceTree = "<group>"; };
+		0534FE901D70D97E00FE964A /* Arimo-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Arimo-BoldItalic.ttf"; path = "Resources/Fonts/Arimo-BoldItalic.ttf"; sourceTree = "<group>"; };
+		0534FE911D70D97E00FE964A /* Arimo-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Arimo-Italic.ttf"; path = "Resources/Fonts/Arimo-Italic.ttf"; sourceTree = "<group>"; };
+		0534FE921D70D97E00FE964A /* Arimo-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Arimo-Regular.otf"; path = "Resources/Fonts/Arimo-Regular.otf"; sourceTree = "<group>"; };
+		0534FE931D70D97E00FE964A /* FGroteskMobile.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FGroteskMobile.otf; path = Resources/Fonts/FGroteskMobile.otf; sourceTree = "<group>"; };
+		0534FE941D70D97E00FE964A /* fgrouble-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "fgrouble-Regular.otf"; path = "Resources/Fonts/fgrouble-Regular.otf"; sourceTree = "<group>"; };
+		0534FE951D70D97E00FE964A /* LavaPro-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "LavaPro-RegularItalic.otf"; path = "Resources/Fonts/LavaPro-RegularItalic.otf"; sourceTree = "<group>"; };
+		0534FE9D1D70DD8F00FE964A /* CGMainScreenCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGMainScreenCell.swift; path = MainScreen/CGMainScreenCell.swift; sourceTree = "<group>"; };
+		0534FE9E1D70DD8F00FE964A /* CGMainScreenCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CGMainScreenCell.xib; path = MainScreen/CGMainScreenCell.xib; sourceTree = "<group>"; };
+		0534FEA31D70E89A00FE964A /* CGGamesScreenCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGGamesScreenCell.swift; path = GamesScreen/CGGamesScreenCell.swift; sourceTree = "<group>"; };
+		0534FEA51D70E8E300FE964A /* CGGamesScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGGamesScreenViewController.swift; path = GamesScreen/CGGamesScreenViewController.swift; sourceTree = "<group>"; };
+		0534FEA71D70E99200FE964A /* CGGamesScreenCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CGGamesScreenCell.xib; path = GamesScreen/CGGamesScreenCell.xib; sourceTree = "<group>"; };
+		0534FEAE1D71A08000FE964A /* CGDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGDataModel.swift; path = DataModel/CGDataModel.swift; sourceTree = "<group>"; };
+		0534FEB01D71A26700FE964A /* CGDataModelJSONAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGDataModelJSONAdapter.swift; path = DataModel/CGDataModelJSONAdapter.swift; sourceTree = "<group>"; };
+		0534FEB41D71CDB500FE964A /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		0534FEB91D7236EA00FE964A /* CGMainScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGMainScreenViewController.swift; path = MainScreen/CGMainScreenViewController.swift; sourceTree = "<group>"; };
+		0534FEBE1D72389900FE964A /* group0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = group0.json; path = Resources/Content/group0.json; sourceTree = "<group>"; };
+		0534FEBF1D72389900FE964A /* mums.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = mums.json; path = Resources/Content/mums.json; sourceTree = "<group>"; };
+		0534FEC21D7238A200FE964A /* bg_mainScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_mainScreen.png; path = Resources/Images/bg_mainScreen.png; sourceTree = "<group>"; };
+		0534FEC81D725BBD00FE964A /* CGContentScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGContentScreenViewController.swift; path = ContentScreen/CGContentScreenViewController.swift; sourceTree = "<group>"; };
+		0534FECA1D72630100FE964A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		0534FECC1D7271DF00FE964A /* CGDataModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGDataModelProtocol.swift; path = DataModel/CGDataModelProtocol.swift; sourceTree = "<group>"; };
+		0536AE611D7742F700941357 /* BeeAppIconIcon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BeeAppIconIcon-60@2x.png"; path = "Resources/AppIcon/BeeAppIconIcon-60@2x.png"; sourceTree = "<group>"; };
+		0536AE621D7742F700941357 /* BeeAppIconIcon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BeeAppIconIcon-60@3x.png"; path = "Resources/AppIcon/BeeAppIconIcon-60@3x.png"; sourceTree = "<group>"; };
+		0536AE631D7742F700941357 /* BeeAppIconIcon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BeeAppIconIcon-76.png"; path = "Resources/AppIcon/BeeAppIconIcon-76.png"; sourceTree = "<group>"; };
+		0536AE641D7742F700941357 /* BeeAppIconIcon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BeeAppIconIcon-76@2x.png"; path = "Resources/AppIcon/BeeAppIconIcon-76@2x.png"; sourceTree = "<group>"; };
+		0536AE651D7742F700941357 /* BeeAppIconIcon-Small-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BeeAppIconIcon-Small-40.png"; path = "Resources/AppIcon/BeeAppIconIcon-Small-40.png"; sourceTree = "<group>"; };
+		0536AE661D7742F700941357 /* BeeAppIconIcon-Small-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BeeAppIconIcon-Small-40@2x.png"; path = "Resources/AppIcon/BeeAppIconIcon-Small-40@2x.png"; sourceTree = "<group>"; };
+		0536AE671D7742F700941357 /* BeeAppIconIcon-Small-40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BeeAppIconIcon-Small-40@3x.png"; path = "Resources/AppIcon/BeeAppIconIcon-Small-40@3x.png"; sourceTree = "<group>"; };
+		0536AE681D7742F700941357 /* BeeAppIconIcon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BeeAppIconIcon-Small.png"; path = "Resources/AppIcon/BeeAppIconIcon-Small.png"; sourceTree = "<group>"; };
+		0536AE691D7742F700941357 /* BeeAppIconIcon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BeeAppIconIcon-Small@2x.png"; path = "Resources/AppIcon/BeeAppIconIcon-Small@2x.png"; sourceTree = "<group>"; };
+		0536AE6A1D7742F700941357 /* BeeAppIconIcon-Small@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BeeAppIconIcon-Small@3x.png"; path = "Resources/AppIcon/BeeAppIconIcon-Small@3x.png"; sourceTree = "<group>"; };
+		0536AE6B1D7742F700941357 /* BeeAppIconiTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BeeAppIconiTunesArtwork.png; path = Resources/AppIcon/BeeAppIconiTunesArtwork.png; sourceTree = "<group>"; };
+		0536AE6C1D7742F700941357 /* BeeAppIconiTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BeeAppIconiTunesArtwork@2x.png"; path = "Resources/AppIcon/BeeAppIconiTunesArtwork@2x.png"; sourceTree = "<group>"; };
+		0536AE791D77526900941357 /* OptJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptJSON.swift; path = ThirdParty/OptJSON.swift; sourceTree = "<group>"; };
+		0536AE7D1D775F9600941357 /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSDate.swift; path = Extensions/NSDate.swift; sourceTree = "<group>"; };
+		0536AE811D77870B00941357 /* NSString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSString.swift; path = Extensions/NSString.swift; sourceTree = "<group>"; };
+		0536AE831D7801A400941357 /* Cocon_Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Cocon_Bold.otf; path = Resources/Fonts/Cocon_Bold.otf; sourceTree = "<group>"; };
+		0536AE851D780FDA00941357 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Resources/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0536AE861D780FDA00941357 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
+		0536AE901D7815E700941357 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewController.swift; path = Extensions/UIViewController.swift; sourceTree = "<group>"; };
+		0536AE921D78309900941357 /* headerScreen0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = headerScreen0.png; path = Resources/Images/headerScreen0.png; sourceTree = "<group>"; };
+		0536AE961D7834C300941357 /* headerScreen3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = headerScreen3.png; path = Resources/Images/headerScreen3.png; sourceTree = "<group>"; };
+		0536AE9A1D7835CC00941357 /* CGHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CGHeaderView.xib; path = MainScreen/CGHeaderView.xib; sourceTree = "<group>"; };
+		0536AE9C1D783C8A00941357 /* headerScreen2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = headerScreen2.png; path = Resources/Images/headerScreen2.png; sourceTree = "<group>"; };
+		0536AE9E1D783E9100941357 /* CGHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGHeaderView.swift; path = MainScreen/CGHeaderView.swift; sourceTree = "<group>"; };
+		05E41F9F1D78952F00F5BCCC /* CGAboutUsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGAboutUsCell.swift; path = MainScreen/CGAboutUsCell.swift; sourceTree = "<group>"; };
+		05E41FA01D78952F00F5BCCC /* CGAboutUsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CGAboutUsCell.xib; path = MainScreen/CGAboutUsCell.xib; sourceTree = "<group>"; };
+		18314F15E6CDE6AE1AEF2C00 /* Pods-BabyBee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BabyBee.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BabyBee/Pods-BabyBee.debug.xcconfig"; sourceTree = "<group>"; };
+		800F6E1A8D50C44163695A6A /* Pods_BabyBee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BabyBee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A764E2BF1A11E0BC0620D11E /* Pods-BabyBee.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BabyBee.release.xcconfig"; path = "Pods/Target Support Files/Pods-BabyBee/Pods-BabyBee.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0534FE701D70D44200FE964A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0534FECB1D72630100FE964A /* WebKit.framework in Frameworks */,
+				85B7691405C442402447056B /* Pods_BabyBee.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0534FE6A1D70D44200FE964A = {
+			isa = PBXGroup;
+			children = (
+				0534FECA1D72630100FE964A /* WebKit.framework */,
+				0534FEB41D71CDB500FE964A /* Podfile */,
+				0534FE751D70D44200FE964A /* BabyBee */,
+				0534FE741D70D44200FE964A /* Products */,
+				D37F5D3949B8E28333BEE134 /* Pods */,
+				2D01AC36A654022CB4900A3A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		0534FE741D70D44200FE964A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0534FE731D70D44200FE964A /* BabyBee.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0534FE751D70D44200FE964A /* BabyBee */ = {
+			isa = PBXGroup;
+			children = (
+				0536AE7C1D775F8800941357 /* Extensions */,
+				0536AE7B1D77526C00941357 /* Thirdparty */,
+				0534FEC71D725B7000FE964A /* Screens */,
+				0534FEAD1D71A06600FE964A /* DataModel */,
+				0534FE8A1D70D66F00FE964A /* Resources */,
+				0534FE761D70D44200FE964A /* AppDelegate.swift */,
+			);
+			path = BabyBee;
+			sourceTree = "<group>";
+		};
+		0534FE8A1D70D66F00FE964A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0536AE851D780FDA00941357 /* GoogleService-Info.plist */,
+				0536AE861D780FDA00941357 /* Info.plist */,
+				0536AE261D76C14B00941357 /* AppIcon */,
+				0534FEBD1D72387100FE964A /* Content */,
+				0534FE8E1D70D97500FE964A /* Fonts */,
+				0534FE8D1D70D69D00FE964A /* Images */,
+				0534FE7D1D70D44200FE964A /* Assets.xcassets */,
+				0534FE7A1D70D44200FE964A /* Main.storyboard */,
+				0534FE7F1D70D44200FE964A /* LaunchScreen.storyboard */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		0534FE8B1D70D67400FE964A /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				0534FEA91D719C5000FE964A /* Cells */,
+				0534FEB91D7236EA00FE964A /* CGMainScreenViewController.swift */,
+			);
+			name = MainScreen;
+			sourceTree = "<group>";
+		};
+		0534FE8C1D70D67D00FE964A /* GamesScreen */ = {
+			isa = PBXGroup;
+			children = (
+				0534FEAB1D719C6300FE964A /* Cells */,
+				0534FEA51D70E8E300FE964A /* CGGamesScreenViewController.swift */,
+			);
+			name = GamesScreen;
+			sourceTree = "<group>";
+		};
+		0534FE8D1D70D69D00FE964A /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				0536AE9C1D783C8A00941357 /* headerScreen2.png */,
+				0536AE961D7834C300941357 /* headerScreen3.png */,
+				0536AE921D78309900941357 /* headerScreen0.png */,
+				0534FEC21D7238A200FE964A /* bg_mainScreen.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		0534FE8E1D70D97500FE964A /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0536AE831D7801A400941357 /* Cocon_Bold.otf */,
+				0534FE8F1D70D97E00FE964A /* Arimo-Bold.ttf */,
+				0534FE901D70D97E00FE964A /* Arimo-BoldItalic.ttf */,
+				0534FE911D70D97E00FE964A /* Arimo-Italic.ttf */,
+				0534FE921D70D97E00FE964A /* Arimo-Regular.otf */,
+				0534FE931D70D97E00FE964A /* FGroteskMobile.otf */,
+				0534FE941D70D97E00FE964A /* fgrouble-Regular.otf */,
+				0534FE951D70D97E00FE964A /* LavaPro-RegularItalic.otf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		0534FEA91D719C5000FE964A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				05E41FA31D78953400F5BCCC /* CGAboutUsCell */,
+				0536AE981D78358500941357 /* CGHeaderView */,
+				0534FEAA1D719C5800FE964A /* CGMainScreenCell */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		0534FEAA1D719C5800FE964A /* CGMainScreenCell */ = {
+			isa = PBXGroup;
+			children = (
+				0534FE9D1D70DD8F00FE964A /* CGMainScreenCell.swift */,
+				0534FE9E1D70DD8F00FE964A /* CGMainScreenCell.xib */,
+			);
+			name = CGMainScreenCell;
+			sourceTree = "<group>";
+		};
+		0534FEAB1D719C6300FE964A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0534FEAC1D719C6B00FE964A /* CGGamesScreenCell */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		0534FEAC1D719C6B00FE964A /* CGGamesScreenCell */ = {
+			isa = PBXGroup;
+			children = (
+				0534FEA31D70E89A00FE964A /* CGGamesScreenCell.swift */,
+				0534FEA71D70E99200FE964A /* CGGamesScreenCell.xib */,
+			);
+			name = CGGamesScreenCell;
+			sourceTree = "<group>";
+		};
+		0534FEAD1D71A06600FE964A /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				0534FEAE1D71A08000FE964A /* CGDataModel.swift */,
+				0534FECC1D7271DF00FE964A /* CGDataModelProtocol.swift */,
+				0534FEB01D71A26700FE964A /* CGDataModelJSONAdapter.swift */,
+			);
+			name = DataModel;
+			sourceTree = "<group>";
+		};
+		0534FEBD1D72387100FE964A /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				0508FB111D7376020052647A /* group3.json */,
+				0508FB0F1D736F160052647A /* group2.json */,
+				0508FB0D1D7360E40052647A /* group1.json */,
+				0534FEBE1D72389900FE964A /* group0.json */,
+				0534FEBF1D72389900FE964A /* mums.json */,
+			);
+			name = Content;
+			sourceTree = "<group>";
+		};
+		0534FEC61D725B6800FE964A /* ContentScreen */ = {
+			isa = PBXGroup;
+			children = (
+				0534FEC81D725BBD00FE964A /* CGContentScreenViewController.swift */,
+			);
+			name = ContentScreen;
+			sourceTree = "<group>";
+		};
+		0534FEC71D725B7000FE964A /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				05E41FA41D78992D00F5BCCC /* AboutUs */,
+				0534FEC61D725B6800FE964A /* ContentScreen */,
+				0534FE8C1D70D67D00FE964A /* GamesScreen */,
+				0534FE8B1D70D67400FE964A /* MainScreen */,
+			);
+			name = Screens;
+			sourceTree = "<group>";
+		};
+		0536AE261D76C14B00941357 /* AppIcon */ = {
+			isa = PBXGroup;
+			children = (
+				0536AE611D7742F700941357 /* BeeAppIconIcon-60@2x.png */,
+				0536AE621D7742F700941357 /* BeeAppIconIcon-60@3x.png */,
+				0536AE631D7742F700941357 /* BeeAppIconIcon-76.png */,
+				0536AE641D7742F700941357 /* BeeAppIconIcon-76@2x.png */,
+				0536AE651D7742F700941357 /* BeeAppIconIcon-Small-40.png */,
+				0536AE661D7742F700941357 /* BeeAppIconIcon-Small-40@2x.png */,
+				0536AE671D7742F700941357 /* BeeAppIconIcon-Small-40@3x.png */,
+				0536AE681D7742F700941357 /* BeeAppIconIcon-Small.png */,
+				0536AE691D7742F700941357 /* BeeAppIconIcon-Small@2x.png */,
+				0536AE6A1D7742F700941357 /* BeeAppIconIcon-Small@3x.png */,
+				0536AE6B1D7742F700941357 /* BeeAppIconiTunesArtwork.png */,
+				0536AE6C1D7742F700941357 /* BeeAppIconiTunesArtwork@2x.png */,
+			);
+			name = AppIcon;
+			sourceTree = "<group>";
+		};
+		0536AE7B1D77526C00941357 /* Thirdparty */ = {
+			isa = PBXGroup;
+			children = (
+				0536AE791D77526900941357 /* OptJSON.swift */,
+			);
+			name = Thirdparty;
+			sourceTree = "<group>";
+		};
+		0536AE7C1D775F8800941357 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0536AE7D1D775F9600941357 /* NSDate.swift */,
+				0536AE811D77870B00941357 /* NSString.swift */,
+				0536AE901D7815E700941357 /* UIViewController.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		0536AE981D78358500941357 /* CGHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				0536AE9A1D7835CC00941357 /* CGHeaderView.xib */,
+				0536AE9E1D783E9100941357 /* CGHeaderView.swift */,
+			);
+			name = CGHeaderView;
+			sourceTree = "<group>";
+		};
+		05E41FA31D78953400F5BCCC /* CGAboutUsCell */ = {
+			isa = PBXGroup;
+			children = (
+				05E41F9F1D78952F00F5BCCC /* CGAboutUsCell.swift */,
+				05E41FA01D78952F00F5BCCC /* CGAboutUsCell.xib */,
+			);
+			name = CGAboutUsCell;
+			sourceTree = "<group>";
+		};
+		05E41FA41D78992D00F5BCCC /* AboutUs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = AboutUs;
+			sourceTree = "<group>";
+		};
+		2D01AC36A654022CB4900A3A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				800F6E1A8D50C44163695A6A /* Pods_BabyBee.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D37F5D3949B8E28333BEE134 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				18314F15E6CDE6AE1AEF2C00 /* Pods-BabyBee.debug.xcconfig */,
+				A764E2BF1A11E0BC0620D11E /* Pods-BabyBee.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0534FE721D70D44200FE964A /* BabyBee */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0534FE851D70D44200FE964A /* Build configuration list for PBXNativeTarget "BabyBee" */;
+			buildPhases = (
+				25E9A5E107A23ECD918431B7 /* [CP] Check Pods Manifest.lock */,
+				0534FE6F1D70D44200FE964A /* Sources */,
+				0534FE701D70D44200FE964A /* Frameworks */,
+				0534FE711D70D44200FE964A /* Resources */,
+				205F877192D57275907B0184 /* [CP] Embed Pods Frameworks */,
+				C145091E51EB315B775CE0D2 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BabyBee;
+			productName = BabyBee;
+			productReference = 0534FE731D70D44200FE964A /* BabyBee.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0534FE6B1D70D44200FE964A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = v.vasilenko;
+				TargetAttributes = {
+					0534FE721D70D44200FE964A = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = HAKZ2M653C;
+					};
+				};
+			};
+			buildConfigurationList = 0534FE6E1D70D44200FE964A /* Build configuration list for PBXProject "BabyBee" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0534FE6A1D70D44200FE964A;
+			productRefGroup = 0534FE741D70D44200FE964A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0534FE721D70D44200FE964A /* BabyBee */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0534FE711D70D44200FE964A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0534FE971D70D97E00FE964A /* Arimo-BoldItalic.ttf in Resources */,
+				0508FB0E1D7360E40052647A /* group1.json in Resources */,
+				0536AE9B1D7835CC00941357 /* CGHeaderView.xib in Resources */,
+				0534FEC41D7238A200FE964A /* bg_mainScreen.png in Resources */,
+				0534FEC01D72389900FE964A /* group0.json in Resources */,
+				0534FEC11D72389900FE964A /* mums.json in Resources */,
+				0534FE811D70D44200FE964A /* LaunchScreen.storyboard in Resources */,
+				0536AE701D7742F700941357 /* BeeAppIconIcon-76@2x.png in Resources */,
+				0536AE771D7742F700941357 /* BeeAppIconiTunesArtwork.png in Resources */,
+				0534FEA81D70E99200FE964A /* CGGamesScreenCell.xib in Resources */,
+				0536AE741D7742F700941357 /* BeeAppIconIcon-Small.png in Resources */,
+				0536AE6D1D7742F700941357 /* BeeAppIconIcon-60@2x.png in Resources */,
+				0534FE981D70D97E00FE964A /* Arimo-Italic.ttf in Resources */,
+				0536AE761D7742F700941357 /* BeeAppIconIcon-Small@3x.png in Resources */,
+				0536AE9D1D783C8A00941357 /* headerScreen2.png in Resources */,
+				0536AE6E1D7742F700941357 /* BeeAppIconIcon-60@3x.png in Resources */,
+				0536AE941D78309900941357 /* headerScreen0.png in Resources */,
+				0534FEA01D70DD8F00FE964A /* CGMainScreenCell.xib in Resources */,
+				0536AE721D7742F700941357 /* BeeAppIconIcon-Small-40@2x.png in Resources */,
+				0536AE731D7742F700941357 /* BeeAppIconIcon-Small-40@3x.png in Resources */,
+				0536AE751D7742F700941357 /* BeeAppIconIcon-Small@2x.png in Resources */,
+				0536AE781D7742F700941357 /* BeeAppIconiTunesArtwork@2x.png in Resources */,
+				0534FE9C1D70D97E00FE964A /* LavaPro-RegularItalic.otf in Resources */,
+				0534FE9B1D70D97E00FE964A /* fgrouble-Regular.otf in Resources */,
+				0536AE841D7801A400941357 /* Cocon_Bold.otf in Resources */,
+				0534FE961D70D97E00FE964A /* Arimo-Bold.ttf in Resources */,
+				0534FE9A1D70D97E00FE964A /* FGroteskMobile.otf in Resources */,
+				0534FEB51D71CDB500FE964A /* Podfile in Resources */,
+				0534FE7E1D70D44200FE964A /* Assets.xcassets in Resources */,
+				0536AE971D7834C300941357 /* headerScreen3.png in Resources */,
+				0534FE7C1D70D44200FE964A /* Main.storyboard in Resources */,
+				05E41FA21D78952F00F5BCCC /* CGAboutUsCell.xib in Resources */,
+				0536AE711D7742F700941357 /* BeeAppIconIcon-Small-40.png in Resources */,
+				0536AE871D780FDA00941357 /* GoogleService-Info.plist in Resources */,
+				0534FE991D70D97E00FE964A /* Arimo-Regular.otf in Resources */,
+				0536AE6F1D7742F700941357 /* BeeAppIconIcon-76.png in Resources */,
+				0508FB101D736F160052647A /* group2.json in Resources */,
+				0508FB121D7376020052647A /* group3.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		205F877192D57275907B0184 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BabyBee/Pods-BabyBee-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		25E9A5E107A23ECD918431B7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C145091E51EB315B775CE0D2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BabyBee/Pods-BabyBee-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0534FE6F1D70D44200FE964A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0534FE9F1D70DD8F00FE964A /* CGMainScreenCell.swift in Sources */,
+				05E41FA11D78952F00F5BCCC /* CGAboutUsCell.swift in Sources */,
+				0536AE821D77870B00941357 /* NSString.swift in Sources */,
+				0534FEA41D70E89A00FE964A /* CGGamesScreenCell.swift in Sources */,
+				0534FEC91D725BBD00FE964A /* CGContentScreenViewController.swift in Sources */,
+				0534FEBA1D7236EA00FE964A /* CGMainScreenViewController.swift in Sources */,
+				0534FE771D70D44200FE964A /* AppDelegate.swift in Sources */,
+				0536AE7A1D77526900941357 /* OptJSON.swift in Sources */,
+				0536AE911D7815E700941357 /* UIViewController.swift in Sources */,
+				0534FEA61D70E8E300FE964A /* CGGamesScreenViewController.swift in Sources */,
+				0534FECD1D7271DF00FE964A /* CGDataModelProtocol.swift in Sources */,
+				0534FEB11D71A26700FE964A /* CGDataModelJSONAdapter.swift in Sources */,
+				0536AE9F1D783E9100941357 /* CGHeaderView.swift in Sources */,
+				0536AE7E1D775F9600941357 /* NSDate.swift in Sources */,
+				0534FEAF1D71A08000FE964A /* CGDataModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		0534FE7A1D70D44200FE964A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0534FE7B1D70D44200FE964A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0534FE7F1D70D44200FE964A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0534FE801D70D44200FE964A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0534FE831D70D44200FE964A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "BabyBee-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		0534FE841D70D44200FE964A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "BabyBee-Bridging-Header.h";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0534FE861D70D44200FE964A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 18314F15E6CDE6AE1AEF2C00 /* Pods-BabyBee.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Vladislav Vasilenko (W7T84FQCY3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vladislav Vasilenko (W7T84FQCY3)";
+				INFOPLIST_FILE = BabyBee/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.MobiPuzzle.BabyBee;
+				PRODUCT_NAME = BabyBee;
+				PROVISIONING_PROFILE = "4e4570ec-3313-4702-bbbb-f4390d57551f";
+				SWIFT_OBJC_BRIDGING_HEADER = "BabyBee/BabyBee-Bridging-Header.h";
+			};
+			name = Debug;
+		};
+		0534FE871D70D44200FE964A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A764E2BF1A11E0BC0620D11E /* Pods-BabyBee.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Vladislav Vasilenko (W7T84FQCY3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vladislav Vasilenko (W7T84FQCY3)";
+				INFOPLIST_FILE = BabyBee/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.MobiPuzzle.BabyBee;
+				PRODUCT_NAME = BabyBee;
+				PROVISIONING_PROFILE = "4e4570ec-3313-4702-bbbb-f4390d57551f";
+				SWIFT_OBJC_BRIDGING_HEADER = "BabyBee/BabyBee-Bridging-Header.h";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0534FE6E1D70D44200FE964A /* Build configuration list for PBXProject "BabyBee" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0534FE831D70D44200FE964A /* Debug */,
+				0534FE841D70D44200FE964A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0534FE851D70D44200FE964A /* Build configuration list for PBXNativeTarget "BabyBee" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0534FE861D70D44200FE964A /* Debug */,
+				0534FE871D70D44200FE964A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0534FE6B1D70D44200FE964A /* Project object */;
+}
