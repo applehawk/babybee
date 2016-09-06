@@ -6,7 +6,7 @@
 //  Copyright © 2016 v.vasilenko. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol CGGamesScreenProtocol {
     func trackSelectGame(gameName: String, gameId : Int);

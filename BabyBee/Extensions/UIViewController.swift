@@ -19,13 +19,15 @@ extension UIViewController {
     }
     
     func sendAction( actionName : String, categoryName : String, label: String, value: NSNumber ) {
-        /*
         let tracker = GAI.sharedInstance().defaultTracker
         
         let builder = GAIDictionaryBuilder.createEventWithCategory(categoryName, action: actionName, label: label, value: value);
         
-        tracker.send( builder.build() as [NSObject : AnyObject])*/
+        tracker.send( builder.build() as [NSObject : AnyObject])
         
-        FIRAnalytics.logEventWithName(actionName, parameters: ["category" : categoryName, "label" : label, "value":value])
+        FIRAnalytics.logEventWithName(actionName,
+                                      parameters:
+            ["category" : categoryName,
+                "label" : label, "value":value])
     }
 }

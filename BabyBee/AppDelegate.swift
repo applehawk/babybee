@@ -17,18 +17,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
+    var googleSignInInstance = AppGoogleSignInDelegate()
+    
     func configureGoogleAnalytics() {
         // Configure tracker from GoogleService-Info.plist.
-        //var configureError:NSError?
-        //GGLContext.sharedInstance().configureWithError(&configureError)
-        //assert(configureError == nil, "Error configuring Google services: \(configureError)")
+        var configureError:NSError?
+        GGLContext.sharedInstance().configureWithError(&configureError)
+        assert(configureError == nil, "Error configuring Google services: \(configureError)")
+        
+        // Optional: configure GAI options.
+        let gai = GAI.sharedInstance()
+        gai.trackUncaughtExceptions = true  // report uncaught exceptions
+        gai.logger.logLevel = GAILogLevel.Verbose  // remove before app release
         
         FIRApp.configure()
         
-        // Optional: configure GAI options.
-        //let gai = GAI.sharedInstance()
-        //gai.trackUncaughtExceptions = true  // report uncaught exceptions
-        //gai.logger.logLevel = GAILogLevel.Verbose  // remove before app release
+        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = googleSignInInstance
     }
     
     func configureStoreKit() -> Bool {
@@ -51,6 +56,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configureStoreKit();
         
         return true
+    }
+    
+    // MARK: Google SignIn
+    @available(iOS 9.0, *)
+    func application(application: UIApplication,
+                     openURL url: NSURL, options: [String: AnyObject]) -> Bool {
+        return GIDSignIn.sharedInstance().handleURL(url,
+                                                    sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as? String,
+                                                    annotation: options[UIApplicationOpenURLOptionsAnnotationKey])
     }
 }
 
