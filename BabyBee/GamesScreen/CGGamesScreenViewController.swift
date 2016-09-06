@@ -35,7 +35,7 @@ class CGGamesScreenViewController: UIViewController, CGGamesScreenProtocol {
     override func viewWillAppear(animated: Bool) {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
         
-        if let title = dataModel?.groupModelWithId(selectedGroupId)?.groupName {
+        if let title = dataModel.groupModelWithId(selectedGroupId)?.groupName {
             sendOpenScreen(title)
         }
     }

@@ -122,6 +122,7 @@
 		0536AE9A1D7835CC00941357 /* CGHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CGHeaderView.xib; path = MainScreen/CGHeaderView.xib; sourceTree = "<group>"; };
 		0536AE9C1D783C8A00941357 /* headerScreen2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = headerScreen2.png; path = Resources/Images/headerScreen2.png; sourceTree = "<group>"; };
 		0536AE9E1D783E9100941357 /* CGHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGHeaderView.swift; path = MainScreen/CGHeaderView.swift; sourceTree = "<group>"; };
+		05564D9B1D7F01F4006E9311 /* BabyBee-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BabyBee-Bridging-Header.h"; path = "BabyBee/BabyBee-Bridging-Header.h"; sourceTree = "<group>"; };
 		057DC1A01D79D77200F6C5F6 /* CGMainScreenDDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGMainScreenDDM.swift; path = MainScreen/CGMainScreenDDM.swift; sourceTree = "<group>"; };
 		057DC1A41D7ADE5E00F6C5F6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		05DA24E21D7EF0C70015A7E5 /* CGGamesScreenDDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGGamesScreenDDM.swift; path = GamesScreen/CGGamesScreenDDM.swift; sourceTree = "<group>"; };
@@ -149,6 +150,7 @@
 		0534FE6A1D70D44200FE964A = {
 			isa = PBXGroup;
 			children = (
+				05564D9B1D7F01F4006E9311 /* BabyBee-Bridging-Header.h */,
 				0534FECA1D72630100FE964A /* WebKit.framework */,
 				0534FEB41D71CDB500FE964A /* Podfile */,
 				0534FE751D70D44200FE964A /* BabyBee */,
@@ -169,6 +171,7 @@
 		0534FE751D70D44200FE964A /* BabyBee */ = {
 			isa = PBXGroup;
 			children = (
+				05564D9C1D7F06B1006E9311 /* Bussiness Logic */,
 				0536AE7C1D775F8800941357 /* Extensions */,
 				0536AE7B1D77526C00941357 /* Thirdparty */,
 				0534FEC71D725B7000FE964A /* Screens */,
@@ -362,6 +365,13 @@
 				0536AE9E1D783E9100941357 /* CGHeaderView.swift */,
 			);
 			name = CGHeaderView;
+			sourceTree = "<group>";
+		};
+		05564D9C1D7F06B1006E9311 /* Bussiness Logic */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Bussiness Logic";
 			sourceTree = "<group>";
 		};
 		05E41FA31D78953400F5BCCC /* CGAboutUsCell */ = {

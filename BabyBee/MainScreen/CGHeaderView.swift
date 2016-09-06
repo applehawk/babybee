@@ -6,7 +6,7 @@
 //  Copyright © 2016 v.vasilenko. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class CGHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var headerSubtitle: UILabel!

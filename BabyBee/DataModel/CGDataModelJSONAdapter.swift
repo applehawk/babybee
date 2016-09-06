@@ -7,9 +7,6 @@
 //
 
 import Foundation
-import UIKit
-
-
 
 class CGDataModelJSONAdapter: NSObject, CGDataModelProtocol {
     var rootDict : NSDictionary?
