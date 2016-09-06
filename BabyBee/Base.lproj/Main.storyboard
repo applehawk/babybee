@@ -8,7 +8,7 @@
         <!--Развивающие игры для ребенка-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="CGMainScreenViewController" customModule="BabyBee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainScreen" id="BYZ-38-t0r" customClass="CGMainScreenViewController" customModule="BabyBee" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -45,7 +45,7 @@
         <!--Games Screen View Controller-->
         <scene sceneID="oC4-YK-thU">
             <objects>
-                <viewController id="eaq-LA-20N" customClass="CGGamesScreenViewController" customModule="BabyBee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="gamesScreen" id="eaq-LA-20N" customClass="CGGamesScreenViewController" customModule="BabyBee" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Oo5-H8-diF"/>
                         <viewControllerLayoutGuide type="bottom" id="FEv-bH-tTh"/>
@@ -101,7 +101,7 @@
         <!--Content Screen View Controller-->
         <scene sceneID="H12-oz-7pM">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" id="goS-ya-gec" customClass="CGContentScreenViewController" customModule="BabyBee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="contentScreen" extendedLayoutIncludesOpaqueBars="YES" id="goS-ya-gec" customClass="CGContentScreenViewController" customModule="BabyBee" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bjs-Qq-82f"/>
                         <viewControllerLayoutGuide type="bottom" id="6et-qH-fST"/>

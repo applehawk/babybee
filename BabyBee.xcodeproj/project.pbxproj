@@ -61,6 +61,7 @@
 		0536AE9F1D783E9100941357 /* CGHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536AE9E1D783E9100941357 /* CGHeaderView.swift */; };
 		057DC1A11D79D77200F6C5F6 /* CGMainScreenDDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057DC1A01D79D77200F6C5F6 /* CGMainScreenDDM.swift */; };
 		057DC1A51D7ADE5E00F6C5F6 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057DC1A41D7ADE5E00F6C5F6 /* StoreKit.framework */; };
+		05DA24E31D7EF0C70015A7E5 /* CGGamesScreenDDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DA24E21D7EF0C70015A7E5 /* CGGamesScreenDDM.swift */; };
 		05E41FA11D78952F00F5BCCC /* CGAboutUsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E41F9F1D78952F00F5BCCC /* CGAboutUsCell.swift */; };
 		05E41FA21D78952F00F5BCCC /* CGAboutUsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05E41FA01D78952F00F5BCCC /* CGAboutUsCell.xib */; };
 		85B7691405C442402447056B /* Pods_BabyBee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 800F6E1A8D50C44163695A6A /* Pods_BabyBee.framework */; };
@@ -89,7 +90,7 @@
 		0534FEA71D70E99200FE964A /* CGGamesScreenCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CGGamesScreenCell.xib; path = GamesScreen/CGGamesScreenCell.xib; sourceTree = "<group>"; };
 		0534FEAE1D71A08000FE964A /* CGDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGDataModel.swift; path = DataModel/CGDataModel.swift; sourceTree = "<group>"; };
 		0534FEB01D71A26700FE964A /* CGDataModelJSONAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGDataModelJSONAdapter.swift; path = DataModel/CGDataModelJSONAdapter.swift; sourceTree = "<group>"; };
-		0534FEB41D71CDB500FE964A /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		0534FEB41D71CDB500FE964A /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		0534FEB91D7236EA00FE964A /* CGMainScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGMainScreenViewController.swift; path = MainScreen/CGMainScreenViewController.swift; sourceTree = "<group>"; };
 		0534FEBE1D72389900FE964A /* group0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = group0.json; path = Resources/Content/group0.json; sourceTree = "<group>"; };
 		0534FEBF1D72389900FE964A /* mums.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = mums.json; path = Resources/Content/mums.json; sourceTree = "<group>"; };
@@ -123,6 +124,7 @@
 		0536AE9E1D783E9100941357 /* CGHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGHeaderView.swift; path = MainScreen/CGHeaderView.swift; sourceTree = "<group>"; };
 		057DC1A01D79D77200F6C5F6 /* CGMainScreenDDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGMainScreenDDM.swift; path = MainScreen/CGMainScreenDDM.swift; sourceTree = "<group>"; };
 		057DC1A41D7ADE5E00F6C5F6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		05DA24E21D7EF0C70015A7E5 /* CGGamesScreenDDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGGamesScreenDDM.swift; path = GamesScreen/CGGamesScreenDDM.swift; sourceTree = "<group>"; };
 		05E41F9F1D78952F00F5BCCC /* CGAboutUsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGAboutUsCell.swift; path = MainScreen/CGAboutUsCell.swift; sourceTree = "<group>"; };
 		05E41FA01D78952F00F5BCCC /* CGAboutUsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CGAboutUsCell.xib; path = MainScreen/CGAboutUsCell.xib; sourceTree = "<group>"; };
 		18314F15E6CDE6AE1AEF2C00 /* Pods-BabyBee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BabyBee.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BabyBee/Pods-BabyBee.debug.xcconfig"; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 			children = (
 				0534FEAB1D719C6300FE964A /* Cells */,
 				0534FEA51D70E8E300FE964A /* CGGamesScreenViewController.swift */,
+				05DA24E21D7EF0C70015A7E5 /* CGGamesScreenDDM.swift */,
 			);
 			name = GamesScreen;
 			sourceTree = "<group>";
@@ -573,6 +576,7 @@
 				0536AE911D7815E700941357 /* UIViewController.swift in Sources */,
 				0534FEA61D70E8E300FE964A /* CGGamesScreenViewController.swift in Sources */,
 				0534FECD1D7271DF00FE964A /* CGDataModelProtocol.swift in Sources */,
+				05DA24E31D7EF0C70015A7E5 /* CGGamesScreenDDM.swift in Sources */,
 				0534FEB11D71A26700FE964A /* CGDataModelJSONAdapter.swift in Sources */,
 				0536AE9F1D783E9100941357 /* CGHeaderView.swift in Sources */,
 				0536AE7E1D775F9600941357 /* NSDate.swift in Sources */,

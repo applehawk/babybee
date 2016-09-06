@@ -17,6 +17,7 @@ enum CGMainScreenTableSections : Int {
 // MARK: - User Defaults
 let CGBabyBirthUserDefaults = "babyBirthDate"
 let CGBabyBirthCancelUserDefaults = "isBabyBirthCanceled"
+let CGBabyBirthCancelValue = "canceled"
 
 // MARK: - Segue names of MainScreen
 let CGGamesScreenSegueName = "gamesScreenSegue"
@@ -36,18 +37,69 @@ let CGAnalyticsCategoryClick = "Нажатие"
 let CGAnalyticsEventBirthdayCancel = "Cancel - дата рождения"
 let CGAnalyticsEventBirthdayOk = "Ок - дата рождения"
 
-class CGMainScreenViewController: UIViewController, UITextFieldDelegate {
-    
+
+class CGMainScreenViewController: UIViewController, CGMainScreenProtocol {
     @IBOutlet weak var tableView: UITableView!
     
-    var mainScreenDDM : CGMainScreenDDM
-    var dataModel : CGDataModelProtocol
-    var selectedIndexRow : Int = -1
+    var mainScreenDDM : CGMainScreenDDM!
+    var dataModel : CGDataModelProtocol!
+    
+    // MARK: - CGMainScreenProtocol
+    
+    func birthdayString() -> String {
+        return resultBirthDayStr;
+    }
+    
+    func trackActionSelectGroup(groupName : String, selectedRow: Int) {
+        let actionName = String(format: CGAnalyticsEventCategorySelect, NSNumber(integer: selectedRow))
+        
+        sendAction(actionName,
+                   categoryName: CGAnalyticsCategoryClick,
+                   label: "\(groupName)",
+                   value: selectedRow)
+        
+        performSegueWithIdentifier(CGGamesScreenSegueName, sender: self);
+    }
+    
+    // MARK: - UIViewController
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        self.dataModel = CGDataModelJSONAdapter(mainFileName: "mums")
+        self.mainScreenDDM = CGMainScreenDDM(mainScreenDelegate: self, dataModel: self.dataModel)
+        
+        let nibHeaderView = UINib(nibName: String(CGHeaderView), bundle: nil)
+        tableView.registerNib(nibHeaderView, forHeaderFooterViewReuseIdentifier: String(CGHeaderView))
+        
+        let nibMainScreenCell = UINib(nibName: String(CGMainScreenCell), bundle: nil)
+        tableView.registerNib(nibMainScreenCell, forCellReuseIdentifier: String(CGMainScreenCell));
+        
+        let nibAboutUsCell = UINib(nibName: String(CGAboutUsCell), bundle: nil)
+        tableView.registerNib(nibAboutUsCell, forCellReuseIdentifier: String(CGAboutUsCell));
+        
+        tableView.delegate = self.mainScreenDDM;
+        tableView.dataSource = self.mainScreenDDM;
+        
+        
+        // Show birthday Popup
+        let isCanceledBirthDay = defaults.objectForKey(CGBabyBirthCancelUserDefaults) as? NSNumber
+        let babyDate = defaults.objectForKey(CGBabyBirthUserDefaults) as? NSDate
+        
+        if let babyDate = babyDate {
+            confirsYearsOld(babyDate)
+        } else if isCanceledBirthDay != nil {
+            resultBirthDayStr = CGBirthdayAltText
+        } else {
+            showAgeModalView();
+        }
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == CGGamesScreenSegueName {
             if let destinationVC = segue.destinationViewController as? CGGamesScreenViewController {
-                destinationVC.selectedGroupId = selectedIndexRow
+                destinationVC.selectedGroupId = mainScreenDDM.selectedIndexRow
                 destinationVC.dataModel = self.dataModel
             }
         }
@@ -60,30 +112,7 @@ class CGMainScreenViewController: UIViewController, UITextFieldDelegate {
         sendOpenScreen(CGMainScreenTitle)
     }
     
-    func configureHeaderView( headerView : CGHeaderView, title: String, headerImageName: String) {
-        headerView.headerImage.image = UIImage(named: headerImageName)
-        headerView.headerSubtitle.text = title
-    }
-    
-    func prepareDataModel() {
-        self.dataModel = CGDataModelJSONAdapter(mainFileName: "mums")
-        mainScreenDataSource = MainScreenDataSource(dataModel: self.dataModel)
-    }
-    
-    func prepareTableView() {
-        let nibHeaderView = UINib(nibName: String(CGHeaderView), bundle: nil)
-        tableView.registerNib(nibHeaderView, forHeaderFooterViewReuseIdentifier: String(CGHeaderView))
-        
-        let nibMainScreenCell = UINib(nibName: String(CGMainScreenCell), bundle: nil)
-        tableView.registerNib(nibMainScreenCell, forCellReuseIdentifier: String(CGMainScreenCell));
-        
-        let nibAboutUsCell = UINib(nibName: String(CGAboutUsCell), bundle: nil)
-        tableView.registerNib(nibAboutUsCell, forCellReuseIdentifier: String(CGAboutUsCell));
-        
-        tableView.delegate = self.mainScreenDDM;
-        tableView.dataSource = self.mainScreenDDM;
-    }
-    
+// MARK: - popup birthday in UIAlertController
     var resultBirthDayStr : String = ""
     var confirmAction : UIAlertAction!
     var textFieldBirthDate : UITextField!
@@ -121,7 +150,7 @@ class CGMainScreenViewController: UIViewController, UITextFieldDelegate {
                             label: "",
                             value: 0)
             
-            userDefaults.setObject("canceled", forKey: CGBabyBirthCancelUserDefaults)
+            userDefaults.setObject(CGBabyBirthCancelValue, forKey: CGBabyBirthCancelUserDefaults)
             
             self.resultBirthDayStr = CGBirthdayAltText
         }
@@ -145,44 +174,8 @@ class CGMainScreenViewController: UIViewController, UITextFieldDelegate {
             self.textFieldBirthDate = textField
             textField.inputView = datepicker
             textField.placeholder = CGBirthDatePlaceholder
-            textField.delegate = self
         }
         self.presentViewController(alertController, animated: true, completion: nil)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let defaults = NSUserDefaults.standardUserDefaults()
-        
-        prepareDataModel()
-        prepareTableView()
-        
-        let isCanceledBirthDay = defaults.objectForKey(CGBabyBirthCancelUserDefaults) as? NSNumber
-        let babyDate = defaults.objectForKey(CGBabyBirthUserDefaults) as? NSDate
-        
-        if let babyDate = babyDate {
-            confirsYearsOld(babyDate)
-        } else if isCanceledBirthDay != nil {
-            resultBirthDayStr = CGBirthdayAltText
-        } else {
-            showAgeModalView();
-        }
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.selectedIndexRow = indexPath.row
-        let actionName = String(format: CGAnalyticsEventCategorySelect, NSNumber(integer: indexPath.row))
-        
-        if let groupModel = dataModel?.groupModelWithId(self.selectedIndexRow) {
-            sendAction(actionName,
-                       categoryName: CGAnalyticsCategoryClick,
-                       label: "\(groupModel.groupName)",
-                       value: self.selectedIndexRow)
-        } else {
-            sendAction(actionName, categoryName: CGAnalyticsCategoryClick, label: "Ошибка модели", value: 0)
-        }
-        
-        self.performSegueWithIdentifier(CGGamesScreenSegueName, sender: self);
     }
 }
 

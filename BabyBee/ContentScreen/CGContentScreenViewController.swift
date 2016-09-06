@@ -12,11 +12,11 @@ import WebKit
 class CGContentScreenViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet var containerView: UIView!
-    var webView : WKWebView?
     
-    var dataModel : CGDataModelProtocol?
-    var gameId : Int = -1
-    var groupId : Int = -1
+    var webView : WKWebView!
+    var dataModel : CGDataModelProtocol!
+    var gameId : Int = 0
+    var groupId : Int = 0
     
     override func viewWillAppear(animated: Bool) {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
@@ -34,31 +34,30 @@ class CGContentScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let games = dataModel?.gamesListWithGroupId(groupId) {
-            if let gameModel : CGGameModel = games[gameId] {
-                
-                self.navigationItem.title = gameModel.nameGame
-                
-                sendOpenScreen(gameModel.nameGame)
-                
-                let modelHtmlContent = gameModel.htmlContent
-                
-                let stylesheet =
-                "<style type=\"text/css\">                  " +
-                "   body {                                  " +
-                "       font-family: 'Verdana'; margin: 10px" +
-                "   }                                       " +
-                "   img {                                   " +
-                "       max-height:200px; width: 100%;  display:block; margin:auto; padding:auto;" +
-                "       height: auto;" +
-                "   }                                       " +
-                "</style>"
-                
-                let headHtml = "<meta name=\"viewport\" content=\"initial-scale=1.2\" />\(stylesheet)"
-                
-                let htmlContent = "<html><head>\(headHtml)</head><body><p>\(modelHtmlContent)</p></body></html>"
-                webView?.loadHTMLString(htmlContent, baseURL: nil)
-            }
+        let games = dataModel.gamesListWithGroupId(groupId)
+        
+        if let games = games, let gameModel : CGGameModel = games[gameId] {
+            self.navigationItem.title = gameModel.nameGame
+            
+            sendOpenScreen(gameModel.nameGame)
+            
+            let modelHtmlContent = gameModel.htmlContent
+            
+            let stylesheet =
+            "<style type=\"text/css\">                  " +
+            "   body {                                  " +
+            "       font-family: 'Verdana'; margin: 10px" +
+            "   }                                       " +
+            "   img {                                   " +
+            "       max-height:200px; width: 100%;  display:block; margin:auto; padding:auto;" +
+            "       height: auto;" +
+            "   }                                       " +
+            "</style>"
+            
+            let headHtml = "<meta name=\"viewport\" content=\"initial-scale=1.2\" />\(stylesheet)"
+            
+            let htmlContent = "<html><head>\(headHtml)</head><body><p>\(modelHtmlContent)</p></body></html>"
+            webView?.loadHTMLString(htmlContent, baseURL: nil)
         }
     }
 }

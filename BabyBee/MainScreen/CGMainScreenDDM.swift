@@ -8,17 +8,35 @@
 
 import Foundation
 
+let CGHeaderImageFileName = "bg_mainScreen"
+
+protocol CGMainScreenProtocol {
+    func birthdayString() -> String;
+    func trackActionSelectGroup(groupName : String, selectedRow: Int);
+}
+
 class CGMainScreenDDM : NSObject, UITableViewDataSource, UITableViewDelegate {
-    var dataModel : CGDataModelProtocol?
+    var dataModel : CGDataModelProtocol
+    var mainScreenDelegate: CGMainScreenProtocol
+    
     var groupsCatalog : CGGroupsCatalogModel?
     
-    let specialCellsOnFooter = 0;
+    var selectedIndexRow : Int = 0
+    let specialCellsOnFooter = 0
     
-    init(dataModel : CGDataModelProtocol?) {
-        super.init()
+    init(mainScreenDelegate: CGMainScreenProtocol, dataModel : CGDataModelProtocol) {
+        self.selectedIndexRow = 0
         
+        self.mainScreenDelegate = mainScreenDelegate;
         self.dataModel = dataModel
-        self.groupsCatalog = dataModel?.groupsCatalogModel()
+        self.groupsCatalog = dataModel.groupsCatalogModel()
+        
+        super.init()
+    }
+    
+    func configureHeaderView( headerView : CGHeaderView, title: String, headerImageName: String) {
+        headerView.headerImage.image = UIImage(named: headerImageName)
+        headerView.headerSubtitle.text = title
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -26,8 +44,8 @@ class CGMainScreenDDM : NSObject, UITableViewDataSource, UITableViewDelegate {
             if let headerView : CGHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(String(CGHeaderView)) as? CGHeaderView {
                 
                 self.configureHeaderView(headerView,
-                                         title:resultBirthDayStr,
-                                         headerImageName: "bg_mainScreen")
+                                         title:mainScreenDelegate.birthdayString(),
+                                         headerImageName: CGHeaderImageFileName)
                 
                 return headerView
             }
@@ -41,8 +59,8 @@ class CGMainScreenDDM : NSObject, UITableViewDataSource, UITableViewDelegate {
             {
                 
                 self.configureHeaderView(headerView,
-                                         title:resultBirthDayStr,
-                                         headerImageName: "bg_mainScreen")
+                                         title:mainScreenDelegate.birthdayString(),
+                                         headerImageName: CGHeaderImageFileName)
                 
                 headerView.setNeedsUpdateConstraints()
                 headerView.updateConstraints()
@@ -57,12 +75,23 @@ class CGMainScreenDDM : NSObject, UITableViewDataSource, UITableViewDelegate {
         return 0.0
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.selectedIndexRow = indexPath.row
+        
+        var groupName = ""
+        if let groupModel = dataModel.groupModelWithId(self.selectedIndexRow) {
+            groupName = groupModel.groupName
+        } else {
+            groupName = "Ошибка загрузки группы"
+        }
+        mainScreenDelegate.trackActionSelectGroup(groupName, selectedRow: indexPath.row)
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let groupsCatalog = groupsCatalog {
             return groupsCatalog.groupsCount + specialCellsOnFooter;
-        } else {
-            return 0
         }
+        return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
