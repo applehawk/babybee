@@ -32,6 +32,24 @@ class CGContentScreenViewController: UIViewController {
         view = webView
     }
     
+    func loadHTMLContentIntoWebView( htmlContent: String ) {
+        let stylesheet =
+            "<style type=\"text/css\">                  " +
+                "   body {                                  " +
+                "       font-family: 'Verdana'; margin: 10px" +
+                "   }                                       " +
+                "   img {                                   " +
+                "       max-height:200px; width: 100%;  display:block; margin:auto; padding:auto;" +
+                "       height: auto;" +
+                "   }                                       " +
+        "</style>"
+        
+        let headHtml = "<meta name=\"viewport\" content=\"initial-scale=1.2\" />\(stylesheet)"
+        
+        let htmlContent = "<html><head>\(headHtml)</head><body><p>\(htmlContent)</p></body></html>"
+        webView?.loadHTMLString(htmlContent, baseURL: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let games = dataModel.gamesListWithGroupId(groupId)
@@ -40,24 +58,7 @@ class CGContentScreenViewController: UIViewController {
             self.navigationItem.title = gameModel.nameGame
             
             sendOpenScreen(gameModel.nameGame)
-            
-            let modelHtmlContent = gameModel.htmlContent
-            
-            let stylesheet =
-            "<style type=\"text/css\">                  " +
-            "   body {                                  " +
-            "       font-family: 'Verdana'; margin: 10px" +
-            "   }                                       " +
-            "   img {                                   " +
-            "       max-height:200px; width: 100%;  display:block; margin:auto; padding:auto;" +
-            "       height: auto;" +
-            "   }                                       " +
-            "</style>"
-            
-            let headHtml = "<meta name=\"viewport\" content=\"initial-scale=1.2\" />\(stylesheet)"
-            
-            let htmlContent = "<html><head>\(headHtml)</head><body><p>\(modelHtmlContent)</p></body></html>"
-            webView?.loadHTMLString(htmlContent, baseURL: nil)
+            loadHTMLContentIntoWebView(gameModel.htmlContent)
         }
     }
 }
