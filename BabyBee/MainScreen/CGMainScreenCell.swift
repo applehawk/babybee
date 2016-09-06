@@ -23,4 +23,8 @@ class CGMainScreenCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func configureForGroup( groupModel : CGGroupModel ) {
+        self.cellTitleLabel.text = groupModel.groupName
+    }
+    
 }

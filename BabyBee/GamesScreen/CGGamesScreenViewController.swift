@@ -27,6 +27,8 @@ class CGGamesScreenViewController: UIViewController, CGGamesScreenProtocol {
                    label: gameName,
                    value: gameId)
         
+        selectedGameId = gameId
+        
         self.performSegueWithIdentifier("contentScreenSegue", sender: self);
     }
     

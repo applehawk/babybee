@@ -42,9 +42,8 @@ class CGGamesScreenDDM : NSObject, UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("CGGamesScreenCell", forIndexPath: indexPath) as! CGGamesScreenCell
         
-        if let gamesModelList = gamesModelList {
-            let gameModel = gamesModelList[indexPath.row]
-            cell.titleGameLabel.text = gameModel.nameGame;
+        if let gameModel = gamesModelList?[indexPath.row] {
+            cell.configureForGroup( gameModel )
         }
         
         return cell

@@ -39,14 +39,22 @@ class CGContentScreenViewController: UIViewController {
                 "       font-family: 'Verdana'; margin: 10px" +
                 "   }                                       " +
                 "   img {                                   " +
-                "       max-height:200px; width: 100%;  display:block; margin:auto; padding:auto;" +
+                "       width: 100%;  display:block; margin:auto; padding:auto;" +
                 "       height: auto;" +
                 "   }                                       " +
+                "   #containter {" +
+                "       " +
+                "   }" +
         "</style>"
         
         let headHtml = "<meta name=\"viewport\" content=\"initial-scale=1.2\" />\(stylesheet)"
         
-        let htmlContent = "<html><head>\(headHtml)</head><body><p>\(htmlContent)</p></body></html>"
+        let htmlContent =
+        "<html><head>\(headHtml)</head>" +
+        "<body>" +
+        "   <div id=\"container\"><p>\(htmlContent)</p></div>" +
+        "</body>" +
+        "</html>"
         webView?.loadHTMLString(htmlContent, baseURL: nil)
     }
     

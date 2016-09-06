@@ -95,23 +95,11 @@ class CGMainScreenDDM : NSObject, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        var cell : UITableViewCell!
-        if let groupsCatalog = groupsCatalog {
-            if indexPath.row < groupsCatalog.groupsCatalog.count {
-                let mainCell = tableView.dequeueReusableCellWithIdentifier(String(CGMainScreenCell), forIndexPath: indexPath) as! CGMainScreenCell
-                
-                let catalog = groupsCatalog.groupsCatalog[indexPath.row]
-                mainCell.cellTitleLabel.text = catalog.groupName
-                cell = mainCell
-            } else {
-                //let specialRow = indexPath.row - groupsCatalog.groupsCatalog.count
-                
-                let specialCell = tableView.dequeueReusableCellWithIdentifier(String(CGAboutUsCell), forIndexPath: indexPath) as! CGAboutUsCell
-                
-                cell = specialCell
-            }
+        if let groupModel = groupsCatalog?.groupsCatalog[indexPath.row] where indexPath.row < groupsCatalog?.groupsCatalog.count {
+            let cell = tableView.dequeueReusableCellWithIdentifier(String(CGMainScreenCell), forIndexPath: indexPath) as! CGMainScreenCell
+            cell.configureForGroup(groupModel)
+            return cell
         }
-        return cell
+        return UITableViewCell()
     }
 }
