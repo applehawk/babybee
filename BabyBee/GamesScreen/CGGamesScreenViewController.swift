@@ -10,16 +10,25 @@ import UIKit
 
 let CGGamesScreenSubtitle = "Выберите игру для вашего малыша"
 
-class CGGamesScreenViewController: UIViewController, UITableViewDelegate {
+class CGGamesScreenViewController: UIViewController, CGGamesScreenProtocol {
     @IBOutlet weak var tableView: UITableView!
     
-    var gamesScreenDataSource : CGGamesScreenDDM!
+    var gameScreenDDM : CGGamesScreenDDM!
     var dataModel : CGDataModelProtocol!
     
     var groupModel : CGGroupModel?
     
     var selectedGroupId : Int = 0
     var selectedGameId : Int = 0
+    
+    func trackSelectGame(gameName : String, gameId: Int) {
+        sendAction("Выбрана игра: \(gameName)",
+                   categoryName: "Нажатие",
+                   label: gameName,
+                   value: gameId)
+        
+        self.performSegueWithIdentifier("contentScreenSegue", sender: self);
+    }
     
     override func viewWillAppear(animated: Bool) {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
@@ -32,7 +41,7 @@ class CGGamesScreenViewController: UIViewController, UITableViewDelegate {
         super.viewDidLoad()
         
         if let dataModel = dataModel {
-            gamesScreenDataSource = CGGamesScreenDDM(dataModel: dataModel, groupId: selectedGroupId)
+            gameScreenDDM = CGGamesScreenDDM(delegate: self, dataModel: dataModel, groupId: selectedGroupId)
             groupModel = dataModel.groupModelWithId(selectedGroupId)
             
             if let groupModel = groupModel {
@@ -46,8 +55,8 @@ class CGGamesScreenViewController: UIViewController, UITableViewDelegate {
         let headerNib = UINib(nibName: String(CGHeaderView), bundle: nil)
         tableView.registerNib(headerNib, forHeaderFooterViewReuseIdentifier: String(CGHeaderView))
         
-        tableView.delegate = self;
-        tableView.dataSource = gamesScreenDataSource;
+        tableView.delegate = gameScreenDDM;
+        tableView.dataSource = gameScreenDDM;
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "contentScreenSegue" {

@@ -9,19 +9,20 @@
 import Foundation
 
 protocol CGGamesScreenProtocol {
-    func trackSelectGame(gameId : Int);
+    func trackSelectGame(gameName: String, gameId : Int);
 }
 
 class CGGamesScreenDDM : NSObject, UITableViewDelegate, UITableViewDataSource {
     var dataModel : CGDataModelProtocol
     
-    var selectedGroupId : Int = -1
+    var selectedGroupId : Int = 0
     var groupModel : CGGroupModel?
     var gamesModelList : [CGGameModel]?
     
     var delegate : CGGamesScreenProtocol!
     
     init(delegate : CGGamesScreenProtocol, dataModel : CGDataModelProtocol, groupId: Int) {
+        self.delegate = delegate
         self.selectedGroupId = groupId
         self.dataModel = dataModel
         self.groupModel = dataModel.groupModelWithId(groupId)
@@ -50,18 +51,13 @@ class CGGamesScreenDDM : NSObject, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //self.selectedGameId = indexPath.row
         
-        let gameModel = dataModel.gameModelWithGroupIdAndGameId(self.selectedGroupId, idGame: self.selectedGameId)
+        let gameModel = dataModel.gameModelWithGroupIdAndGameId(self.selectedGroupId, idGame: indexPath.row)
         
-        if let gameModel = gameModel {
-            sendAction("Выбрана игра: \(gameModel.nameGame)",
-                       categoryName: "Нажатие",
-                       label: "\(gameModel.nameGame)",
-                       value: self.selectedGameId)
-            
-            delegate.trackSelectGame
-            self.performSegueWithIdentifier("contentScreenSegue", sender: self);
+        if let gameModel : CGGameModel = gameModel {
+            delegate.trackSelectGame(gameModel.nameGame, gameId: indexPath.row)
+        } else {
+            delegate.trackSelectGame("Ошибка получения данных игры \(indexPath.row)", gameId: indexPath.row)
         }
     }
     
