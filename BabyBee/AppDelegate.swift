@@ -94,7 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         registerRemoteNotifications(application)
         let token = FIRInstanceID.instanceID().token()!
-        
+        print("FCM Token: \(token)")
         return true
     }
     
