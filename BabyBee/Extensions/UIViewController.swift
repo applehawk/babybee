@@ -12,6 +12,7 @@ import Firebase
 extension UIViewController {
     func sendOpenScreen( screenName : String ) {
         let tracker = GAI.sharedInstance().defaultTracker
+        tracker.allowIDFACollection = true
         tracker.set(kGAIScreenName, value: screenName)
         
         let builder = GAIDictionaryBuilder.createScreenView()
@@ -20,7 +21,7 @@ extension UIViewController {
     
     func sendAction( actionName : String, categoryName : String, label: String, value: NSNumber ) {
         let tracker = GAI.sharedInstance().defaultTracker
-        
+        tracker.allowIDFACollection = true
         let builder = GAIDictionaryBuilder.createEventWithCategory(categoryName, action: actionName, label: label, value: value);
         
         tracker.send( builder.build() as [NSObject : AnyObject])
