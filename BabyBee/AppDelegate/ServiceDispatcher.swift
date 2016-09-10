@@ -58,6 +58,20 @@ class ServiceDispatcher : UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func application(application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: () -> Void) {
+        services.forEach { service in
+            service.application?(application, handleEventsForBackgroundURLSession: identifier, completionHandler: completionHandler)
+        }
+    }
+    
+    @available(iOS 8.0, *)
+    func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+        services.forEach { service in
+            service.application?(application, continueUserActivity: userActivity, restorationHandler: restorationHandler)
+        }
+        return true
+    }
+    
     // MARK: Main function of AppDelegate
     func application(application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {

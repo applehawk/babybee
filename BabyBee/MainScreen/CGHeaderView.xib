@@ -26,7 +26,7 @@
 с пчелкой BabyBee
 </string>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
@@ -40,7 +40,6 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="6R6-4q-UPh" firstAttribute="top" secondItem="VYX-SM-InF" secondAttribute="bottom" id="DMY-4H-zA4"/>
                 <constraint firstItem="VYX-SM-InF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="PbE-Kn-Y4z"/>

@@ -18,6 +18,7 @@ class CGAnalyticsTracker: NSObject {
             let builder = GAIDictionaryBuilder.createScreenView()
             tracker.send(builder.build() as [NSObject : AnyObject])
         }
+        FIRAnalytics.logEventWithName("openScreen", parameters: ["screeName" : screenName])
     }
     
     func sendAction( actionName : String, categoryName : String, label: String, value: NSNumber ) {
@@ -26,11 +27,11 @@ class CGAnalyticsTracker: NSObject {
             let builder = GAIDictionaryBuilder.createEventWithCategory(categoryName, action: actionName, label: label, value: value);
             
             tracker.send( builder.build() as [NSObject : AnyObject])
-            
-            FIRAnalytics.logEventWithName(actionName,
-                                          parameters:
-                ["category" : categoryName,
-                    "label" : label, "value":value])
         }
+        
+        FIRAnalytics.logEventWithName(actionName,
+                                      parameters:
+            ["category" : categoryName,
+                "label" : label, "value":value])
     }
 }

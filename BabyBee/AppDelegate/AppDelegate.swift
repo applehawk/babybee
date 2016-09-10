@@ -76,5 +76,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return serviceDispatcher.application(application, openURL: url, options: options)
     }
+    
+    func application(application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: () -> Void) {
+        serviceDispatcher.application(application, handleEventsForBackgroundURLSession: identifier, completionHandler: completionHandler)
+    }
+    
+    @available(iOS 8.0, *)
+    func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+        return serviceDispatcher.application(application, continueUserActivity: userActivity, restorationHandler: restorationHandler)
+    }
 }
 

@@ -42,10 +42,14 @@ class GoogleAnalyticsService : NSObject, UIApplicationDelegate {
         // Optional: configure GAI options.
         let gai = GAI.sharedInstance()
         gai.trackUncaughtExceptions = true  // report uncaught exceptions
-        gai.logger.logLevel = GAILogLevel.Verbose  // remove before app release
         let tracker = GAI.sharedInstance().defaultTracker
         tracker.allowIDFACollection = true
-        
+        #if DEBUG
+            gai.dryRun = true
+            gai.logger.logLevel = GAILogLevel.Error // remove before app release
+        #else
+            gai.logger.logLevel = GAILogLevel.Verbose  // remove before app release
+        #endif
         return true
     }
 }

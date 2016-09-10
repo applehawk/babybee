@@ -26,7 +26,7 @@ extension NSDate {
     
     func convertDateToGOSTDateString() -> String {
         let fmt = NSDateFormatter()
-        fmt.dateFormat = "dd.MM.yyyy"
+        fmt.dateFormat = "dd_MM_yyyy"
         return fmt.stringFromDate(self);
     }
     

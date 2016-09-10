@@ -64,6 +64,7 @@
 		05E41FA11D78952F00F5BCCC /* CGAboutUsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E41F9F1D78952F00F5BCCC /* CGAboutUsCell.swift */; };
 		05E41FA21D78952F00F5BCCC /* CGAboutUsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05E41FA01D78952F00F5BCCC /* CGAboutUsCell.xib */; };
 		7EA0FF351D84884B002775DF /* CGAnalyticsTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0FF341D84884B002775DF /* CGAnalyticsTracker.swift */; };
+		7EA0FF371D849B61002775DF /* CGConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0FF361D849B61002775DF /* CGConstants.swift */; };
 		7EBD2AE91D83F08500FD6FF8 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBD2AE31D83F08500FD6FF8 /* FirebaseService.swift */; };
 		7EBD2AEA1D83F08500FD6FF8 /* GoogleSignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBD2AE41D83F08500FD6FF8 /* GoogleSignInService.swift */; };
 		7EBD2AEB1D83F08500FD6FF8 /* GoogleAnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBD2AE51D83F08500FD6FF8 /* GoogleAnalyticsService.swift */; };
@@ -140,6 +141,7 @@
 		05E41FA01D78952F00F5BCCC /* CGAboutUsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CGAboutUsCell.xib; path = MainScreen/CGAboutUsCell.xib; sourceTree = "<group>"; };
 		18314F15E6CDE6AE1AEF2C00 /* Pods-BabyBee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BabyBee.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BabyBee/Pods-BabyBee.debug.xcconfig"; sourceTree = "<group>"; };
 		7EA0FF341D84884B002775DF /* CGAnalyticsTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGAnalyticsTracker.swift; path = BussinessLogic/CGAnalyticsTracker.swift; sourceTree = "<group>"; };
+		7EA0FF361D849B61002775DF /* CGConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGConstants.swift; sourceTree = "<group>"; };
 		7EBD2AE31D83F08500FD6FF8 /* FirebaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseService.swift; path = AppDelegate/AppDelegateServices/FirebaseService.swift; sourceTree = "<group>"; };
 		7EBD2AE41D83F08500FD6FF8 /* GoogleSignInService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleSignInService.swift; path = AppDelegate/AppDelegateServices/GoogleSignInService.swift; sourceTree = "<group>"; };
 		7EBD2AE51D83F08500FD6FF8 /* GoogleAnalyticsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleAnalyticsService.swift; path = AppDelegate/AppDelegateServices/GoogleAnalyticsService.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 		0534FE751D70D44200FE964A /* BabyBee */ = {
 			isa = PBXGroup;
 			children = (
+				7EA0FF361D849B61002775DF /* CGConstants.swift */,
 				05564D9C1D7F06B1006E9311 /* Bussiness Logic */,
 				0536AE7C1D775F8800941357 /* Extensions */,
 				0536AE7B1D77526C00941357 /* Thirdparty */,
@@ -272,8 +275,8 @@
 		0534FEA91D719C5000FE964A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				05E41FA31D78953400F5BCCC /* CGAboutUsCell */,
 				0536AE981D78358500941357 /* CGHeaderView */,
+				05E41FA31D78953400F5BCCC /* CGAboutUsCell */,
 				0534FEAA1D719C5800FE964A /* CGMainScreenCell */,
 			);
 			name = Cells;
@@ -488,6 +491,9 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = HAKZ2M653C;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.InAppPurchase = {
 								enabled = 1;
 							};
@@ -639,6 +645,7 @@
 				0536AE821D77870B00941357 /* NSString.swift in Sources */,
 				0534FEA41D70E89A00FE964A /* CGGamesScreenCell.swift in Sources */,
 				057DC1A11D79D77200F6C5F6 /* CGMainScreenDDM.swift in Sources */,
+				7EA0FF371D849B61002775DF /* CGConstants.swift in Sources */,
 				0534FEC91D725BBD00FE964A /* CGContentScreenViewController.swift in Sources */,
 				7EBD2AE91D83F08500FD6FF8 /* FirebaseService.swift in Sources */,
 				7EBD2AEC1D83F08500FD6FF8 /* RootService.swift in Sources */,
@@ -779,6 +786,7 @@
 				INFOPLIST_FILE = BabyBee/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				"OTHER_SWIFT_FLAGS[arch=*]" = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"DEBUG\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MobiPuzzle.BabyBee;
 				PRODUCT_NAME = BabyBee;
 				PROVISIONING_PROFILE = "";
