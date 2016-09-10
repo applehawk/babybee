@@ -42,6 +42,7 @@ class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainS
     
     var mainScreenDDM : CGMainScreenDDM!
     var dataModel : CGDataModelProtocol!
+    var tracker = CGAnalyticsTracker()
     
     var resultBirthDayStr = ""
     let userDefaults = NSUserDefaults.standardUserDefaults()
@@ -58,7 +59,7 @@ class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainS
         
         let dateString = birthDate.convertDateToGOSTDateString()
         // Send to Analytics confirm Action
-        self.sendAction(CGAnalyticsEventBirthdayOk + " " + dateString,
+        tracker.sendAction(CGAnalyticsEventBirthdayOk + " " + dateString,
                         categoryName: CGAnalyticsCategoryClick,
                         label: dateString,
                         value: 0)
@@ -67,7 +68,7 @@ class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainS
     }
     func ageCancelled() {
         self.resultBirthDayStr = CGBirthdayAltText
-        self.sendAction(CGAnalyticsEventBirthdayCancel,
+        tracker.sendAction(CGAnalyticsEventBirthdayCancel,
                         categoryName: CGAnalyticsCategoryClick,
                         label: "",
                         value: 0)
@@ -86,7 +87,7 @@ class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainS
     func didSelectedGroup(groupName : String, selectedRow: Int) {
         let actionName = String(format: CGAnalyticsEventCategorySelect, NSNumber(integer: selectedRow))
         
-        sendAction(actionName,
+        tracker.sendAction(actionName,
                    categoryName: CGAnalyticsCategoryClick,
                    label: "\(groupName)",
                    value: selectedRow)
@@ -100,7 +101,7 @@ class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainS
         self.navigationItem.title = CGMainScreenTitle;
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
         
-        sendOpenScreen(CGMainScreenTitle)
+        tracker.sendOpenScreen(CGMainScreenTitle)
     }
     
     override func viewDidLoad() {

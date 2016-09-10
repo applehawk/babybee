@@ -15,6 +15,7 @@ class CGGamesScreenViewController: UIViewController, CGGamesScreenProtocol {
     
     var gameScreenDDM : CGGamesScreenDDM!
     var dataModel : CGDataModelProtocol!
+    let tracker = CGAnalyticsTracker()
     
     var groupModel : CGGroupModel?
     
@@ -24,7 +25,7 @@ class CGGamesScreenViewController: UIViewController, CGGamesScreenProtocol {
     
     // MARK: - CGGamesScreenProtocol methods
     func didSelectedGame(gameName : String, gameId: Int) {
-        sendAction("Выбрана игра: \(gameName)",
+        tracker.sendAction("Выбрана игра: \(gameName)",
                    categoryName: "Нажатие",
                    label: gameName,
                    value: gameId)
@@ -39,7 +40,7 @@ class CGGamesScreenViewController: UIViewController, CGGamesScreenProtocol {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
         
         if let title = dataModel.groupModelWithId(selectedGroupId)?.groupName {
-            sendOpenScreen(title)
+            tracker.sendOpenScreen(title)
         }
     }
     override func viewDidLoad() {
