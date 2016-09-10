@@ -63,6 +63,7 @@
 		05DA24E31D7EF0C70015A7E5 /* CGGamesScreenDDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DA24E21D7EF0C70015A7E5 /* CGGamesScreenDDM.swift */; };
 		05E41FA11D78952F00F5BCCC /* CGAboutUsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E41F9F1D78952F00F5BCCC /* CGAboutUsCell.swift */; };
 		05E41FA21D78952F00F5BCCC /* CGAboutUsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05E41FA01D78952F00F5BCCC /* CGAboutUsCell.xib */; };
+		7EA0FF351D84884B002775DF /* CGAnalyticsTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0FF341D84884B002775DF /* CGAnalyticsTracker.swift */; };
 		7EBD2AE91D83F08500FD6FF8 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBD2AE31D83F08500FD6FF8 /* FirebaseService.swift */; };
 		7EBD2AEA1D83F08500FD6FF8 /* GoogleSignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBD2AE41D83F08500FD6FF8 /* GoogleSignInService.swift */; };
 		7EBD2AEB1D83F08500FD6FF8 /* GoogleAnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBD2AE51D83F08500FD6FF8 /* GoogleAnalyticsService.swift */; };
@@ -138,6 +139,7 @@
 		05E41F9F1D78952F00F5BCCC /* CGAboutUsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGAboutUsCell.swift; path = MainScreen/CGAboutUsCell.swift; sourceTree = "<group>"; };
 		05E41FA01D78952F00F5BCCC /* CGAboutUsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CGAboutUsCell.xib; path = MainScreen/CGAboutUsCell.xib; sourceTree = "<group>"; };
 		18314F15E6CDE6AE1AEF2C00 /* Pods-BabyBee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BabyBee.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BabyBee/Pods-BabyBee.debug.xcconfig"; sourceTree = "<group>"; };
+		7EA0FF341D84884B002775DF /* CGAnalyticsTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGAnalyticsTracker.swift; path = BussinessLogic/CGAnalyticsTracker.swift; sourceTree = "<group>"; };
 		7EBD2AE31D83F08500FD6FF8 /* FirebaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseService.swift; path = AppDelegate/AppDelegateServices/FirebaseService.swift; sourceTree = "<group>"; };
 		7EBD2AE41D83F08500FD6FF8 /* GoogleSignInService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleSignInService.swift; path = AppDelegate/AppDelegateServices/GoogleSignInService.swift; sourceTree = "<group>"; };
 		7EBD2AE51D83F08500FD6FF8 /* GoogleAnalyticsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleAnalyticsService.swift; path = AppDelegate/AppDelegateServices/GoogleAnalyticsService.swift; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 		05564D9C1D7F06B1006E9311 /* Bussiness Logic */ = {
 			isa = PBXGroup;
 			children = (
+				7EA0FF341D84884B002775DF /* CGAnalyticsTracker.swift */,
 			);
 			name = "Bussiness Logic";
 			sourceTree = "<group>";
@@ -428,12 +431,12 @@
 		7EBD2AE21D83F04500FD6FF8 /* AppDelegateServices */ = {
 			isa = PBXGroup;
 			children = (
-				7EBD2AE31D83F08500FD6FF8 /* FirebaseService.swift */,
-				7EBD2AE41D83F08500FD6FF8 /* GoogleSignInService.swift */,
-				7EBD2AE51D83F08500FD6FF8 /* GoogleAnalyticsService.swift */,
 				7EBD2AE61D83F08500FD6FF8 /* RootService.swift */,
-				7EBD2AE71D83F08500FD6FF8 /* StoryKitService.swift */,
+				7EBD2AE51D83F08500FD6FF8 /* GoogleAnalyticsService.swift */,
+				7EBD2AE31D83F08500FD6FF8 /* FirebaseService.swift */,
 				7EBD2AE81D83F08500FD6FF8 /* FirebaseNotificationService.swift */,
+				7EBD2AE71D83F08500FD6FF8 /* StoryKitService.swift */,
+				7EBD2AE41D83F08500FD6FF8 /* GoogleSignInService.swift */,
 			);
 			name = AppDelegateServices;
 			sourceTree = "<group>";
@@ -654,6 +657,7 @@
 				0536AE7E1D775F9600941357 /* NSDate.swift in Sources */,
 				0534FEAF1D71A08000FE964A /* CGDataModel.swift in Sources */,
 				7EBD2AF11D83F09100FD6FF8 /* AppDelegate.swift in Sources */,
+				7EA0FF351D84884B002775DF /* CGAnalyticsTracker.swift in Sources */,
 				7EBD2AF41D83F4CF00FD6FF8 /* CGAgeAskingController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
