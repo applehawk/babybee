@@ -10,21 +10,16 @@ import UIKit
 
 let CGHeaderImageFileName = "bg_mainScreen"
 
-protocol CGMainScreenProtocol {
-    func birthdayString() -> String;
-    func trackActionSelectGroup(groupName : String, selectedRow: Int);
-}
-
 class CGMainScreenDDM : NSObject, UITableViewDataSource, UITableViewDelegate {
     var dataModel : CGDataModelProtocol
-    var mainScreenDelegate: CGMainScreenProtocol
+    var mainScreenDelegate: CGMainScreenDelegate
     
     var groupsCatalog : CGGroupsCatalogModel?
     
     var selectedIndexRow : Int = 0
     let specialCellsOnFooter = 0
     
-    init(mainScreenDelegate: CGMainScreenProtocol, dataModel : CGDataModelProtocol) {
+    init(mainScreenDelegate: CGMainScreenDelegate, dataModel : CGDataModelProtocol) {
         self.selectedIndexRow = 0
         
         self.mainScreenDelegate = mainScreenDelegate;
@@ -84,7 +79,7 @@ class CGMainScreenDDM : NSObject, UITableViewDataSource, UITableViewDelegate {
         } else {
             groupName = "Ошибка загрузки группы"
         }
-        mainScreenDelegate.trackActionSelectGroup(groupName, selectedRow: indexPath.row)
+        mainScreenDelegate.didSelectedGroup(groupName, selectedRow: indexPath.row)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

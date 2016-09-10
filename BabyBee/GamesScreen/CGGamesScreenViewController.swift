@@ -18,10 +18,12 @@ class CGGamesScreenViewController: UIViewController, CGGamesScreenProtocol {
     
     var groupModel : CGGroupModel?
     
+    //it's setted by previous controlled which appears it
     var selectedGroupId : Int = 0
     var selectedGameId : Int = 0
     
-    func trackSelectGame(gameName : String, gameId: Int) {
+    // MARK: - CGGamesScreenProtocol methods
+    func didSelectedGame(gameName : String, gameId: Int) {
         sendAction("Выбрана игра: \(gameName)",
                    categoryName: "Нажатие",
                    label: gameName,
@@ -32,6 +34,7 @@ class CGGamesScreenViewController: UIViewController, CGGamesScreenProtocol {
         self.performSegueWithIdentifier("contentScreenSegue", sender: self);
     }
     
+    // MARK: - UIViewController methods
     override func viewWillAppear(animated: Bool) {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
         

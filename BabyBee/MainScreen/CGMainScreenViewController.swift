@@ -15,7 +15,7 @@ enum CGMainScreenTableSections : Int {
 }
 
 // MARK: - User Defaults
-let CGBabyBirthUserDefaults = "babyBirthDate"
+let CGBabyBirthDateUserDefaults = "babyBirthDate"
 let CGBabyBirthCancelUserDefaults = "isBabyBirthCanceled"
 let CGBabyBirthCancelValue = "canceled"
 
@@ -37,20 +37,53 @@ let CGAnalyticsCategoryClick = "Нажатие"
 let CGAnalyticsEventBirthdayCancel = "Cancel - дата рождения"
 let CGAnalyticsEventBirthdayOk = "Ок - дата рождения"
 
-
-class CGMainScreenViewController: UIViewController, CGMainScreenProtocol {
+class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainScreenDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     var mainScreenDDM : CGMainScreenDDM!
     var dataModel : CGDataModelProtocol!
     
-    // MARK: - CGMainScreenProtocol
+    var resultBirthDayStr = ""
+    let userDefaults = NSUserDefaults.standardUserDefaults()
     
-    func birthdayString() -> String {
-        return resultBirthDayStr;
+    // MARK: - CGAgeAskingDelegate
+    func ageConfirm( birthDate: NSDate ) {
+        let now = NSDate()
+        let components = birthDate.numberOfMonthsAndDaysToTime(now)
+        let pluralBirthDay = String().convertDateComponentsToPluralDate(components)
+        
+        resultBirthDayStr = CGBirthDayPrefix + " " + pluralBirthDay
+        
+        userDefaults.setObject(birthDate, forKey: CGBabyBirthDateUserDefaults)
+        
+        let dateString = birthDate.convertDateToGOSTDateString()
+        // Send to Analytics confirm Action
+        self.sendAction(CGAnalyticsEventBirthdayOk + " " + dateString,
+                        categoryName: CGAnalyticsCategoryClick,
+                        label: dateString,
+                        value: 0)
+        
+        tableView.reloadData()
+    }
+    func ageCancelled() {
+        self.resultBirthDayStr = CGBirthdayAltText
+        self.sendAction(CGAnalyticsEventBirthdayCancel,
+                        categoryName: CGAnalyticsCategoryClick,
+                        label: "",
+                        value: 0)
+        
+        self.userDefaults.setObject(NSNumber(bool: true),
+                                    forKey: CGBabyBirthCancelUserDefaults)
+        tableView.reloadData()
     }
     
-    func trackActionSelectGroup(groupName : String, selectedRow: Int) {
+    // MARK: - CGMainScreenProtocol used in UITableViewDelegate
+    
+    func birthdayString() -> String {
+        return resultBirthDayStr
+    }
+    
+    func didSelectedGroup(groupName : String, selectedRow: Int) {
         let actionName = String(format: CGAnalyticsEventCategorySelect, NSNumber(integer: selectedRow))
         
         sendAction(actionName,
@@ -63,9 +96,15 @@ class CGMainScreenViewController: UIViewController, CGMainScreenProtocol {
     
     // MARK: - UIViewController
     
+    override func viewWillAppear(animated: Bool) {
+        self.navigationItem.title = CGMainScreenTitle;
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+        
+        sendOpenScreen(CGMainScreenTitle)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let defaults = NSUserDefaults.standardUserDefaults()
         
         self.dataModel = CGDataModelJSONAdapter(mainFileName: "mums")
         self.mainScreenDDM = CGMainScreenDDM(mainScreenDelegate: self, dataModel: self.dataModel)
@@ -82,18 +121,8 @@ class CGMainScreenViewController: UIViewController, CGMainScreenProtocol {
         tableView.delegate = self.mainScreenDDM;
         tableView.dataSource = self.mainScreenDDM;
         
-        
         // Show birthday Popup
-        let isCanceledBirthDay = defaults.objectForKey(CGBabyBirthCancelUserDefaults) as? NSNumber
-        let babyDate = defaults.objectForKey(CGBabyBirthUserDefaults) as? NSDate
-        
-        if let babyDate = babyDate {
-            confirsYearsOld(babyDate)
-        } else if isCanceledBirthDay != nil {
-            resultBirthDayStr = CGBirthdayAltText
-        } else {
-            showAgeModalView();
-        }
+        self.askAgeIfNeeded()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -105,77 +134,22 @@ class CGMainScreenViewController: UIViewController, CGMainScreenProtocol {
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        self.navigationItem.title = CGMainScreenTitle;
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
-        
-        sendOpenScreen(CGMainScreenTitle)
-    }
-    
-// MARK: - popup birthday in UIAlertController
-    var resultBirthDayStr : String = ""
-    var confirmAction : UIAlertAction!
-    var textFieldBirthDate : UITextField!
-    
-    func confirsYearsOld( birthDate: NSDate) {
-        let now = NSDate()
-        let components = birthDate.numberOfMonthsAndDaysToTime(now)
-        let pluralBirthDay = String().convertDateComponentsToPluralDate(components)
-        self.resultBirthDayStr = CGBirthDayPrefix + " " + pluralBirthDay
-        
-        tableView.reloadData()
-    }
-    
-    func dataChanged(picker: UIDatePicker) {
-        if let textField = textFieldBirthDate {
-            textField.text = picker.date.convertDateToGOSTDateString()
-            confirmAction.enabled = textField.text != ""
+    // MARK: Helper Methods
+    func askAgeIfNeeded() {
+        // Show birthday Popup
+        if let isCanceledBirthDay = userDefaults.objectForKey(CGBabyBirthCancelUserDefaults) as? NSNumber where isCanceledBirthDay == true {
+            resultBirthDayStr = CGBirthdayAltText
+        } else {
+            if let birthDate = userDefaults.objectForKey(CGBabyBirthDateUserDefaults) as? NSDate {
+                self.ageConfirm(birthDate)
+            } else {
+                let ageAskVC = CGAgeAskingController(title: CGBirthAlertTitle,
+                                                     message: CGBirthAlertMessage,
+                                                     preferredStyle: .Alert)
+                ageAskVC.ageAskingDelegate = self
+                self.presentViewController(ageAskVC, animated: true, completion: nil)
+            }
         }
-    }
-    func showAgeModalView() {
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        let datepicker = UIDatePicker()
-        datepicker.datePickerMode = .Date
-        datepicker.maximumDate = NSDate()
-        datepicker.addTarget(self, action: #selector(CGMainScreenViewController.dataChanged(_:)),
-                             forControlEvents: UIControlEvents.ValueChanged );
-        
-        let alertController = UIAlertController(title: CGBirthAlertTitle,
-                                                message: CGBirthAlertMessage,
-                                                preferredStyle: .Alert)
-        
-        let cancelAction = UIAlertAction(title: CGCancelTitle, style: .Cancel) { (action) in
-            self.sendAction(CGAnalyticsEventBirthdayCancel,
-                            categoryName: CGAnalyticsCategoryClick,
-                            label: "",
-                            value: 0)
-            
-            userDefaults.setObject(CGBabyBirthCancelValue, forKey: CGBabyBirthCancelUserDefaults)
-            
-            self.resultBirthDayStr = CGBirthdayAltText
-        }
-        alertController.addAction(cancelAction)
-        
-        let confirmAction = UIAlertAction(title: CGConfirmTitle, style: .Default) { (action) in
-            userDefaults.setObject(datepicker.date, forKey: CGBabyBirthUserDefaults)
-            
-            let dateString = datepicker.date.convertDateToGOSTDateString()
-            self.sendAction(CGAnalyticsEventBirthdayOk + " " + dateString,
-                       categoryName: CGAnalyticsCategoryClick,
-                       label: dateString,
-                       value: 0)
-            
-            self.confirsYearsOld(datepicker.date);
-        }
-        self.confirmAction = confirmAction
-        confirmAction.enabled = false
-        alertController.addAction(confirmAction)
-        alertController.addTextFieldWithConfigurationHandler { (textField) in
-            self.textFieldBirthDate = textField
-            textField.inputView = datepicker
-            textField.placeholder = CGBirthDatePlaceholder
-        }
-        self.presentViewController(alertController, animated: true, completion: nil)
     }
 }
 

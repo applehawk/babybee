@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CGGamesScreenProtocol {
-    func trackSelectGame(gameName: String, gameId : Int);
+    func didSelectedGame(gameName: String, gameId : Int);
 }
 
 class CGGamesScreenDDM : NSObject, UITableViewDelegate, UITableViewDataSource {
@@ -54,9 +54,9 @@ class CGGamesScreenDDM : NSObject, UITableViewDelegate, UITableViewDataSource {
         let gameModel = dataModel.gameModelWithGroupIdAndGameId(self.selectedGroupId, idGame: indexPath.row)
         
         if let gameModel : CGGameModel = gameModel {
-            delegate.trackSelectGame(gameModel.nameGame, gameId: indexPath.row)
+            delegate.didSelectedGame(gameModel.nameGame, gameId: indexPath.row)
         } else {
-            delegate.trackSelectGame("Ошибка получения данных игры \(indexPath.row)", gameId: indexPath.row)
+            delegate.didSelectedGame("Ошибка получения данных игры \(indexPath.row)", gameId: indexPath.row)
         }
     }
     
