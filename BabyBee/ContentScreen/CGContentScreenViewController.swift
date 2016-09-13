@@ -14,9 +14,9 @@ class CGContentScreenViewController: UIViewController {
     @IBOutlet var containerView: UIView!
     
     var tracker : CGAnalyticsTracker!
+    var dataModel : CGDataModelProtocol!
     
     var webView : WKWebView!
-    var dataModel : CGDataModelProtocol!
     var gameId : Int = 0
     var groupId : Int = 0
     

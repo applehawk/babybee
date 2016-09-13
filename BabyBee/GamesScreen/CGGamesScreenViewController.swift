@@ -37,18 +37,19 @@ class CGGamesScreenViewController: UIViewController, CGGamesScreenProtocol {
         self.performSegueWithIdentifier(CGContentScreenSegueName, sender: self)
     }
     
+    
     // MARK: - UIViewController methods
     override func viewWillAppear(animated: Bool) {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
         
-        if let title = dataModel.groupModelWithId(selectedGroupId)?.groupName {
-            tracker.sendOpenScreen(title)
+        if let groupModel = dataModel.groupModelWithId(selectedGroupId) {
+            tracker.sendOpenScreen( groupModel.groupName )
         }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.gamesScreenDDM = assembly.gamesScreenDDM(self.selectedGroupId) as? CGGamesScreenDDM
+        self.gamesScreenDDM = assembly?.gamesScreenDDM(self.selectedGroupId) as? CGGamesScreenDDM
         
         if let groupModel = dataModel?.groupModelWithId(selectedGroupId) {
             self.navigationItem.title = groupModel.groupName
@@ -66,7 +67,6 @@ class CGGamesScreenViewController: UIViewController, CGGamesScreenProtocol {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == CGContentScreenSegueName {
             if let destinationVC = segue.destinationViewController as? CGContentScreenViewController {
-                destinationVC.tracker = self.tracker
                 destinationVC.gameId = self.selectedGameId
                 destinationVC.groupId = self.selectedGroupId
             }
