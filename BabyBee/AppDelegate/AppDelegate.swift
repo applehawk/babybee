@@ -12,78 +12,80 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
-    static let services : [UIApplicationDelegate] = [
-        RootService(),
-        GoogleAnalyticsService(),
-        FirebaseService(),
-        FirebaseNotificationService(),
-        //GoogleSignInService(),
-        StoryKitService()
-        ]
-    
-    let serviceDispatcher = ServiceDispatcher(services: services)
+    var appAssembly: ApplicationAssembly!
+    var serviceDispatcher : AppDelegateServiceProtocol?
     
     // MARK: Main function of AppDelegate
     func application(application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        return serviceDispatcher.application(application, didFinishLaunchingWithOptions: launchOptions)
+        if let serviceDispatcher = serviceDispatcher {
+            return serviceDispatcher.application(application, didFinishLaunchingWithOptions: launchOptions)
+        }
+        return false
     }
     
     // MARK: Helper function for Notifications
     func application(application: UIApplication,
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        serviceDispatcher.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
-        
+        serviceDispatcher?.application?(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
     }
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        serviceDispatcher.application(application, didReceiveRemoteNotification: userInfo, fetchCompletionHandler: completionHandler)
+        serviceDispatcher?.application?(application, didReceiveRemoteNotification: userInfo, fetchCompletionHandler: completionHandler)
     }
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        serviceDispatcher.application(application, didReceiveLocalNotification: notification)
+        serviceDispatcher?.application?(application, didReceiveLocalNotification: notification)
     }
     
     // MARK: Handlers of app mode transitions (Active, Inactive, Background, Foreground, Suspended)
     func applicationWillResignActive(application: UIApplication) {
-        serviceDispatcher.applicationWillResignActive(application)
+        serviceDispatcher?.applicationWillResignActive?(application)
     }
     
     func applicationDidEnterBackground(application: UIApplication) {
-        serviceDispatcher.applicationDidEnterBackground(application)
+        serviceDispatcher?.applicationDidEnterBackground?(application)
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
-        serviceDispatcher.applicationWillEnterForeground(application)
+        serviceDispatcher?.applicationWillEnterForeground?(application)
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
-        serviceDispatcher.applicationDidBecomeActive(application)
+        serviceDispatcher?.applicationDidBecomeActive?(application)
     }
     
     // MARK: Works with remote URLs
     func application(application: UIApplication,
                      openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         
-        return serviceDispatcher.application(application,
+        if let resultBool = serviceDispatcher?.application?(application,
                                       openURL: url,
                                       sourceApplication: sourceApplication,
-                                      annotation: annotation)
+                                      annotation: annotation) {
+            return resultBool
+        }
+        return false
     }
     
     @available(iOS 9.0, *)
     func application(application: UIApplication,
                      openURL url: NSURL, options: [String: AnyObject]) -> Bool {
-        
-        return serviceDispatcher.application(application, openURL: url, options: options)
+        if let resultBool = serviceDispatcher?.application?(application, openURL: url, options: options) {
+                return resultBool
+        }
+        return false
     }
     
     func application(application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: () -> Void) {
-        serviceDispatcher.application(application, handleEventsForBackgroundURLSession: identifier, completionHandler: completionHandler)
+        
+        serviceDispatcher?.application?(application, handleEventsForBackgroundURLSession: identifier, completionHandler: completionHandler)
     }
     
     @available(iOS 8.0, *)
     func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
-        return serviceDispatcher.application(application, continueUserActivity: userActivity, restorationHandler: restorationHandler)
+        if let resultBool = serviceDispatcher?.application?(application, continueUserActivity: userActivity, restorationHandler: restorationHandler) {
+            return resultBool
+        }
+        return false
     }
 }
 

@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-class FirebaseService: NSObject, UIApplicationDelegate {
+class FirebaseService: NSObject, AppDelegateServiceProtocol {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         FIRApp.configure()
         return true

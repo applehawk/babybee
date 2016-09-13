@@ -17,12 +17,13 @@ enum CGMainScreenTableSections : Int {
 class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainScreenDelegate {
     @IBOutlet weak var tableView: UITableView!
     
-    var mainScreenDDM : CGMainScreenDDM!
+    //Dependencies injected property
+    var tracker : CGAnalyticsTracker!
+    var mainScreenDDM : CGMainScreenDDMProtocol!
     var dataModel : CGDataModelProtocol!
-    var tracker = CGAnalyticsTracker()
+    var userDefaults : NSUserDefaults!
     
     var resultBirthDayStr = ""
-    let userDefaults = NSUserDefaults.standardUserDefaults()
     
     // MARK: - CGAgeAskingDelegate
     func ageConfirm( birthDate: NSDate ) {
@@ -62,14 +63,14 @@ class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainS
     }
     
     func didSelectedGroup(groupName : String, selectedRow: Int) {
-        let actionName = String(format: CGAnalyticsEventCategorySelect, NSNumber(integer: selectedRow))
+        let actionName = String(format: CGAnalyticsEventCategorySelectFmt, NSNumber(integer: selectedRow))
         
         tracker.sendAction(actionName,
                    categoryName: CGAnalyticsCategoryClick,
                    label: "\(groupName)",
                    value: selectedRow)
         
-        performSegueWithIdentifier(CGGamesScreenSegueName, sender: self);
+        performSegueWithIdentifier(CGGamesScreenSegueName, sender: self)
     }
     
     // MARK: - UIViewController
@@ -83,9 +84,6 @@ class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainS
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.dataModel = CGDataModelJSONAdapter(mainFileName: "mums")
-        self.mainScreenDDM = CGMainScreenDDM(mainScreenDelegate: self, dataModel: self.dataModel)
         
         let nibHeaderView = UINib(nibName: String(CGHeaderView), bundle: nil)
         tableView.registerNib(nibHeaderView, forHeaderFooterViewReuseIdentifier: String(CGHeaderView))
@@ -103,11 +101,12 @@ class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainS
         self.askAgeIfNeeded()
     }
     
+    
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == CGGamesScreenSegueName {
             if let destinationVC = segue.destinationViewController as? CGGamesScreenViewController {
                 destinationVC.selectedGroupId = mainScreenDDM.selectedIndexRow
-                destinationVC.dataModel = self.dataModel
             }
         }
     }

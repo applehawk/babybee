@@ -11,7 +11,7 @@ import Firebase
 
 let CGGoogleAnalyticsID = "UA-83542519-1"
 
-class GoogleAnalyticsService : NSObject, UIApplicationDelegate {
+class GoogleAnalyticsService : NSObject, AppDelegateServiceProtocol {
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         let urlString = url.absoluteURL
         let tracker = GAI.sharedInstance().defaultTracker

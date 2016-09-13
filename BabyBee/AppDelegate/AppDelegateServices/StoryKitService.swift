@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyStoreKit
 
-class StoryKitService: NSObject, UIApplicationDelegate {
+class StoryKitService: NSObject, AppDelegateServiceProtocol {
     
     func application(application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {

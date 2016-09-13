@@ -63,8 +63,12 @@
 		05DA24E31D7EF0C70015A7E5 /* CGGamesScreenDDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DA24E21D7EF0C70015A7E5 /* CGGamesScreenDDM.swift */; };
 		05E41FA11D78952F00F5BCCC /* CGAboutUsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E41F9F1D78952F00F5BCCC /* CGAboutUsCell.swift */; };
 		05E41FA21D78952F00F5BCCC /* CGAboutUsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05E41FA01D78952F00F5BCCC /* CGAboutUsCell.xib */; };
+		7E0487261D875DFA0083C404 /* ApplicationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0487251D875DFA0083C404 /* ApplicationAssembly.swift */; };
+		7E0487291D875E400083C404 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E0487281D875E400083C404 /* Configuration.plist */; };
+		7E04872B1D8770AB0083C404 /* AppDelegateServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E04872A1D8770AB0083C404 /* AppDelegateServiceProtocol.swift */; };
+		7E25BE361D88212E00ED372E /* BabyBee-Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E25BE351D88212E00ED372E /* BabyBee-Constants.swift */; };
+		7E25BE3A1D886A3C00ED372E /* BabyBee-LanguageStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E25BE391D886A3C00ED372E /* BabyBee-LanguageStrings.strings */; };
 		7EA0FF351D84884B002775DF /* CGAnalyticsTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0FF341D84884B002775DF /* CGAnalyticsTracker.swift */; };
-		7EA0FF371D849B61002775DF /* CGConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0FF361D849B61002775DF /* CGConstants.swift */; };
 		7EBD2AE91D83F08500FD6FF8 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBD2AE31D83F08500FD6FF8 /* FirebaseService.swift */; };
 		7EBD2AEA1D83F08500FD6FF8 /* GoogleSignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBD2AE41D83F08500FD6FF8 /* GoogleSignInService.swift */; };
 		7EBD2AEB1D83F08500FD6FF8 /* GoogleAnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBD2AE51D83F08500FD6FF8 /* GoogleAnalyticsService.swift */; };
@@ -72,7 +76,7 @@
 		7EBD2AED1D83F08500FD6FF8 /* StoryKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBD2AE71D83F08500FD6FF8 /* StoryKitService.swift */; };
 		7EBD2AEE1D83F08500FD6FF8 /* FirebaseNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBD2AE81D83F08500FD6FF8 /* FirebaseNotificationService.swift */; };
 		7EBD2AF11D83F09100FD6FF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBD2AEF1D83F09100FD6FF8 /* AppDelegate.swift */; };
-		7EBD2AF21D83F09100FD6FF8 /* ServiceDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBD2AF01D83F09100FD6FF8 /* ServiceDispatcher.swift */; };
+		7EBD2AF21D83F09100FD6FF8 /* AppDelegateServiceDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBD2AF01D83F09100FD6FF8 /* AppDelegateServiceDispatcher.swift */; };
 		7EBD2AF41D83F4CF00FD6FF8 /* CGAgeAskingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBD2AF31D83F4CF00FD6FF8 /* CGAgeAskingController.swift */; };
 		7EC7197B1D8461CA00DABC8C /* CGMainScreenDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC7197A1D8461CA00DABC8C /* CGMainScreenDelegate.swift */; };
 		7ED0FE2C1D7F742900814132 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED0FE2B1D7F742900814132 /* AdSupport.framework */; };
@@ -126,22 +130,26 @@
 		0536AE811D77870B00941357 /* NSString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSString.swift; path = Extensions/NSString.swift; sourceTree = "<group>"; };
 		0536AE831D7801A400941357 /* Cocon_Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Cocon_Bold.otf; path = Resources/Fonts/Cocon_Bold.otf; sourceTree = "<group>"; };
 		0536AE851D780FDA00941357 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Resources/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		0536AE861D780FDA00941357 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
+		0536AE861D780FDA00941357 /* BabyBee-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "BabyBee-Info.plist"; path = "Resources/BabyBee-Info.plist"; sourceTree = "<group>"; };
 		0536AE901D7815E700941357 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewController.swift; path = Extensions/UIViewController.swift; sourceTree = "<group>"; };
 		0536AE921D78309900941357 /* headerScreen0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = headerScreen0.png; path = Resources/Images/headerScreen0.png; sourceTree = "<group>"; };
 		0536AE961D7834C300941357 /* headerScreen3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = headerScreen3.png; path = Resources/Images/headerScreen3.png; sourceTree = "<group>"; };
 		0536AE9A1D7835CC00941357 /* CGHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CGHeaderView.xib; path = MainScreen/CGHeaderView.xib; sourceTree = "<group>"; };
 		0536AE9C1D783C8A00941357 /* headerScreen2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = headerScreen2.png; path = Resources/Images/headerScreen2.png; sourceTree = "<group>"; };
 		0536AE9E1D783E9100941357 /* CGHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGHeaderView.swift; path = MainScreen/CGHeaderView.swift; sourceTree = "<group>"; };
-		05564D9B1D7F01F4006E9311 /* BabyBee-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BabyBee-Bridging-Header.h"; path = "BabyBee/BabyBee-Bridging-Header.h"; sourceTree = "<group>"; };
+		05564D9B1D7F01F4006E9311 /* BabyBee-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BabyBee-Bridging-Header.h"; sourceTree = "<group>"; };
 		057DC1A01D79D77200F6C5F6 /* CGMainScreenDDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGMainScreenDDM.swift; path = MainScreen/CGMainScreenDDM.swift; sourceTree = "<group>"; };
 		057DC1A41D7ADE5E00F6C5F6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		05DA24E21D7EF0C70015A7E5 /* CGGamesScreenDDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGGamesScreenDDM.swift; path = GamesScreen/CGGamesScreenDDM.swift; sourceTree = "<group>"; };
 		05E41F9F1D78952F00F5BCCC /* CGAboutUsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGAboutUsCell.swift; path = MainScreen/CGAboutUsCell.swift; sourceTree = "<group>"; };
 		05E41FA01D78952F00F5BCCC /* CGAboutUsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CGAboutUsCell.xib; path = MainScreen/CGAboutUsCell.xib; sourceTree = "<group>"; };
 		18314F15E6CDE6AE1AEF2C00 /* Pods-BabyBee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BabyBee.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BabyBee/Pods-BabyBee.debug.xcconfig"; sourceTree = "<group>"; };
+		7E0487251D875DFA0083C404 /* ApplicationAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationAssembly.swift; path = Assembly/ApplicationAssembly.swift; sourceTree = "<group>"; };
+		7E0487281D875E400083C404 /* Configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Configuration.plist; path = Assembly/Configuration.plist; sourceTree = "<group>"; };
+		7E04872A1D8770AB0083C404 /* AppDelegateServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegateServiceProtocol.swift; path = AppDelegate/AppDelegateServiceProtocol.swift; sourceTree = "<group>"; };
+		7E25BE351D88212E00ED372E /* BabyBee-Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "BabyBee-Constants.swift"; path = "Resources/BabyBee-Constants.swift"; sourceTree = "<group>"; };
+		7E25BE391D886A3C00ED372E /* BabyBee-LanguageStrings.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = "BabyBee-LanguageStrings.strings"; path = "Resources/BabyBee-LanguageStrings.strings"; sourceTree = "<group>"; };
 		7EA0FF341D84884B002775DF /* CGAnalyticsTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGAnalyticsTracker.swift; path = BussinessLogic/CGAnalyticsTracker.swift; sourceTree = "<group>"; };
-		7EA0FF361D849B61002775DF /* CGConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGConstants.swift; sourceTree = "<group>"; };
 		7EBD2AE31D83F08500FD6FF8 /* FirebaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseService.swift; path = AppDelegate/AppDelegateServices/FirebaseService.swift; sourceTree = "<group>"; };
 		7EBD2AE41D83F08500FD6FF8 /* GoogleSignInService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleSignInService.swift; path = AppDelegate/AppDelegateServices/GoogleSignInService.swift; sourceTree = "<group>"; };
 		7EBD2AE51D83F08500FD6FF8 /* GoogleAnalyticsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleAnalyticsService.swift; path = AppDelegate/AppDelegateServices/GoogleAnalyticsService.swift; sourceTree = "<group>"; };
@@ -149,7 +157,7 @@
 		7EBD2AE71D83F08500FD6FF8 /* StoryKitService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoryKitService.swift; path = AppDelegate/AppDelegateServices/StoryKitService.swift; sourceTree = "<group>"; };
 		7EBD2AE81D83F08500FD6FF8 /* FirebaseNotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseNotificationService.swift; path = AppDelegate/AppDelegateServices/FirebaseNotificationService.swift; sourceTree = "<group>"; };
 		7EBD2AEF1D83F09100FD6FF8 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = AppDelegate/AppDelegate.swift; sourceTree = "<group>"; };
-		7EBD2AF01D83F09100FD6FF8 /* ServiceDispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceDispatcher.swift; path = AppDelegate/ServiceDispatcher.swift; sourceTree = "<group>"; };
+		7EBD2AF01D83F09100FD6FF8 /* AppDelegateServiceDispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegateServiceDispatcher.swift; path = AppDelegate/AppDelegateServiceDispatcher.swift; sourceTree = "<group>"; };
 		7EBD2AF31D83F4CF00FD6FF8 /* CGAgeAskingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGAgeAskingController.swift; path = MainScreen/CGAgeAskingController.swift; sourceTree = "<group>"; };
 		7EC7197A1D8461CA00DABC8C /* CGMainScreenDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGMainScreenDelegate.swift; path = MainScreen/CGMainScreenDelegate.swift; sourceTree = "<group>"; };
 		7ED0FE2B1D7F742900814132 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -175,7 +183,6 @@
 		0534FE6A1D70D44200FE964A = {
 			isa = PBXGroup;
 			children = (
-				05564D9B1D7F01F4006E9311 /* BabyBee-Bridging-Header.h */,
 				0534FECA1D72630100FE964A /* WebKit.framework */,
 				0534FEB41D71CDB500FE964A /* Podfile */,
 				0534FE751D70D44200FE964A /* BabyBee */,
@@ -196,8 +203,9 @@
 		0534FE751D70D44200FE964A /* BabyBee */ = {
 			isa = PBXGroup;
 			children = (
-				7EA0FF361D849B61002775DF /* CGConstants.swift */,
-				05564D9C1D7F06B1006E9311 /* Bussiness Logic */,
+				05564D9B1D7F01F4006E9311 /* BabyBee-Bridging-Header.h */,
+				7E0487271D875E000083C404 /* Assembly */,
+				05564D9C1D7F06B1006E9311 /* BussinessLogic */,
 				0536AE7C1D775F8800941357 /* Extensions */,
 				0536AE7B1D77526C00941357 /* Thirdparty */,
 				0534FEC71D725B7000FE964A /* Screens */,
@@ -211,8 +219,10 @@
 		0534FE8A1D70D66F00FE964A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7E25BE351D88212E00ED372E /* BabyBee-Constants.swift */,
+				7E25BE391D886A3C00ED372E /* BabyBee-LanguageStrings.strings */,
+				0536AE861D780FDA00941357 /* BabyBee-Info.plist */,
 				0536AE851D780FDA00941357 /* GoogleService-Info.plist */,
-				0536AE861D780FDA00941357 /* Info.plist */,
 				0536AE261D76C14B00941357 /* AppIcon */,
 				0534FEBD1D72387100FE964A /* Content */,
 				0534FE8E1D70D97500FE964A /* Fonts */,
@@ -394,12 +404,12 @@
 			name = CGHeaderView;
 			sourceTree = "<group>";
 		};
-		05564D9C1D7F06B1006E9311 /* Bussiness Logic */ = {
+		05564D9C1D7F06B1006E9311 /* BussinessLogic */ = {
 			isa = PBXGroup;
 			children = (
 				7EA0FF341D84884B002775DF /* CGAnalyticsTracker.swift */,
 			);
-			name = "Bussiness Logic";
+			name = BussinessLogic;
 			sourceTree = "<group>";
 		};
 		05E41FA31D78953400F5BCCC /* CGAboutUsCell */ = {
@@ -421,11 +431,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7E0487271D875E000083C404 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				7E0487251D875DFA0083C404 /* ApplicationAssembly.swift */,
+				7E0487281D875E400083C404 /* Configuration.plist */,
+			);
+			name = Assembly;
+			sourceTree = "<group>";
+		};
 		7EBD2AD11D838A1B00FD6FF8 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
 				7EBD2AEF1D83F09100FD6FF8 /* AppDelegate.swift */,
-				7EBD2AF01D83F09100FD6FF8 /* ServiceDispatcher.swift */,
+				7E04872A1D8770AB0083C404 /* AppDelegateServiceProtocol.swift */,
+				7EBD2AF01D83F09100FD6FF8 /* AppDelegateServiceDispatcher.swift */,
 				7EBD2AE21D83F04500FD6FF8 /* AppDelegateServices */,
 			);
 			name = AppDelegate;
@@ -545,6 +565,7 @@
 				0536AE6E1D7742F700941357 /* BeeAppIconIcon-60@3x.png in Resources */,
 				0536AE941D78309900941357 /* headerScreen0.png in Resources */,
 				0534FEA01D70DD8F00FE964A /* CGMainScreenCell.xib in Resources */,
+				7E0487291D875E400083C404 /* Configuration.plist in Resources */,
 				0536AE721D7742F700941357 /* BeeAppIconIcon-Small-40@2x.png in Resources */,
 				0536AE731D7742F700941357 /* BeeAppIconIcon-Small-40@3x.png in Resources */,
 				0536AE751D7742F700941357 /* BeeAppIconIcon-Small@2x.png in Resources */,
@@ -562,6 +583,7 @@
 				0536AE711D7742F700941357 /* BeeAppIconIcon-Small-40.png in Resources */,
 				0536AE871D780FDA00941357 /* GoogleService-Info.plist in Resources */,
 				0534FE991D70D97E00FE964A /* Arimo-Regular.otf in Resources */,
+				7E25BE3A1D886A3C00ED372E /* BabyBee-LanguageStrings.strings in Resources */,
 				0536AE6F1D7742F700941357 /* BeeAppIconIcon-76.png in Resources */,
 				0508FB101D736F160052647A /* group2.json in Resources */,
 				0508FB121D7376020052647A /* group3.json in Resources */,
@@ -645,11 +667,10 @@
 				0536AE821D77870B00941357 /* NSString.swift in Sources */,
 				0534FEA41D70E89A00FE964A /* CGGamesScreenCell.swift in Sources */,
 				057DC1A11D79D77200F6C5F6 /* CGMainScreenDDM.swift in Sources */,
-				7EA0FF371D849B61002775DF /* CGConstants.swift in Sources */,
 				0534FEC91D725BBD00FE964A /* CGContentScreenViewController.swift in Sources */,
 				7EBD2AE91D83F08500FD6FF8 /* FirebaseService.swift in Sources */,
 				7EBD2AEC1D83F08500FD6FF8 /* RootService.swift in Sources */,
-				7EBD2AF21D83F09100FD6FF8 /* ServiceDispatcher.swift in Sources */,
+				7EBD2AF21D83F09100FD6FF8 /* AppDelegateServiceDispatcher.swift in Sources */,
 				7EC7197B1D8461CA00DABC8C /* CGMainScreenDelegate.swift in Sources */,
 				0534FEBA1D7236EA00FE964A /* CGMainScreenViewController.swift in Sources */,
 				0536AE7A1D77526900941357 /* OptJSON.swift in Sources */,
@@ -657,6 +678,7 @@
 				0534FEA61D70E8E300FE964A /* CGGamesScreenViewController.swift in Sources */,
 				0534FECD1D7271DF00FE964A /* CGDataModelProtocol.swift in Sources */,
 				05DA24E31D7EF0C70015A7E5 /* CGGamesScreenDDM.swift in Sources */,
+				7E25BE361D88212E00ED372E /* BabyBee-Constants.swift in Sources */,
 				7EBD2AED1D83F08500FD6FF8 /* StoryKitService.swift in Sources */,
 				7EBD2AEE1D83F08500FD6FF8 /* FirebaseNotificationService.swift in Sources */,
 				0534FEB11D71A26700FE964A /* CGDataModelJSONAdapter.swift in Sources */,
@@ -664,7 +686,9 @@
 				0536AE7E1D775F9600941357 /* NSDate.swift in Sources */,
 				0534FEAF1D71A08000FE964A /* CGDataModel.swift in Sources */,
 				7EBD2AF11D83F09100FD6FF8 /* AppDelegate.swift in Sources */,
+				7E0487261D875DFA0083C404 /* ApplicationAssembly.swift in Sources */,
 				7EA0FF351D84884B002775DF /* CGAnalyticsTracker.swift in Sources */,
+				7E04872B1D8770AB0083C404 /* AppDelegateServiceProtocol.swift in Sources */,
 				7EBD2AF41D83F4CF00FD6FF8 /* CGAgeAskingController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -783,7 +807,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = BabyBee/Resources/Info.plist;
+				INFOPLIST_FILE = "BabyBee/Resources/BabyBee-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				"OTHER_SWIFT_FLAGS[arch=*]" = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"DEBUG\"";
@@ -801,7 +825,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = BabyBee/Resources/Info.plist;
+				INFOPLIST_FILE = "BabyBee/Resources/BabyBee-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MobiPuzzle.BabyBee;

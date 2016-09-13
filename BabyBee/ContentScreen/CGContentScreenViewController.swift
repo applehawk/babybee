@@ -13,7 +13,7 @@ class CGContentScreenViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet var containerView: UIView!
     
-    let tracker = CGAnalyticsTracker()
+    var tracker : CGAnalyticsTracker!
     
     var webView : WKWebView!
     var dataModel : CGDataModelProtocol!
@@ -24,7 +24,8 @@ class CGContentScreenViewController: UIViewController {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
         
         if let title = self.navigationItem.title {
-            tracker.sendOpenScreen("Игра: " + title)
+            let screenName = String(format: CGAnalyticsOpenScreenContentScreenFmt, title)
+            tracker?.sendOpenScreen(screenName)
         }
     }
     
@@ -67,7 +68,7 @@ class CGContentScreenViewController: UIViewController {
         if let games = games, let gameModel : CGGameModel = games[gameId] {
             self.navigationItem.title = gameModel.nameGame
             
-            tracker.sendOpenScreen(gameModel.nameGame)
+            tracker?.sendOpenScreen(gameModel.nameGame)
             loadHTMLContentIntoWebView(gameModel.htmlContent)
         }
     }

@@ -8,25 +8,25 @@
 
 import UIKit
 
-protocol CGGamesScreenProtocol {
+@objc protocol CGGamesScreenProtocol {
     func didSelectedGame(gameName: String, gameId : Int);
 }
 
 class CGGamesScreenDDM : NSObject, UITableViewDelegate, UITableViewDataSource {
     var dataModel : CGDataModelProtocol
+    var delegate : CGGamesScreenProtocol
     
     var selectedGroupId : Int = 0
     var groupModel : CGGroupModel?
     var gamesModelList : [CGGameModel]?
     
-    var delegate : CGGamesScreenProtocol!
-    
-    init(delegate : CGGamesScreenProtocol, dataModel : CGDataModelProtocol, groupId: Int) {
+    init(delegate : CGGamesScreenProtocol, dataModel : CGDataModelProtocol, groupIdNumber: NSNumber) {
         self.delegate = delegate
-        self.selectedGroupId = groupId
+        self.selectedGroupId = groupIdNumber.integerValue
         self.dataModel = dataModel
-        self.groupModel = dataModel.groupModelWithId(groupId)
-        self.gamesModelList = dataModel.gamesListWithGroupId(groupId)
+        
+        self.groupModel = dataModel.groupModelWithId(self.selectedGroupId)
+        self.gamesModelList = dataModel.gamesListWithGroupId(self.selectedGroupId)
         
         super.init()
     }

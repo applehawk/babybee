@@ -8,15 +8,16 @@
 
 import UIKit
 
-let CGGamesScreenSubtitle = "Выберите игру для вашего малыша"
-
 class CGGamesScreenViewController: UIViewController, CGGamesScreenProtocol {
     @IBOutlet weak var tableView: UITableView!
     
-    var gameScreenDDM : CGGamesScreenDDM!
+    // Injected by Typhoon
+    var gamesScreenDDM : CGGamesScreenDDM!
     var dataModel : CGDataModelProtocol!
-    let tracker = CGAnalyticsTracker()
+    var tracker : CGAnalyticsTracker!
+    var assembly : ApplicationAssembly!
     
+    // My custom Properties
     var groupModel : CGGroupModel?
     
     //it's setted by previous controlled which appears it
@@ -25,14 +26,15 @@ class CGGamesScreenViewController: UIViewController, CGGamesScreenProtocol {
     
     // MARK: - CGGamesScreenProtocol methods
     func didSelectedGame(gameName : String, gameId: Int) {
-        tracker.sendAction("Выбрана игра: \(gameName)",
-                   categoryName: "Нажатие",
+        let selectedAction = String(format: CGAnalyticsEventGameSelectedFmt, gameName)
+        tracker.sendAction(selectedAction,
+                   categoryName: CGAnalyticsCategoryClick,
                    label: gameName,
                    value: gameId)
         
         selectedGameId = gameId
         
-        self.performSegueWithIdentifier("contentScreenSegue", sender: self);
+        self.performSegueWithIdentifier(CGContentScreenSegueName, sender: self)
     }
     
     // MARK: - UIViewController methods
@@ -46,13 +48,10 @@ class CGGamesScreenViewController: UIViewController, CGGamesScreenProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let dataModel = dataModel {
-            gameScreenDDM = CGGamesScreenDDM(delegate: self, dataModel: dataModel, groupId: selectedGroupId)
-            groupModel = dataModel.groupModelWithId(selectedGroupId)
-            
-            if let groupModel = groupModel {
-                self.navigationItem.title = groupModel.groupName
-            }
+        self.gamesScreenDDM = assembly.gamesScreenDDM(self.selectedGroupId) as? CGGamesScreenDDM
+        
+        if let groupModel = dataModel?.groupModelWithId(selectedGroupId) {
+            self.navigationItem.title = groupModel.groupName
         }
 
         let nib = UINib(nibName: String(CGGamesScreenCell), bundle: nil)
@@ -61,14 +60,13 @@ class CGGamesScreenViewController: UIViewController, CGGamesScreenProtocol {
         let headerNib = UINib(nibName: String(CGHeaderView), bundle: nil)
         tableView.registerNib(headerNib, forHeaderFooterViewReuseIdentifier: String(CGHeaderView))
         
-        tableView.delegate = gameScreenDDM;
-        tableView.dataSource = gameScreenDDM;
+        tableView.delegate = gamesScreenDDM;
+        tableView.dataSource = gamesScreenDDM;
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "contentScreenSegue" {
+        if segue.identifier == CGContentScreenSegueName {
             if let destinationVC = segue.destinationViewController as? CGContentScreenViewController {
-                
-                destinationVC.dataModel = self.dataModel
+                destinationVC.tracker = self.tracker
                 destinationVC.gameId = self.selectedGameId
                 destinationVC.groupId = self.selectedGroupId
             }

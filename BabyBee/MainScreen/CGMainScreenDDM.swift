@@ -10,6 +10,10 @@ import UIKit
 
 let CGHeaderImageFileName = "bg_mainScreen"
 
+@objc public protocol CGMainScreenDDMProtocol : UITableViewDataSource, UITableViewDelegate {
+    var selectedIndexRow : Int { get }
+}
+
 class CGMainScreenDDM : NSObject, UITableViewDataSource, UITableViewDelegate {
     var dataModel : CGDataModelProtocol
     var mainScreenDelegate: CGMainScreenDelegate
@@ -19,7 +23,7 @@ class CGMainScreenDDM : NSObject, UITableViewDataSource, UITableViewDelegate {
     var selectedIndexRow : Int = 0
     let specialCellsOnFooter = 0
     
-    init(mainScreenDelegate: CGMainScreenDelegate, dataModel : CGDataModelProtocol) {
+    init(mainScreenDelegate: CGMainScreenDelegate, dataModel:CGDataModelProtocol) {
         self.selectedIndexRow = 0
         
         self.mainScreenDelegate = mainScreenDelegate;

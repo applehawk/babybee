@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CGGroupsCatalogModel {
+public class CGGroupsCatalogModel : NSObject {
     let mainTitle : String
     let groupsCount : Int
     var groupsCatalog = [CGGroupModel]()
@@ -33,9 +33,11 @@ class CGGroupsCatalogModel {
         } else {
             return nil
         }
+        
+        super.init()
         if let groupsArray = dict["groups"] as? NSArray {
             for group in groupsArray {
-                parseGroupOfJSON(group)
+                self.parseGroupOfJSON(group)
             }
         } else {
             return nil
@@ -43,7 +45,7 @@ class CGGroupsCatalogModel {
     }
 }
 
-class CGGameModel {
+public class CGGameModel : NSObject {
     init?(dict : NSDictionary) {
         if let nameGame = dict["nameGame"] as? String {
             self.nameGame = nameGame;
@@ -60,7 +62,7 @@ class CGGameModel {
     let htmlContent : String
 }
 
-class CGGroupModel {
+public class CGGroupModel : NSObject {
     init?(dict : NSDictionary) {
         if let headerPictureFileName = dict["headerPicture"] as? String {
             self.headerPictureFileName = headerPictureFileName

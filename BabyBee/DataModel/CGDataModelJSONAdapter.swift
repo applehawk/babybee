@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CGDataModelJSONAdapter: NSObject, CGDataModelProtocol {
+class CGDataModelJSON: NSObject, CGDataModelProtocol {
     var rootDict : NSDictionary?
     var catalogModel : CGGroupsCatalogModel?
     
@@ -67,7 +67,7 @@ class CGDataModelJSONAdapter: NSObject, CGDataModelProtocol {
     
     func groupModelWithId(idGroup: Int) -> CGGroupModel?
     {
-        if let catalogModel = self.catalogModel {
+        if let catalogModel = self.groupsCatalogModel() {
             if catalogModel.groupsCatalog.count > idGroup {
                 return catalogModel.groupsCatalog[idGroup]
             }

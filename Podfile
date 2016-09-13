@@ -7,8 +7,10 @@ target 'BabyBee' do
     pod 'SwiftyStoreKit'
     pod 'GoogleIDFASupport'
 	pod 'Google/Analytics'
-    #pod 'Google/SignIn'
+    pod 'Google/SignIn'
     pod 'Firebase/Core'
     pod 'Firebase/Messaging'
     pod 'Firebase/Database'
+    pod 'ObjectMapper', '~> 1.3'
+    pod 'Typhoon'
 end

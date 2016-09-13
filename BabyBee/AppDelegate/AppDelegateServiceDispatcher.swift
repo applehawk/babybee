@@ -8,14 +8,12 @@
 
 import UIKit.UIApplication
 
-class ServiceDispatcher : UIResponder, UIApplicationDelegate {
+class AppDelegateServiceDispatcher : UIResponder, AppDelegateServiceProtocol {
     let services: [UIApplicationDelegate]
     
     init(services: [UIApplicationDelegate]) {
         self.services = services
     }
-    
-    
     // MARK: Helper function for Notifications
     
     func application(application: UIApplication,

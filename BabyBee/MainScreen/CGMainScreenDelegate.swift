@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol CGMainScreenDelegate {
+@objc protocol CGMainScreenDelegate {
     func birthdayString() -> String;
     func didSelectedGroup(groupName : String, selectedRow: Int);
 }

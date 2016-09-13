@@ -9,7 +9,9 @@
 import Foundation
 import Firebase
 
-class GoogleSignInService : NSObject, UIApplicationDelegate, GIDSignInDelegate {
+/*
+
+class GoogleSignInService : NSObject, AppDelegateServiceProtocol, GIDSignInDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
@@ -41,3 +43,5 @@ class GoogleSignInService : NSObject, UIApplicationDelegate, GIDSignInDelegate {
         // ...
     }
 }
+ 
+ */

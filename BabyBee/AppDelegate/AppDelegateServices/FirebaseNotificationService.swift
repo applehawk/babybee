@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 
 //Firebase Cloud Messaging
-class FirebaseNotificationService: NSObject, UIApplicationDelegate {
+class FirebaseNotificationService: NSObject, AppDelegateServiceProtocol {
     
     func application(application: UIApplication,
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {

@@ -9,7 +9,12 @@
 import Foundation
 import Firebase
 
-class CGAnalyticsTracker: NSObject {
+@objc protocol CGAnalyticsTrackerProtocol {
+    func sendOpenScreen( screenName : String );
+    func sendAction( actionName : String, categoryName : String, label: String, value: NSNumber );
+}
+
+public class CGAnalyticsTracker: NSObject, CGAnalyticsTrackerProtocol {
     func sendOpenScreen( screenName : String ) {
         if let tracker = GAI.sharedInstance().defaultTracker {
             tracker.allowIDFACollection = true

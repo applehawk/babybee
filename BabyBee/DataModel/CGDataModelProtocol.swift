@@ -9,7 +9,7 @@
 import Foundation
 
 
-protocol CGDataModelProtocol {
+@objc public protocol CGDataModelProtocol {
     func readJSONDictWithPath( path: String ) -> NSDictionary?
     
     func groupsCatalogModel() -> CGGroupsCatalogModel?

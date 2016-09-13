@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RootService: NSObject, UIApplicationDelegate {
+class RootService: NSObject, AppDelegateServiceProtocol {
     func application(application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         
