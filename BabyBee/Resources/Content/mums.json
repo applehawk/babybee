@@ -1,35 +1,101 @@
 {
-"mainTitle" : "Игры для ребенка",
-"groupsCount" : 4,
-"groups" :
-    [
-     {
-        "groupName" : "от 0 до 3 месяцев",
-        "minAgeOfMonth" : 0,
-        "maxAgeOfMonth" : 3,
-        "file" : "group0",
-        "headerPicture" : "headerScreen0"
-     },
-     {
-        "groupName" : "от 3 до 6 месяцев",
-        "minAgeOfMonth" : 3,
-        "maxAgeOfMonth" : 6,
-        "file" : "group1",
-        "headerPicture" : "headerScreen1"
-     },
-     {
-        "groupName" : "от 6 до 9 месяцев",
-        "minAgeOfMonth" : 6,
-        "maxAgeOfMonth" : 9,
-        "file" : "group2",
-        "headerPicture" : "headerScreen2"
-     },
-     {
-        "groupName" : "от 9 до 12 месяцев",
-        "minAgeOfMonth" : 9,
-        "maxAgeOfMonth" : 12,
-        "file" : "group3",
-        "headerPicture" : "headerScreen3"
-     }
-    ]
+    "groups" : [ {
+                "contentList" : [ {
+                                 "content" : "game_ball.html",
+                                 "name" : "Мячик"
+                                 }, {
+                                 "content" : "game_massage.html",
+                                 "name" : "Массаж"
+                                 }, {
+                                 "content" : "game_bee.html",
+                                 "name" : "Пчелка"
+                                 }, {
+                                 "content" : "game_handbyface.html",
+                                 "name" : "Лицо на руке"
+                                 }, {
+                                 "content" : "game_funnypinets.html",
+                                 "name" : "Веселые пинетки"
+                                 }, {
+                                 "content" : "game_gotcha.html",
+                                 "name" : "Попался!"
+                                 } ],
+                "groupName" : "от 0 до 3 месяцев",
+                "headerPicture" : "headerScreen0",
+                "maxAgeOfMonth" : 3,
+                "minAgeOfMonth" : 0
+                }, {
+                "contentList" : [ {
+                                 "content" : "game_songwithname.html",
+                                 "name" : "Песенка с именем"
+                                 }, {
+                                 "content" : "game_boat.html",
+                                 "name" : "Лодочка"
+                                 }, {
+                                 "content" : "game_fishing.html",
+                                 "name" : "Рыбалка"
+                                 }, {
+                                 "content" : "game_footballer.html",
+                                 "name" : "Футболист"
+                                 }, {
+                                 "content" : "game_car.html",
+                                 "name" : "Машинка"
+                                 }, {
+                                 "content" : "game_dingdongs.html",
+                                 "name" : "Звонки и трещотки"
+                                 } ],
+                "groupName" : "от 3 до 6 месяцев",
+                "headerPicture" : "headerScreen3",
+                "maxAgeOfMonth" : 6,
+                "minAgeOfMonth" : 3
+                }, {
+                "contentList" : [ {
+                                 "content" : "game_zoopark.html",
+                                 "name" : "Зоопарк"
+                                 }, {
+                                 "content" : "game_drummer.html",
+                                 "name" : "Барабанщик"
+                                 }, {
+                                 "content" : "game_nowgotcha.html",
+                                 "name" : "Сейчас поймаю"
+                                 }, {
+                                 "content" : "game_icepalace.html",
+                                 "name" : "Ледяной дворец"
+                                 }, {
+                                 "content" : "game_dikobraz.html",
+                                 "name" : "Дикобраз"
+                                 }, {
+                                 "content" : "game_secretplace.html",
+                                 "name" : "Секретное местечко"
+                                 } ],
+                "groupName" : "от 6 до 9 месяцев",
+                "headerPicture" : "headerScreen2",
+                "maxAgeOfMonth" : 9,
+                "minAgeOfMonth" : 6
+                }, {
+                "contentList" : [ {
+                                 "content" : "game_letstalk.html",
+                                 "name" : "Давай поговорим"
+                                 }, {
+                                 "content" : "game_bellsring.html",
+                                 "name" : "Бубенцы звенят"
+                                 }, {
+                                 "content" : "game_catchfirefly.html",
+                                 "name" : "Поймай светлячка"
+                                 }, {
+                                 "content" : "game_livefingers.html",
+                                 "name" : "Живые пальчики"
+                                 }, {
+                                 "content" : "game_bowlinbowl.html",
+                                 "name" : "Миска в миске"
+                                 }, {
+                                 "content" : "game_ferry.html",
+                                 "name" : "Переправа"
+                                 } ],
+                "groupName" : "от 9 до 12 месяцев",
+                "headerPicture" : "headerScreen3",
+                "maxAgeOfMonth" : 12,
+                "minAgeOfMonth" : 9
+                } ],
+    "count" : 4,
+    "title" : "Игры для ребенка"
 }

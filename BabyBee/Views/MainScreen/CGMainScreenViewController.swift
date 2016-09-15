@@ -20,10 +20,13 @@ class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainS
     //Dependencies injected property
     var tracker : CGAnalyticsTracker!
     var mainScreenDDM : CGMainScreenDDMProtocol!
-    var dataModel : CGDataModelProtocol!
+    var catalogService : CGCatalogServiceProtocol!
     var userDefaults : NSUserDefaults!
+    var assembly : ApplicationAssembly!
     
+    var selectedGroupId = 0
     var resultBirthDayStr = ""
+    var catalog : CGCatalogModel?
     
     // MARK: - CGAgeAskingDelegate
     func ageConfirm( birthDate: NSDate ) {
@@ -63,6 +66,7 @@ class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainS
     }
     
     func didSelectedGroup(groupName : String, selectedRow: Int) {
+        selectedGroupId = selectedRow
         let actionName = String(format: CGAnalyticsEventCategorySelectFmt, NSNumber(integer: selectedRow))
         
         tracker.sendAction(actionName,
@@ -93,20 +97,26 @@ class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainS
         
         let nibAboutUsCell = UINib(nibName: String(CGAboutUsCell), bundle: nil)
         tableView.registerNib(nibAboutUsCell, forCellReuseIdentifier: String(CGAboutUsCell));
+
         
-        tableView.delegate = self.mainScreenDDM;
-        tableView.dataSource = self.mainScreenDDM;
-        
+        catalogService.updateData {
+            if let catalog = self.catalogService.obtainCatalogModel() {
+                self.catalog = catalog
+                self.mainScreenDDM = self.assembly.mainScreenDDM(catalog) as? CGMainScreenDDM
+                
+                self.tableView.delegate = self.mainScreenDDM;
+                self.tableView.dataSource = self.mainScreenDDM;
+            }
+        }
         // Show birthday Popup
         self.askAgeIfNeeded()
     }
     
     
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == CGGamesScreenSegueName {
             if let destinationVC = segue.destinationViewController as? CGGamesScreenViewController {
-                destinationVC.selectedGroupId = mainScreenDDM.selectedIndexRow
+                destinationVC.group = catalog?.groups?[selectedGroupId]
             }
         }
     }

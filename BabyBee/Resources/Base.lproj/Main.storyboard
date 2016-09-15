@@ -38,7 +38,7 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="tableView" destination="r14-5Z-6eG" id="zYA-xa-aLn"/>
-                        <segue destination="eaq-LA-20N" kind="show" identifier="showGamesScreenSegue" animates="NO" id="gUg-vg-Fla"/>
+                        <segue destination="eaq-LA-20N" kind="show" identifier="showGamesScreenSegue" id="gUg-vg-Fla"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -77,7 +77,7 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="tableView" destination="Op2-3a-TwV" id="lG0-CH-LHm"/>
-                        <segue destination="goS-ya-gec" kind="show" identifier="showContentScreenSegue" animates="NO" id="0Z2-Is-Ojd"/>
+                        <segue destination="goS-ya-gec" kind="show" identifier="showContentScreenSegue" id="0Z2-Is-Ojd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a6j-6c-iNh" userLabel="First Responder" sceneMemberID="firstResponder"/>

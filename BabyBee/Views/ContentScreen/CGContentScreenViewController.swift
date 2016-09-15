@@ -14,18 +14,17 @@ class CGContentScreenViewController: UIViewController {
     @IBOutlet var containerView: UIView!
     
     var tracker : CGAnalyticsTracker!
-    var dataModel : CGDataModelProtocol!
+    var game : CGContentModel!
+    var fabricRequest : CGFabricRequest!
     
     var webView : WKWebView!
-    var gameId : Int = 0
-    var groupId : Int = 0
     
     override func viewWillAppear(animated: Bool) {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
         
         if let title = self.navigationItem.title {
             let screenName = String(format: CGAnalyticsOpenScreenContentScreenFmt, title)
-            tracker?.sendOpenScreen(screenName)
+            tracker.sendOpenScreen(screenName)
         }
     }
     
@@ -58,18 +57,24 @@ class CGContentScreenViewController: UIViewController {
         "   <div id=\"container\"><p>\(htmlContent)</p></div>" +
         "</body>" +
         "</html>"
+        
         webView?.loadHTMLString(htmlContent, baseURL: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let games = dataModel.gamesListWithGroupId(groupId)
         
-        if let games = games, let gameModel : CGGameModel = games[gameId] {
-            self.navigationItem.title = gameModel.nameGame
+        if let defaultHostUrl = NSBundle.mainBundle().infoDictionary?["RemoteHost"] as? String {
+            print("\(defaultHostUrl)")
             
-            tracker?.sendOpenScreen(gameModel.nameGame)
-            loadHTMLContentIntoWebView(gameModel.htmlContent)
+            if let url = NSURL(scheme: "https", host: defaultHostUrl, path: "/\(game.contentUrl)") {
+                do {
+                    let htmlContent = try String(contentsOfURL: url)
+                    loadHTMLContentIntoWebView(htmlContent)
+                } catch {
+                    print(error)
+                }
+            }
         }
     }
 }

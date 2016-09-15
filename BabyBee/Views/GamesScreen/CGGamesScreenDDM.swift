@@ -13,48 +13,36 @@ import UIKit
 }
 
 class CGGamesScreenDDM : NSObject, UITableViewDelegate, UITableViewDataSource {
-    var dataModel : CGDataModelProtocol
     var delegate : CGGamesScreenProtocol
+    var group : CGGroupModel
     
-    var selectedGroupId : Int = 0
-    var groupModel : CGGroupModel?
-    var gamesModelList : [CGGameModel]?
-    
-    init(delegate : CGGamesScreenProtocol, dataModel : CGDataModelProtocol, groupIdNumber: NSNumber) {
+    init(delegate : CGGamesScreenProtocol, group : CGGroupModel) {
         self.delegate = delegate
-        self.selectedGroupId = groupIdNumber.integerValue
-        self.dataModel = dataModel
-        
-        self.groupModel = dataModel.groupModelWithId(self.selectedGroupId)
-        self.gamesModelList = dataModel.gamesListWithGroupId(self.selectedGroupId)
+        self.group = group
         
         super.init()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let gamesModelList = gamesModelList {
-            return gamesModelList.count;
-        } else {
-            return 0;
+        if let contentList = group.contentList {
+            return contentList.count
         }
+        return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("CGGamesScreenCell", forIndexPath: indexPath) as! CGGamesScreenCell
         
-        if let gameModel = gamesModelList?[indexPath.row] {
-            cell.configureForGroup( gameModel )
+        if let content = group.contentList?[indexPath.row] {
+            cell.configureForContent( content )
         }
-        
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let gameModel = dataModel.gameModelWithGroupIdAndGameId(self.selectedGroupId, idGame: indexPath.row)
-        
-        if let gameModel : CGGameModel = gameModel {
-            delegate.didSelectedGame(gameModel.nameGame, gameId: indexPath.row)
+        if let contentModel = group.contentList?[indexPath.row] {
+            delegate.didSelectedGame(contentModel.name, gameId: indexPath.row)
         } else {
             delegate.didSelectedGame("Ошибка получения данных игры \(indexPath.row)", gameId: indexPath.row)
         }
@@ -73,15 +61,9 @@ class CGGamesScreenDDM : NSObject, UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             if let headerView : CGHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(String(CGHeaderView)) as? CGHeaderView {
-                
-                var headerImageName = "headerScreen2"
-                if (selectedGroupId == 0) {
-                    headerImageName = "headerScreen0"
-                }
-                if (selectedGroupId == 1) {
-                    headerImageName = "headerScreen3"
-                }
-                self.configureHeaderView(headerView, title:CGGamesScreenSubtitle, headerImageName: headerImageName)
+    
+                self.configureHeaderView(headerView, title:CGGamesScreenSubtitle,
+                                         headerImageName: group.headerPicture)
                 
                 return headerView
             }
@@ -94,7 +76,8 @@ class CGGamesScreenDDM : NSObject, UITableViewDelegate, UITableViewDataSource {
             
             if let headerView : CGHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(String(CGHeaderView)) as? CGHeaderView {
                 
-                self.configureHeaderView(headerView, title:CGGamesScreenSubtitle, headerImageName: "headerScreen0")
+                self.configureHeaderView(headerView, title:CGGamesScreenSubtitle,
+                                         headerImageName: group.headerPicture)
                 
                 headerView.layoutIfNeeded()
                 headerView.layoutSubviews()

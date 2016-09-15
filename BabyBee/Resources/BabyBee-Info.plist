@@ -67,5 +67,7 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>RemoteHost</key>
+	<string>fir-babybee.firebaseapp.com</string>
 </dict>
 </plist>

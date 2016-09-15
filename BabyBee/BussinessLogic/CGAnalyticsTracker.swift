@@ -26,7 +26,7 @@ public class CGAnalyticsTracker: NSObject, CGAnalyticsTrackerProtocol {
         FIRAnalytics.logEventWithName("openScreen", parameters: ["screeName" : screenName])
     }
     
-    func sendAction( actionName : String, categoryName : String, label: String, value: NSNumber ) {
+    func sendAction(actionName : String, categoryName : String, label: String, value: NSNumber ) {
         if let tracker = GAI.sharedInstance().defaultTracker {
             tracker.allowIDFACollection = true
             let builder = GAIDictionaryBuilder.createEventWithCategory(categoryName, action: actionName, label: label, value: value);

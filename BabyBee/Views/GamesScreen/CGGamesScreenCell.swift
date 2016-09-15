@@ -23,8 +23,8 @@ class CGGamesScreenCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configureForGroup( gameModel: CGGameModel ) {
-        self.titleGameLabel.text = gameModel.nameGame
+    func configureForContent( content: CGContentModel ) {
+        self.titleGameLabel.text = content.name
     }
 
 }

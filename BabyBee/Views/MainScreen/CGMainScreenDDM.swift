@@ -10,25 +10,19 @@ import UIKit
 
 let CGHeaderImageFileName = "bg_mainScreen"
 
-@objc public protocol CGMainScreenDDMProtocol : UITableViewDataSource, UITableViewDelegate {
-    var selectedIndexRow : Int { get }
+@objc protocol CGMainScreenDDMProtocol : UITableViewDataSource, UITableViewDelegate {
+    init?(delegate: CGMainScreenDelegate, catalog:CGCatalogModel)
 }
 
-class CGMainScreenDDM : NSObject, UITableViewDataSource, UITableViewDelegate {
-    var dataModel : CGDataModelProtocol
+class CGMainScreenDDM : NSObject, CGMainScreenDDMProtocol {
+    var catalog : CGCatalogModel
     var mainScreenDelegate: CGMainScreenDelegate
     
-    var groupsCatalog : CGGroupsCatalogModel?
-    
-    var selectedIndexRow : Int = 0
     let specialCellsOnFooter = 0
     
-    init(mainScreenDelegate: CGMainScreenDelegate, dataModel:CGDataModelProtocol) {
-        self.selectedIndexRow = 0
-        
-        self.mainScreenDelegate = mainScreenDelegate;
-        self.dataModel = dataModel
-        self.groupsCatalog = dataModel.groupsCatalogModel()
+    required init?(delegate: CGMainScreenDelegate, catalog:CGCatalogModel) {
+        self.mainScreenDelegate = delegate;
+        self.catalog = catalog
         
         super.init()
     }
@@ -75,28 +69,22 @@ class CGMainScreenDDM : NSObject, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.selectedIndexRow = indexPath.row
+        var groupName = "Ошибка загрузки группы"
         
-        var groupName = ""
-        if let groupModel = dataModel.groupModelWithId(self.selectedIndexRow) {
+        if let groupModel = catalog.groups?[indexPath.row] {
             groupName = groupModel.groupName
-        } else {
-            groupName = "Ошибка загрузки группы"
         }
         mainScreenDelegate.didSelectedGroup(groupName, selectedRow: indexPath.row)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let groupsCatalog = groupsCatalog {
-            return groupsCatalog.groupsCount + specialCellsOnFooter;
-        }
-        return 0
+        return catalog.count + specialCellsOnFooter
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let groupModel = groupsCatalog?.groupsCatalog[indexPath.row] where indexPath.row < groupsCatalog?.groupsCatalog.count {
+        if let group = catalog.groups?[indexPath.row] where indexPath.row < catalog.groups?.count {
             let cell = tableView.dequeueReusableCellWithIdentifier(String(CGMainScreenCell), forIndexPath: indexPath) as! CGMainScreenCell
-            cell.configureForGroup(groupModel)
+            cell.configureForGroup(group)
             return cell
         }
         return UITableViewCell()
