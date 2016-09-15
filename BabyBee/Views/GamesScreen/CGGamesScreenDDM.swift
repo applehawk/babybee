@@ -12,7 +12,10 @@ import UIKit
     func didSelectedGame(gameName: String, gameId : Int);
 }
 
-class CGGamesScreenDDM : NSObject, UITableViewDelegate, UITableViewDataSource {
+@objc protocol CGGamesScreenDDMProtocol : UITableViewDelegate, UITableViewDataSource {
+}
+
+class CGGamesScreenDDM : NSObject, CGGamesScreenDDMProtocol {
     var delegate : CGGamesScreenProtocol
     var group : CGGroupModel
     

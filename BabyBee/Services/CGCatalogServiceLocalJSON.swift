@@ -8,7 +8,7 @@
 
 import Foundation
 
-let dataJSONFilename = "content.json"
+let CGLocalJSONFileName = "mums"
 
 class CGCatalogServiceLocalJSON: NSObject, CGCatalogServiceProtocol {
     var catalogModel : CGCatalogModel?
@@ -28,10 +28,10 @@ class CGCatalogServiceLocalJSON: NSObject, CGCatalogServiceProtocol {
     }
     
     func updateData( completionHandler:() -> Void ) {
-        if let jsonDict = readJSONDictWithPath("mums") {
+        if let jsonDict = readJSONDictWithPath(CGLocalJSONFileName) {
             self.catalogModel = CGCatalogModel(JSON: jsonDict)
+            completionHandler()
         }
-        completionHandler()
     }
     
     func obtainCatalogModel() -> CGCatalogModel? {

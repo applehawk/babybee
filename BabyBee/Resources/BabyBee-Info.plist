@@ -69,5 +69,7 @@
 	</array>
 	<key>RemoteHost</key>
 	<string>fir-babybee.firebaseapp.com</string>
+	<key>PaymentKey</key>
+	<string>ae4d72ae616a4b589fe0d878f2594a96</string>
 </dict>
 </plist>

@@ -1,5 +1,5 @@
 //
-//  CGFabricRequest.swift
+//  StorageProtocol.swift
 //  BabyBee
 //
 //  Created by Hawk on 15/09/16.
@@ -7,7 +7,3 @@
 //
 
 import Foundation
-
-protocol CGFabricRequest {
-    
-}

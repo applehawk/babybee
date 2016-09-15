@@ -77,9 +77,12 @@
 		7EE3ED0C1D89F6C800776A96 /* CGAboutUsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE3ED0A1D89F6C800776A96 /* CGAboutUsCell.swift */; };
 		7EE3ED0F1D89F6D300776A96 /* CGMainScreenCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EE3ED0D1D89F6D300776A96 /* CGMainScreenCell.xib */; };
 		7EE3ED101D89F6D300776A96 /* CGMainScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE3ED0E1D89F6D300776A96 /* CGMainScreenCell.swift */; };
-		7EE3ED131D8A0EBD00776A96 /* CGFabricRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE3ED121D8A0EBD00776A96 /* CGFabricRequest.swift */; };
+		7EE3ED131D8A0EBD00776A96 /* CGFabricRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE3ED121D8A0EBD00776A96 /* CGFabricRequestProtocol.swift */; };
 		7EE3ED1C1D8A159F00776A96 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EE3ED151D8A159F00776A96 /* LaunchScreen.storyboard */; };
 		7EE3ED1D1D8A159F00776A96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EE3ED171D8A159F00776A96 /* Main.storyboard */; };
+		7EE3ED211D8A245600776A96 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE3ED201D8A245600776A96 /* LocalStorage.swift */; };
+		7EE3ED231D8A246400776A96 /* StorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE3ED221D8A246400776A96 /* StorageProtocol.swift */; };
+		7EE3ED251D8A978D00776A96 /* CGFabricRequestContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE3ED241D8A978D00776A96 /* CGFabricRequestContent.swift */; };
 		85B7691405C442402447056B /* Pods_BabyBee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 800F6E1A8D50C44163695A6A /* Pods_BabyBee.framework */; };
 /* End PBXBuildFile section */
 
@@ -158,9 +161,12 @@
 		7EE3ED0A1D89F6C800776A96 /* CGAboutUsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGAboutUsCell.swift; path = Views/MainScreen/CGAboutUsCell.swift; sourceTree = "<group>"; };
 		7EE3ED0D1D89F6D300776A96 /* CGMainScreenCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CGMainScreenCell.xib; path = Views/MainScreen/CGMainScreenCell.xib; sourceTree = "<group>"; };
 		7EE3ED0E1D89F6D300776A96 /* CGMainScreenCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGMainScreenCell.swift; path = Views/MainScreen/CGMainScreenCell.swift; sourceTree = "<group>"; };
-		7EE3ED121D8A0EBD00776A96 /* CGFabricRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGFabricRequest.swift; path = FabricRequests/CGFabricRequest.swift; sourceTree = "<group>"; };
+		7EE3ED121D8A0EBD00776A96 /* CGFabricRequestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGFabricRequestProtocol.swift; path = FabricRequests/CGFabricRequestProtocol.swift; sourceTree = "<group>"; };
 		7EE3ED161D8A159F00776A96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7EE3ED181D8A159F00776A96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		7EE3ED201D8A245600776A96 /* LocalStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalStorage.swift; path = Storage/LocalStorage.swift; sourceTree = "<group>"; };
+		7EE3ED221D8A246400776A96 /* StorageProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StorageProtocol.swift; path = Storage/StorageProtocol.swift; sourceTree = "<group>"; };
+		7EE3ED241D8A978D00776A96 /* CGFabricRequestContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGFabricRequestContent.swift; path = FabricRequests/CGFabricRequestContent.swift; sourceTree = "<group>"; };
 		800F6E1A8D50C44163695A6A /* Pods_BabyBee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BabyBee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A764E2BF1A11E0BC0620D11E /* Pods-BabyBee.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BabyBee.release.xcconfig"; path = "Pods/Target Support Files/Pods-BabyBee/Pods-BabyBee.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -203,6 +209,7 @@
 		0534FE751D70D44200FE964A /* BabyBee */ = {
 			isa = PBXGroup;
 			children = (
+				7EE3ED1F1D8A243F00776A96 /* Storage */,
 				05564D9B1D7F01F4006E9311 /* BabyBee-Bridging-Header.h */,
 				7E0487271D875E000083C404 /* Assembly */,
 				7E9CA2CE1D89E83F00156A25 /* Services */,
@@ -210,7 +217,7 @@
 				05564D9C1D7F06B1006E9311 /* BussinessLogic */,
 				0536AE7C1D775F8800941357 /* Extensions */,
 				0536AE7B1D77526C00941357 /* Thirdparty */,
-				0534FEC71D725B7000FE964A /* Screens */,
+				0534FEC71D725B7000FE964A /* Views */,
 				0534FEAD1D71A06600FE964A /* Models */,
 				0534FE8A1D70D66F00FE964A /* Resources */,
 				7EBD2AD11D838A1B00FD6FF8 /* AppDelegate */,
@@ -346,14 +353,14 @@
 			name = ContentScreen;
 			sourceTree = "<group>";
 		};
-		0534FEC71D725B7000FE964A /* Screens */ = {
+		0534FEC71D725B7000FE964A /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				0534FEC61D725B6800FE964A /* ContentScreen */,
 				0534FE8C1D70D67D00FE964A /* GamesScreen */,
 				0534FE8B1D70D67400FE964A /* MainScreen */,
 			);
-			name = Screens;
+			name = Views;
 			sourceTree = "<group>";
 		};
 		0536AE261D76C14B00941357 /* AppIcon */ = {
@@ -475,9 +482,19 @@
 		7EE3ED111D8A0E8D00776A96 /* FabricRequests */ = {
 			isa = PBXGroup;
 			children = (
-				7EE3ED121D8A0EBD00776A96 /* CGFabricRequest.swift */,
+				7EE3ED121D8A0EBD00776A96 /* CGFabricRequestProtocol.swift */,
+				7EE3ED241D8A978D00776A96 /* CGFabricRequestContent.swift */,
 			);
 			name = FabricRequests;
+			sourceTree = "<group>";
+		};
+		7EE3ED1F1D8A243F00776A96 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				7EE3ED201D8A245600776A96 /* LocalStorage.swift */,
+				7EE3ED221D8A246400776A96 /* StorageProtocol.swift */,
+			);
+			name = Storage;
 			sourceTree = "<group>";
 		};
 		D37F5D3949B8E28333BEE134 /* Pods */ = {
@@ -679,6 +696,7 @@
 				7EBD2AEA1D83F08500FD6FF8 /* GoogleSignInService.swift in Sources */,
 				7EBD2AEB1D83F08500FD6FF8 /* GoogleAnalyticsService.swift in Sources */,
 				7EE3ED081D89F6B300776A96 /* CGHeaderView.swift in Sources */,
+				7EE3ED231D8A246400776A96 /* StorageProtocol.swift in Sources */,
 				0536AE821D77870B00941357 /* NSString.swift in Sources */,
 				7EE3ED021D89F68300776A96 /* CGMainScreenDDM.swift in Sources */,
 				7E9CA2D81D89E96700156A25 /* CGCatalogServiceLocalJSON.swift in Sources */,
@@ -694,10 +712,12 @@
 				7EE3ECF81D89F64000776A96 /* CGGamesScreenViewController.swift in Sources */,
 				7E25BE361D88212E00ED372E /* BabyBee-Constants.swift in Sources */,
 				7EE3ED101D89F6D300776A96 /* CGMainScreenCell.swift in Sources */,
-				7EE3ED131D8A0EBD00776A96 /* CGFabricRequest.swift in Sources */,
+				7EE3ED131D8A0EBD00776A96 /* CGFabricRequestProtocol.swift in Sources */,
+				7EE3ED251D8A978D00776A96 /* CGFabricRequestContent.swift in Sources */,
 				7E9CA2D41D89E90100156A25 /* CGContentModel.swift in Sources */,
 				7EE3ED041D89F68300776A96 /* CGMainScreenDelegate.swift in Sources */,
 				7E9CA2D31D89E90100156A25 /* CGGroupModel.swift in Sources */,
+				7EE3ED211D8A245600776A96 /* LocalStorage.swift in Sources */,
 				7EBD2AED1D83F08500FD6FF8 /* StoryKitService.swift in Sources */,
 				7EBD2AEE1D83F08500FD6FF8 /* FirebaseNotificationService.swift in Sources */,
 				0536AE7E1D775F9600941357 /* NSDate.swift in Sources */,

@@ -12,8 +12,8 @@ class CGGamesScreenViewController: UIViewController, CGGamesScreenProtocol {
     @IBOutlet weak var tableView: UITableView!
     
     // Injected by Typhoon
-    var gamesScreenDDM : CGGamesScreenDDM!
-    var tracker : CGAnalyticsTracker!
+    var gamesScreenDDM : CGGamesScreenDDMProtocol!
+    var tracker : CGAnalyticsTrackerProtocol!
     var assembly : ApplicationAssembly!
     
     // My custom Properties
@@ -59,7 +59,6 @@ class CGGamesScreenViewController: UIViewController, CGGamesScreenProtocol {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == CGContentScreenSegueName {
             if let destinationVC = segue.destinationViewController as? CGContentScreenViewController {
-                let game = group.contentList?[selectedGameId]
                 destinationVC.game = group.contentList?[selectedGameId]
             }
         }

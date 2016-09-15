@@ -2,7 +2,8 @@
     "groups" : [ {
                 "contentList" : [ {
                                  "content" : "game_ball.html",
-                                 "name" : "Мячик"
+                                 "name" : "Мячик",
+                                 "payment" : ""
                                  }, {
                                  "content" : "game_massage.html",
                                  "name" : "Массаж"

@@ -117,11 +117,19 @@ class ApplicationAssembly: TyphoonAssembly {
         }
     }
     
+    dynamic func contentFabricRequest() -> AnyObject {
+        return TyphoonDefinition.withClass(CGFabricRequestContent.self) {
+            (definition) in
+            definition.scope = TyphoonScope.Singleton
+        }
+    }
+    
     dynamic func contentScreenViewController() -> AnyObject {
         return TyphoonDefinition.withClass(CGContentScreenViewController.self) {
             (definition) in
 
             definition.injectProperty("tracker", with: self.analyticsTracker())
+            definition.injectProperty("fabricRequest", with: self.contentFabricRequest())
         
             definition.scope = TyphoonScope.Singleton
         }

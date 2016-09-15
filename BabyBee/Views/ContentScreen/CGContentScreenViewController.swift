@@ -13,9 +13,12 @@ class CGContentScreenViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet var containerView: UIView!
     
-    var tracker : CGAnalyticsTracker!
+    // Injected by Typhoon
+    var tracker : CGAnalyticsTrackerProtocol!
+    var fabricRequest : CGFabricRequestProtocol!
+    
+    // Setted by previous ViewController
     var game : CGContentModel!
-    var fabricRequest : CGFabricRequest!
     
     var webView : WKWebView!
     
@@ -63,18 +66,15 @@ class CGContentScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let defaultHostUrl = NSBundle.mainBundle().infoDictionary?["RemoteHost"] as? String {
-            print("\(defaultHostUrl)")
-            
-            if let url = NSURL(scheme: "https", host: defaultHostUrl, path: "/\(game.contentUrl)") {
-                do {
-                    let htmlContent = try String(contentsOfURL: url)
-                    loadHTMLContentIntoWebView(htmlContent)
-                } catch {
-                    print(error)
-                }
+        do {
+            if let url = fabricRequest.requestWithContentName(game.contentUrl)?.URL {
+                let htmlContent = try String(contentsOfURL: url)
+                loadHTMLContentIntoWebView(htmlContent)
+            } else {
+                self.navigationController?.popViewControllerAnimated(true)
             }
+        } catch {
+            print(error)
         }
     }
 }
