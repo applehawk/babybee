@@ -8,17 +8,17 @@
         <!--Развивающие игры для ребенка-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="mainScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="CGMainScreenViewController" customModule="BabyBee" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainScreen" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="CGMainScreenViewController" customModule="BabyBee" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="5" sectionFooterHeight="5" translatesAutoresizingMaskIntoConstraints="NO" id="r14-5Z-6eG">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
@@ -30,7 +30,6 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="r14-5Z-6eG" secondAttribute="bottom" id="b2l-lq-lhR"/>
                         </constraints>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Развивающие игры для ребенка" id="iNE-VT-NO8"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <userDefinedRuntimeAttributes>
@@ -48,17 +47,17 @@
         <!--Games Screen View Controller-->
         <scene sceneID="oC4-YK-thU">
             <objects>
-                <viewController storyboardIdentifier="gamesScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eaq-LA-20N" customClass="CGGamesScreenViewController" customModule="BabyBee" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="gamesScreen" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eaq-LA-20N" customClass="CGGamesScreenViewController" customModule="BabyBee" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Oo5-H8-diF"/>
                         <viewControllerLayoutGuide type="bottom" id="FEv-bH-tTh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ak2-bW-zJE">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Op2-3a-TwV">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
@@ -70,7 +69,6 @@
                             <constraint firstItem="Op2-3a-TwV" firstAttribute="top" secondItem="Oo5-H8-diF" secondAttribute="bottom" id="fue-Qe-AvL"/>
                         </constraints>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="typhoonKey" value="gamesScreenViewController"/>
@@ -82,7 +80,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a6j-6c-iNh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="933.5" y="280.5"/>
+            <point key="canvasLocation" x="879.5" y="323.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DK1-eL-hnR">
@@ -140,7 +138,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bnk-te-Rry" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1486.5" y="323.5"/>
+            <point key="canvasLocation" x="1396.5" y="314.5"/>
         </scene>
     </scenes>
 </document>

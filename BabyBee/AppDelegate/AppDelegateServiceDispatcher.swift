@@ -9,9 +9,9 @@
 import UIKit.UIApplication
 
 class AppDelegateServiceDispatcher : UIResponder, AppDelegateServiceProtocol {
-    let services: [UIApplicationDelegate]
+    let services: [AppDelegateServiceProtocol]
     
-    init(services: [UIApplicationDelegate]) {
+    init(services: [AppDelegateServiceProtocol]) {
         self.services = services
     }
     // MARK: Helper function for Notifications

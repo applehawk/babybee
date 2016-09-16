@@ -17,19 +17,21 @@ class CGGamesScreenViewController: UIViewController, CGGamesScreenProtocol {
     var assembly : ApplicationAssembly!
     
     // My custom Properties
-    var group : CGGroupModel!
+    var catalog : CGCatalogModel!
+    var currentGroup : CGGroupModel!
     
     //it's setted by previous controlled which appears it
-    var selectedGameId : Int = 0
+    var selectedGameId : String?
     
     // MARK: - CGGamesScreenProtocol methods
-    func didSelectedGame(gameName : String, gameId: Int) {
+    func didSelectedGame(gameName : String, gameId: String) {
         selectedGameId = gameId
         let selectedAction = String(format: CGAnalyticsEventGameSelectedFmt, gameName)
-        tracker.sendAction(selectedAction,
+        tracker.sendAction( CGAnalyticsFirebaseEventGameSelected,
+                  actionTitle: selectedAction,
                    categoryName: CGAnalyticsCategoryClick,
-                   label: gameName,
-                   value: gameId)
+                   label: gameId,
+                   value: 0)
         
         self.performSegueWithIdentifier(CGContentScreenSegueName, sender: self)
     }
@@ -39,13 +41,13 @@ class CGGamesScreenViewController: UIViewController, CGGamesScreenProtocol {
     override func viewWillAppear(animated: Bool) {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
         
-        tracker.sendOpenScreen( group.groupName )
+        tracker.sendOpenScreen( currentGroup.groupName )
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.gamesScreenDDM = assembly?.gamesScreenDDM(group) as? CGGamesScreenDDM
-        self.navigationItem.title = group.groupName
+        self.gamesScreenDDM = assembly?.gamesScreenDDM(catalog, group: currentGroup) as? CGGamesScreenDDM
+        self.navigationItem.title = currentGroup.groupName
 
         let nib = UINib(nibName: String(CGGamesScreenCell), bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: String(CGGamesScreenCell));
@@ -55,11 +57,15 @@ class CGGamesScreenViewController: UIViewController, CGGamesScreenProtocol {
         
         tableView.delegate = gamesScreenDDM;
         tableView.dataSource = gamesScreenDDM;
+        
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == CGContentScreenSegueName {
             if let destinationVC = segue.destinationViewController as? CGContentScreenViewController {
-                destinationVC.game = group.contentList?[selectedGameId]
+                if let selectedGameId = selectedGameId {
+                    destinationVC.game = catalog.games?[selectedGameId]
+                }
             }
         }
     }

@@ -10,9 +10,13 @@ import Foundation
 import ObjectMapper
 
 class CGCatalogModel : NSObject, Mappable {
-    var title : String!
-    var count : Int!
+    var title : String?
+    var pictureUrl : String?
     var groups : [CGGroupModel]?
+    var games : [String: CGContentModel]?
+    //var groups_ids : [Int]?
+    //Downloadable content
+    var pictureImage: UIImage?
     
     required init?(_ map: Map) {
     }
@@ -20,7 +24,8 @@ class CGCatalogModel : NSObject, Mappable {
     // Mappable
     func mapping(map: Map) {
         title       <- map["title"]
-        count       <- map["count"]
         groups      <- map["groups"]
+        games       <- map["games"]
+        pictureUrl <- map["pictureUrl"]
     }
 }

@@ -11,11 +11,11 @@ import Firebase
 
 @objc protocol CGAnalyticsTrackerProtocol {
     func sendOpenScreen( screenName : String );
-    func sendAction( actionName : String, categoryName : String, label: String, value: NSNumber );
+    func sendAction( actionName: String, actionTitle : String, categoryName : String, label: String, value: NSNumber );
 }
 
 public class CGAnalyticsTracker: NSObject, CGAnalyticsTrackerProtocol {
-    func sendOpenScreen( screenName : String ) {
+    func sendOpenScreenGoogleAnalytics(screenName: String) {
         if let tracker = GAI.sharedInstance().defaultTracker {
             tracker.allowIDFACollection = true
             tracker.set(kGAIScreenName, value: screenName)
@@ -23,10 +23,17 @@ public class CGAnalyticsTracker: NSObject, CGAnalyticsTrackerProtocol {
             let builder = GAIDictionaryBuilder.createScreenView()
             tracker.send(builder.build() as [NSObject : AnyObject])
         }
+    }
+    func sendOpenScreen(screenName : String) {
+        self.sendOpenScreenGoogleAnalytics(screenName)
         FIRAnalytics.logEventWithName("openScreen", parameters: ["screeName" : screenName])
     }
     
-    func sendAction(actionName : String, categoryName : String, label: String, value: NSNumber ) {
+    func sendAction(actionName: String,
+                    actionTitle : String,
+                    categoryName : String,
+                    label: String,
+                    value: NSNumber ) {
         if let tracker = GAI.sharedInstance().defaultTracker {
             tracker.allowIDFACollection = true
             let builder = GAIDictionaryBuilder.createEventWithCategory(categoryName, action: actionName, label: label, value: value);

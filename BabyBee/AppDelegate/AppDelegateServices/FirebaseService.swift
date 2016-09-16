@@ -10,8 +10,14 @@ import Foundation
 import Firebase
 
 class FirebaseService: NSObject, AppDelegateServiceProtocol {
+    var refDB : FIRDatabase!
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         FIRApp.configure()
+        FIRDatabase.database().persistenceEnabled = true
+        
+        let credential = FIREmailPasswordAuthProvider.credentialWithEmail("doitlikeacat@gmail.com", password: "helloworld14")
+        print(credential.provider)
         return true
     }
     

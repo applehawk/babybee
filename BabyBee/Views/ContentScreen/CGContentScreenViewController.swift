@@ -16,6 +16,7 @@ class CGContentScreenViewController: UIViewController {
     // Injected by Typhoon
     var tracker : CGAnalyticsTrackerProtocol!
     var fabricRequest : CGFabricRequestProtocol!
+    var service : CGCatalogServiceProtocol!
     
     // Setted by previous ViewController
     var game : CGContentModel!
@@ -29,6 +30,9 @@ class CGContentScreenViewController: UIViewController {
             let screenName = String(format: CGAnalyticsOpenScreenContentScreenFmt, title)
             tracker.sendOpenScreen(screenName)
         }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
     }
     
     override func loadView() {
@@ -64,8 +68,40 @@ class CGContentScreenViewController: UIViewController {
         webView?.loadHTMLString(htmlContent, baseURL: nil)
     }
     
+    var alertController : UIAlertController?
+    
+    func closeAlert() {
+        if let alertController = alertController {
+            alertController.dismissViewControllerAnimated(true, completion: nil)
+            self.navigationController?.popViewControllerAnimated(true)
+        }
+        
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = game.name
+        service.updateContentData(game.contentUrl) {
+            if let htmlContent = self.service.obtainContentData(self.game.contentUrl) {
+                self.loadHTMLContentIntoWebView(htmlContent)
+            } else {
+                let alert = UIAlertController(title: "Ошибка запроса данных",
+                                              message: "Проверьте ваше интернет соединение",
+                                              preferredStyle: UIAlertControllerStyle.Alert)
+                self.alertController = alert
+                let tapGesture = UITapGestureRecognizer(target: self, action: "closeAlert")
+                alert.view.addGestureRecognizer(tapGesture)
+                alert.addAction( UIAlertAction(title: "Хорошо", style: .Default, handler: { (action) in
+                    self.alertController?.dismissViewControllerAnimated(true, completion: nil)
+                    self.navigationController?.popViewControllerAnimated(true)
+                }))
+                self.presentViewController(alert, animated: true, completion: {
+                })
+            }
+        }
+        /*
         do {
             if let url = fabricRequest.requestWithContentName(game.contentUrl)?.URL {
                 let htmlContent = try String(contentsOfURL: url)
@@ -75,6 +111,6 @@ class CGContentScreenViewController: UIViewController {
             }
         } catch {
             print(error)
-        }
+        }*/
     }
 }

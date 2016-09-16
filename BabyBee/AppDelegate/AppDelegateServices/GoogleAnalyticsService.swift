@@ -12,12 +12,13 @@ import Firebase
 let CGGoogleAnalyticsID = "UA-83542519-1"
 
 class GoogleAnalyticsService : NSObject, AppDelegateServiceProtocol {
+    
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        let urlString = url.absoluteURL
+        let absoluteUrlString = url.absoluteURL
         let tracker = GAI.sharedInstance().defaultTracker
         
         let hitParams = GAIDictionaryBuilder()
-        hitParams.setCampaignParametersFromUrl(urlString.absoluteString)
+        hitParams.setCampaignParametersFromUrl(absoluteUrlString.absoluteString)
         
         if let urlHost = url.host where (hitParams.get(kGAICampaignSource) == nil && urlHost.characters.count != 0) {
             hitParams.set("referrer", forKey:kGAICampaignMedium);
@@ -29,6 +30,7 @@ class GoogleAnalyticsService : NSObject, AppDelegateServiceProtocol {
         
         //[tracker send:[[[GAIDictionaryBuilder createScreenView] setAll:hitParamsDict] build]];
         let screenViewDict = GAIDictionaryBuilder.createScreenView().setAll(hitParamsDict as [NSObject : AnyObject]).build();
+        tracker.allowIDFACollection = true
         tracker.send(screenViewDict as [NSObject : AnyObject])
         return true
     }

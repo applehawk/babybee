@@ -10,4 +10,5 @@ import Foundation
 
 @objc protocol CGFabricRequestProtocol {
     func requestWithContentName( contentUrl: String ) -> NSURLRequest?
+    func requestWithCatalog() -> NSURLRequest?
 }

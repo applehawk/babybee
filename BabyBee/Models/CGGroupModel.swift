@@ -11,21 +11,22 @@ import ObjectMapper
 
 class CGGroupModel : NSObject, Mappable {
     
-    var contentList : [CGContentModel]?
-    var headerPicture : String!
+    var games_ids : [String]?
+    //var content_ids : [Int]?
+    var pictureUrl : String!
     var groupName : String!
-    var minAgeOfMonth : Int!
-    var maxAgeOfMonth : Int!
+    var minMonth : Int!
+    var maxMonth : Int!
     
     required init?(_ map: Map) {
     }
     
     // Mappable
     func mapping(map: Map) {
-        contentList  <- map["contentList"]
-        headerPicture   <- map["headerPicture"]
-        groupName       <- map["groupName"]
-        maxAgeOfMonth   <- map["maxAgeOfMonth"]
-        minAgeOfMonth   <- map["minAgeOfMonth"]
+        games_ids  <- map["games_ids"]
+        pictureUrl   <- map["pictureUrl"]
+        groupName       <- map["name"]
+        maxMonth   <- map["maxMonth"]
+        minMonth   <- map["minMonth"]
     }
 }

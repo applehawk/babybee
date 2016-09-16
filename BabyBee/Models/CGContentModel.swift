@@ -12,6 +12,7 @@ import ObjectMapper
 class CGContentModel : NSObject, Mappable {
     var name : String!
     var contentUrl : String!
+    var payment : Bool!
     
     required init?(_ map: Map) {
     }
@@ -19,5 +20,6 @@ class CGContentModel : NSObject, Mappable {
     func mapping(map: Map) {
         name <- map["name"]
         contentUrl <- map["content"]
+        payment <- map["payment"]
     }
 }

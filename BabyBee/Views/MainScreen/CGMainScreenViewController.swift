@@ -8,14 +8,10 @@
 
 import UIKit
 
-let CGStaticHeight = 44.0;
-
-enum CGMainScreenTableSections : Int {
-    case MainSection = 0
-}
-
 class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainScreenDelegate {
     @IBOutlet weak var tableView: UITableView!
+    var refreshControl: UIRefreshControl!
+    var activityIndicator: UIActivityIndicatorView!
     
     //Dependencies injected property
     var tracker : CGAnalyticsTracker!
@@ -40,7 +36,8 @@ class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainS
         
         let dateString = birthDate.convertDateToGOSTDateString()
         // Send to Analytics confirm Action
-        tracker.sendAction(CGAnalyticsEventBirthdayOk + " " + dateString,
+        tracker.sendAction(CGAnalyticsFirebaseEventBirthdayOk,
+                        actionTitle: CGAnalyticsEventBirthdayOk + " " + dateString,
                         categoryName: CGAnalyticsCategoryClick,
                         label: dateString,
                         value: 0)
@@ -49,7 +46,8 @@ class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainS
     }
     func ageCancelled() {
         self.resultBirthDayStr = CGBirthdayAltText
-        tracker.sendAction(CGAnalyticsEventBirthdayCancel,
+        tracker.sendAction(CGAnalyticsFirebaseEventBirthdayCancel,
+                        actionTitle: CGAnalyticsEventBirthdayCancel,
                         categoryName: CGAnalyticsCategoryClick,
                         label: "",
                         value: 0)
@@ -60,16 +58,17 @@ class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainS
     }
     
     // MARK: - CGMainScreenProtocol used in UITableViewDelegate
-    
     func birthdayString() -> String {
         return resultBirthDayStr
     }
     
     func didSelectedGroup(groupName : String, selectedRow: Int) {
         selectedGroupId = selectedRow
-        let actionName = String(format: CGAnalyticsEventCategorySelectFmt, NSNumber(integer: selectedRow))
+        let actionName = String(format: CGAnalyticsEventGroupSelectFmt,
+                                NSNumber(integer: selectedRow))
         
-        tracker.sendAction(actionName,
+        tracker.sendAction(CGAnalyticsFirebaseEventGroupSelected,
+                    actionTitle: actionName,
                    categoryName: CGAnalyticsCategoryClick,
                    label: "\(groupName)",
                    value: selectedRow)
@@ -78,16 +77,37 @@ class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainS
     }
     
     // MARK: - UIViewController
-    
     override func viewWillAppear(animated: Bool) {
-        self.navigationItem.title = CGMainScreenTitle;
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
         
         tracker.sendOpenScreen(CGMainScreenTitle)
     }
     
+    func refreshHandler() {
+        refreshControl.beginRefreshing()
+        catalogService.updateCatalog { (error) in
+            if let catalog = self.catalogService.obtainCatalog() {
+                self.catalog = catalog
+                dispatch_async(dispatch_get_main_queue(), {
+                    if let title = catalog.title {
+                        self.navigationItem.title = catalog.title
+                    }
+                })
+                self.mainScreenDDM = self.assembly.mainScreenDDM(catalog) as? CGMainScreenDDM
+                self.tableView.delegate = self.mainScreenDDM;
+                self.tableView.dataSource = self.mainScreenDDM;
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.activityIndicator.stopAnimating()
+                    self.refreshControl.endRefreshing()
+                    self.tableView.reloadData()
+                })
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = CGMainScreenTitle;
         
         let nibHeaderView = UINib(nibName: String(CGHeaderView), bundle: nil)
         tableView.registerNib(nibHeaderView, forHeaderFooterViewReuseIdentifier: String(CGHeaderView))
@@ -97,17 +117,19 @@ class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainS
         
         let nibAboutUsCell = UINib(nibName: String(CGAboutUsCell), bundle: nil)
         tableView.registerNib(nibAboutUsCell, forCellReuseIdentifier: String(CGAboutUsCell));
-
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        tableView.scrollEnabled = true
         
-        catalogService.updateData {
-            if let catalog = self.catalogService.obtainCatalogModel() {
-                self.catalog = catalog
-                self.mainScreenDDM = self.assembly.mainScreenDDM(catalog) as? CGMainScreenDDM
-                
-                self.tableView.delegate = self.mainScreenDDM;
-                self.tableView.dataSource = self.mainScreenDDM;
-            }
-        }
+        self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        activityIndicator.hidesWhenStopped = true
+        tableView.backgroundView = activityIndicator
+        activityIndicator.startAnimating()
+        
+        self.refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "refreshHandler", forControlEvents: UIControlEvents.ValueChanged)
+        
+        self.tableView.addSubview(refreshControl)
+        self.refreshHandler()
         // Show birthday Popup
         self.askAgeIfNeeded()
     }
@@ -115,9 +137,12 @@ class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainS
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == CGGamesScreenSegueName {
-            if let destinationVC = segue.destinationViewController as? CGGamesScreenViewController {
-                destinationVC.group = catalog?.groups?[selectedGroupId]
+            guard let destinationVC = segue.destinationViewController as? CGGamesScreenViewController else {
+                print("Where is destinationVC? of CGGamesScreenViewController")
+                return
             }
+            destinationVC.catalog = catalog
+            destinationVC.currentGroup = catalog?.groups?[ selectedGroupId ]
         }
     }
     

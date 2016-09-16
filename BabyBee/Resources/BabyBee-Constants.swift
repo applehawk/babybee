@@ -30,7 +30,13 @@ public let CGGamesScreenSubtitle = "Выберите игру для вашег�
 // MARK: - Analytics Constants
 public let CGAnalyticsOpenScreenContentScreenFmt = "Игра %@"
 public let CGAnalyticsEventGameSelectedFmt = "Выбрана игра %@"
-public let CGAnalyticsEventCategorySelectFmt = "Выбрана категория %@"
+public let CGAnalyticsEventGroupSelectFmt = "Выбрана категория %@"
 public let CGAnalyticsCategoryClick = "Нажатие"
 public let CGAnalyticsEventBirthdayCancel = "Cancel - дата рождения"
 public let CGAnalyticsEventBirthdayOk = "Ок - дата рождения"
+
+public let CGAnalyticsFirebaseEventNameOpenScreenContentScreen = "openscreen_ContentScreen"
+public let CGAnalyticsFirebaseEventGroupSelected = "selected_Group"
+public let CGAnalyticsFirebaseEventGameSelected = "selected_Game"
+public let CGAnalyticsFirebaseEventBirthdayCancel = "cancel_BirthdayInput"
+public let CGAnalyticsFirebaseEventBirthdayOk = "confirm_BirthdayInput"

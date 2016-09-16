@@ -15,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -27,7 +27,7 @@
 			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>229540497551-ckkppt1da34o6rtgvddnih726aa449mu.apps.googleusercontent.com</string>
+				<string>com.googleusercontent.apps.229540497551-ckkppt1da34o6rtgvddnih726aa449mu</string>
 			</array>
 		</dict>
 		<dict>
@@ -42,11 +42,21 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>PaymentKey</key>
+	<string>ae4d72ae616a4b589fe0d878f2594a96</string>
+	<key>RemoteHost</key>
+	<string>fir-babybee.firebaseapp.com</string>
+	<key>RemoteRestHost</key>
+	<string>fir-babybee.firebaseio.com</string>
+	<key>TyphoonInitialAssemblies</key>
+	<array>
+		<string>ApplicationAssembly</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
@@ -59,17 +69,14 @@
 	<array>
 		<string>armv7</string>
 	</array>
-	<key>TyphoonInitialAssemblies</key>
-	<array>
-		<string>ApplicationAssembly</string>
-	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-	<key>RemoteHost</key>
-	<string>fir-babybee.firebaseapp.com</string>
-	<key>PaymentKey</key>
-	<string>ae4d72ae616a4b589fe0d878f2594a96</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

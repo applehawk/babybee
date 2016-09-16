@@ -1,4 +1,5 @@
 {
+    "catalog" : {
     "groups" : [ {
                 "contentList" : [ {
                                  "content" : "game_ball.html",
@@ -99,4 +100,5 @@
                 } ],
     "count" : 4,
     "title" : "Игры для ребенка"
+    }
 }

@@ -10,12 +10,16 @@ import UIKit
 
 let CGHeaderImageFileName = "bg_mainScreen"
 
+enum CGMainScreenTableSections : Int {
+    case MainSection = 0
+}
+
 @objc protocol CGMainScreenDDMProtocol : UITableViewDataSource, UITableViewDelegate {
     init?(delegate: CGMainScreenDelegate, catalog:CGCatalogModel)
 }
 
 class CGMainScreenDDM : NSObject, CGMainScreenDDMProtocol {
-    var catalog : CGCatalogModel
+    var catalog : CGCatalogModel?
     var mainScreenDelegate: CGMainScreenDelegate
     
     let specialCellsOnFooter = 0
@@ -27,8 +31,8 @@ class CGMainScreenDDM : NSObject, CGMainScreenDDMProtocol {
         super.init()
     }
     
-    func configureHeaderView( headerView : CGHeaderView, title: String, headerImageName: String) {
-        headerView.headerImage.image = UIImage(named: headerImageName)
+    func configureHeaderView( headerView : CGHeaderView, title: String, pictureImage: UIImage?) {
+        headerView.headerImage.image = pictureImage
         headerView.headerSubtitle.text = title
     }
     
@@ -38,7 +42,7 @@ class CGMainScreenDDM : NSObject, CGMainScreenDDMProtocol {
                 
                 self.configureHeaderView(headerView,
                                          title:mainScreenDelegate.birthdayString(),
-                                         headerImageName: CGHeaderImageFileName)
+                                         pictureImage: catalog?.pictureImage)
                 
                 return headerView
             }
@@ -53,7 +57,7 @@ class CGMainScreenDDM : NSObject, CGMainScreenDDMProtocol {
                 
                 self.configureHeaderView(headerView,
                                          title:mainScreenDelegate.birthdayString(),
-                                         headerImageName: CGHeaderImageFileName)
+                                         pictureImage: catalog?.pictureImage)
                 
                 headerView.setNeedsUpdateConstraints()
                 headerView.updateConstraints()
@@ -71,18 +75,22 @@ class CGMainScreenDDM : NSObject, CGMainScreenDDMProtocol {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var groupName = "Ошибка загрузки группы"
         
-        if let groupModel = catalog.groups?[indexPath.row] {
+        if let groupModel = catalog?.groups?[indexPath.row] {
             groupName = groupModel.groupName
         }
         mainScreenDelegate.didSelectedGroup(groupName, selectedRow: indexPath.row)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return catalog.count + specialCellsOnFooter
+        if let count = catalog?.groups?.count {
+            return count + specialCellsOnFooter
+        } else {
+            return specialCellsOnFooter
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let group = catalog.groups?[indexPath.row] where indexPath.row < catalog.groups?.count {
+        if let group = catalog?.groups?[indexPath.row] where indexPath.row < catalog?.groups?.count {
             let cell = tableView.dequeueReusableCellWithIdentifier(String(CGMainScreenCell), forIndexPath: indexPath) as! CGMainScreenCell
             cell.configureForGroup(group)
             return cell

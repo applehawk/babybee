@@ -1,5 +1,5 @@
 //
-//  StorageProtocol.swift
+//  CGLocalStorageInLocalFiles.swift
 //  BabyBee
 //
 //  Created by Hawk on 15/09/16.

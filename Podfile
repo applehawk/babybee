@@ -8,6 +8,7 @@ target 'BabyBee' do
     pod 'GoogleIDFASupport'
 	pod 'Google/Analytics'
     pod 'Google/SignIn'
+    pod 'Firebase/Auth'
     pod 'Firebase/Core'
     pod 'Firebase/Messaging'
     pod 'Firebase/Database'

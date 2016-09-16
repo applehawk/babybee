@@ -1,0 +1,136 @@
+{
+    "games" : {
+        "ball": {
+            "content" : "game_ball.html",
+            "name" : "Мячик",
+            "payment" : "yes"
+        },
+        "massage": {
+            "content" : "game_massage.html",
+            "name" : "Массаж"
+        },
+        "pchela": {
+            "content" : "game_bee.html",
+            "name" : "Пчелка",
+            "payment" : "yes"
+        },
+        "facepalm": {
+            "content" : "game_handbyface.html",
+            "name" : "Лицо на руке"
+        },
+        "funnypinets": {
+            "content" : "game_funnypinets.html",
+            "name" : "Веселые пинетки"
+        },
+        "gotcha": {
+            "content" : "game_gotcha.html",
+            "name" : "Попался!"
+        },
+        "songwithname": {
+            "content" : "game_songwithname.html",
+            "name" : "Песенка с именем"
+        },
+        "boat": {
+            "content" : "game_boat.html",
+            "name" : "Лодочка"
+        },
+        "fishing": {
+            "content" : "game_fishing.html",
+            "name" : "Рыбалка"
+        },
+        "footballer": {
+            "content": "game_footballer.html",
+            "name" : "Футболист"
+        },
+        "car": {
+            "content" : "game_car.html",
+            "name" : "Машинка"
+        },
+        "dingdongs": {
+            "content" : "game_dingdongs.html",
+            "name" : "Звонки и трещотки"
+        },
+        "zoopark": {
+            "content" : "game_zoopark.html",
+            "name" : "Зоопарк"
+        },
+        "drummer": {
+            "content" : "game_drummer.html",
+            "name" : "Барабанщик"
+        },
+        "nowgotcha": {
+            "content" : "game_nowgotcha.html",
+            "name" : "Сейчас поймаю"
+        },
+        "icepalace": {
+            "content" : "game_icepalace.html",
+            "name" : "Ледяной дворец"
+        },
+        "dikobraz": {
+            "content" : "game_dikobraz.html",
+            "name" : "Дикобраз"
+        },
+        "secretplace": {
+            "content" : "game_secretplace.html",
+            "name" : "Секретное местечко"
+        },
+        "letstalk": {
+            "content" : "game_letstalk.html",
+            "name" : "Давай поговорим"
+        },
+        "bellsring": {
+            "content" : "game_bellsring.html",
+            "name" : "Бубенцы звенят"
+        },
+        "catchfirefly": {
+            "content" : "game_catchfirefly.html",
+            "name" : "Поймай светлячка"
+        },
+        "livefingers": {
+            "content" : "game_livefingers.html",
+            "name" : "Живые пальчики"
+        },
+        "bowlinbowl": {
+            "content" : "game_bowlinbowl.html",
+            "name" : "Миска в миске"
+        },
+        "ferry": {
+            "content" : "game_ferry.html",
+            "name" : "Переправа"
+        }
+    },
+    "groups" : [ {
+                "name" : "Развитие внимания",
+                "games_ids" : ["ball", "massage", "pchela", "funnypinets", "facepalm", "gotcha"],
+                "pictureUrl" : "pictures/headerScreen0.png",
+                "maxMonth" : 3,
+                "minMonth" : 0
+                }, {
+                "name" : "от 3 до 6 месяцев",
+                "games_ids" : [ "songwithname", "boat", "fishing", "footballer", "car" ],
+                "pictureUrl" : "pictures/headerScreen3.png",
+                "maxMonth" : 6,
+                "minMonth" : 3
+                }, {
+                "name" : "от 6 до 9 месяцев",
+                "games_ids" : [ "zoopark", "drummer", "nowgotcha", "icapalace", "dikobraz", "secretplace" ],
+                "pictureUrl" : "pictures/headerScreen2.png",
+                "maxMonth" : 9,
+                "minMonth" : 6
+                }, {
+                "name" : "от 9 до 12 месяцев",
+                "games_ids" : ["letstalk", "bellsring", "catchfirefly", "livefingers", "bowlinbowl", "ferry" ],
+                "pictureUrl" : "pictures/headerScreen3.png",
+                "maxMonth" : 12,
+                "minMonth" : 9
+                }, {
+                "name" : "",
+                "games_ids": []
+                }, {
+                "name" : "Развитие внимание",
+                "games_ids": ["bellsring", "catchfirefly", "livefingers", "footballer"]
+                }
+                ],
+    "title" : "Игры для ребенка",
+    "pictureUrl": "pictures/bg_mainScreen.png"
+}

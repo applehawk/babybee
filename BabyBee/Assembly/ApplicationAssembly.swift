@@ -17,7 +17,7 @@ class ApplicationAssembly: TyphoonAssembly {
         return TyphoonDefinition.withClass(AppDelegate.self) {
             (definition) in
             
-            let services : [UIApplicationDelegate] =
+            let services : [AppDelegateServiceProtocol] =
             [
                 RootService(),
                 GoogleAnalyticsService(),
@@ -27,9 +27,10 @@ class ApplicationAssembly: TyphoonAssembly {
             ]
             definition.injectProperty("serviceDispatcher", with: AppDelegateServiceDispatcher(services: services))
             definition.injectProperty("appAssembly", with: self)
+            
+            definition.scope = TyphoonScope.Singleton
         }
     }
-    
     /*
      * A config definition, referencing properties that will be loaded from a plist.
      */
@@ -55,9 +56,27 @@ class ApplicationAssembly: TyphoonAssembly {
         }
     }
     
-    dynamic func catalogService() -> AnyObject {
-        return TyphoonDefinition.withClass(CGCatalogServiceLocalJSON.self) {
+    dynamic func localStorage() -> AnyObject {
+        return TyphoonDefinition.withClass(CGLocalStorageInMemory.self) {
             (definition) in
+            definition.scope = TyphoonScope.Singleton
+        }
+    }
+    
+    dynamic func imageService() -> AnyObject {
+        return TyphoonDefinition.withClass(CGImageService.self) {
+            (definition) in
+            definition.injectProperty("fabricRequest", with: self.contentFabricRequest())
+            definition.scope = TyphoonScope.Singleton
+        }
+    }
+    
+    dynamic func catalogService() -> AnyObject {
+        return TyphoonDefinition.withClass(CGCatalogServiceLocal.self) {
+            (definition) in
+            definition.injectProperty("localStorage", with: self.localStorage())
+            definition.injectProperty("fabricRequest", with: self.contentFabricRequest())
+            definition.injectProperty("imageService", with: self.imageService())
             definition.scope = TyphoonScope.Singleton
         }
     }
@@ -104,14 +123,15 @@ class ApplicationAssembly: TyphoonAssembly {
             definition.scope = TyphoonScope.Singleton
         }
     }
-    dynamic func gamesScreenDDM(group : CGGroupModel) -> AnyObject {
+    dynamic func gamesScreenDDM(catalog : CGCatalogModel, group : CGGroupModel) -> AnyObject {
         return TyphoonDefinition.withClass(CGGamesScreenDDM.self) {
             (definition) in
             
-            definition.useInitializer("initWithDelegate:group:") {
+            definition.useInitializer("initWithDelegate:catalog:group:") {
                 (initializer) in
                 
                 initializer.injectParameterWith( self.gamesScreenViewController() )
+                initializer.injectParameterWith( catalog )
                 initializer.injectParameterWith( group ) 
             }
         }
@@ -130,7 +150,7 @@ class ApplicationAssembly: TyphoonAssembly {
 
             definition.injectProperty("tracker", with: self.analyticsTracker())
             definition.injectProperty("fabricRequest", with: self.contentFabricRequest())
-        
+            definition.injectProperty("service", with: self.catalogService())
             definition.scope = TyphoonScope.Singleton
         }
     }

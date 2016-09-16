@@ -9,6 +9,9 @@
 import Foundation
 
 @objc protocol CGCatalogServiceProtocol {
-    func updateData( completionHandler:() -> Void );
-    func obtainCatalogModel() -> CGCatalogModel?
+    func updateCatalog( completionHandler:((error:NSError?) -> Void)? );
+    func obtainCatalog() -> CGCatalogModel?
+    
+    func updateContentData( contentUrl: String, completionHandler:() -> Void )
+    func obtainContentData( contentUrl: String ) -> String?
 }

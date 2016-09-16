@@ -9,7 +9,7 @@
 import UIKit
 
 @objc protocol CGGamesScreenProtocol {
-    func didSelectedGame(gameName: String, gameId : Int);
+    func didSelectedGame(gameName: String, gameId : String);
 }
 
 @objc protocol CGGamesScreenDDMProtocol : UITableViewDelegate, UITableViewDataSource {
@@ -17,18 +17,23 @@ import UIKit
 
 class CGGamesScreenDDM : NSObject, CGGamesScreenDDMProtocol {
     var delegate : CGGamesScreenProtocol
+    var catalog : CGCatalogModel
     var group : CGGroupModel
     
-    init(delegate : CGGamesScreenProtocol, group : CGGroupModel) {
+    init(delegate : CGGamesScreenProtocol, catalog: CGCatalogModel, group: CGGroupModel) {
         self.delegate = delegate
         self.group = group
+        self.catalog = catalog
         
         super.init()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let contentList = group.contentList {
+        /*if let contentList = group.contentList {
             return contentList.count
+        }*/
+        if let games_ids = group.games_ids {
+            return games_ids.count
         }
         return 0
     }
@@ -36,18 +41,23 @@ class CGGamesScreenDDM : NSObject, CGGamesScreenDDMProtocol {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("CGGamesScreenCell", forIndexPath: indexPath) as! CGGamesScreenCell
         
-        if let content = group.contentList?[indexPath.row] {
+        guard let game_id = group.games_ids?[ indexPath.row ] else {
+            return UITableViewCell()
+        }
+        if let content = catalog.games?[game_id] {
             cell.configureForContent( content )
         }
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        if let contentModel = group.contentList?[indexPath.row] {
-            delegate.didSelectedGame(contentModel.name, gameId: indexPath.row)
+        guard let game_id = group.games_ids?[ indexPath.row ] else {
+            return
+        }
+        if let content = catalog.games?[game_id] {
+            delegate.didSelectedGame(content.name, gameId: game_id)
         } else {
-            delegate.didSelectedGame("Ошибка получения данных игры \(indexPath.row)", gameId: indexPath.row)
+            delegate.didSelectedGame("Ошибка получения данных игры \(indexPath.row)", gameId: game_id)
         }
     }
     
@@ -56,17 +66,16 @@ class CGGamesScreenDDM : NSObject, CGGamesScreenDDMProtocol {
         return 50.0;
     }
     
-    func configureHeaderView( headerView : CGHeaderView, title: String, headerImageName: String) {
-        headerView.headerImage.image = UIImage(named: headerImageName)
-        headerView.headerSubtitle.text = title
+    func configureHeaderView( headerView : CGHeaderView ) {
+        headerView.headerImage.image = catalog.pictureImage
+        headerView.headerSubtitle.text = catalog.title
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             if let headerView : CGHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(String(CGHeaderView)) as? CGHeaderView {
     
-                self.configureHeaderView(headerView, title:CGGamesScreenSubtitle,
-                                         headerImageName: group.headerPicture)
+                self.configureHeaderView(headerView)
                 
                 return headerView
             }
@@ -79,8 +88,7 @@ class CGGamesScreenDDM : NSObject, CGGamesScreenDDMProtocol {
             
             if let headerView : CGHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(String(CGHeaderView)) as? CGHeaderView {
                 
-                self.configureHeaderView(headerView, title:CGGamesScreenSubtitle,
-                                         headerImageName: group.headerPicture)
+                self.configureHeaderView(headerView)
                 
                 headerView.layoutIfNeeded()
                 headerView.layoutSubviews()
