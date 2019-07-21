@@ -17,12 +17,15 @@ class CGCatalogServiceLocal: NSObject, CGCatalogServiceProtocol {
     var fabricRequest: CGFabricRequestProtocol!
     var imageService: CGImageService!
     
-    func readJSONDictWithPath(path : String) -> [String: AnyObject]? {
+    func readJSONDictWithPath(_ path: String) -> Any? {
         do {
-            if let resourcePath = NSBundle.mainBundle().pathForResource(path, ofType: "json"),
-                let data = NSData(contentsOfFile: resourcePath)
+            if let resourcePath = Bundle.main.path(forResource: path, ofType: "json")
             {
-                let jsonResult = try NSJSONSerialization.JSONObjectWithData(data, options: [NSJSONReadingOptions.MutableContainers]) as? [String: AnyObject]
+                let fileUrl = URL(fileURLWithPath: resourcePath)
+                let data = try Data(contentsOf: fileUrl)
+                
+                let jsonResult = try JSONSerialization.jsonObject(with: data, options: [.mutableContainers])
+                
                 return jsonResult
             }
         } catch {
@@ -31,7 +34,7 @@ class CGCatalogServiceLocal: NSObject, CGCatalogServiceProtocol {
         return nil
     }
     
-    func updateCatalog( completionHandler:((error:NSError?) -> Void)? ) {
+    func updateCatalog( completionHandler:((_ error: NSError?) -> Void)? ) {
         if let jsonDict = readJSONDictWithPath(CGLocalJSONFileName) {
             guard
                 let catalogDict = jsonDict as? [String:AnyObject],
@@ -43,7 +46,7 @@ class CGCatalogServiceLocal: NSObject, CGCatalogServiceProtocol {
                 catalogModel.pictureImage = image
             })
             self.localStorage.saveObject(catalogModel, name: CGLocalStorageCatalogModelKey)
-            completionHandler?(error: nil)
+            completionHandler?(nil)
         } else {
             print("File isn't readable! Check file: \(CGLocalJSONFileName)")
         }
@@ -54,13 +57,13 @@ class CGCatalogServiceLocal: NSObject, CGCatalogServiceProtocol {
         return catalogModel as? CGCatalogModel
     }
     
-    func updateContentData( contentUrl: String, completionHandler:() -> Void ) {
+    func updateContentData(_ contentUrl: String, completionHandler:() -> Void ) {
         if let content = self.obtainContentData(contentUrl) {
             completionHandler()
         } else {
             do {
-                let path = NSBundle.mainBundle().pathForResource(contentUrl, ofType: nil)
-                let stringContent = try String(contentsOfFile: path!, encoding: NSUTF8StringEncoding)
+                let path = Bundle.main.path(forResource: contentUrl, ofType: nil)
+                let stringContent = try String(contentsOfFile: path!, encoding: String.Encoding.utf8)
                 let key = String("\(CGLocalStorageContentKey)_\(contentUrl)")
                 self.localStorage.saveObject(stringContent, name: key)
                 completionHandler()
@@ -70,7 +73,7 @@ class CGCatalogServiceLocal: NSObject, CGCatalogServiceProtocol {
         }
     }
     
-    func obtainContentData( contentUrl: String ) -> String? {
+    func obtainContentData(_ contentUrl: String ) -> String? {
         let key = String("\(CGLocalStorageContentKey)_\(contentUrl)")
         return self.localStorage.loadObject(key) as? String
     }

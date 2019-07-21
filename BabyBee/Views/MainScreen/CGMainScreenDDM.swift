@@ -10,12 +10,12 @@ import UIKit
 
 let CGHeaderImageFileName = "bg_mainScreen"
 
-enum CGMainScreenTableSections : Int {
+enum CGMainScreenTableSections: Int {
     case MainSection = 0
 }
 
 @objc protocol CGMainScreenDDMProtocol : UITableViewDataSource, UITableViewDelegate {
-    init?(delegate: CGMainScreenDelegate, catalog:CGCatalogModel)
+    init(delegate: CGMainScreenDelegate, catalog:CGCatalogModel)
 }
 
 class CGMainScreenDDM : NSObject, CGMainScreenDDMProtocol {
@@ -24,64 +24,62 @@ class CGMainScreenDDM : NSObject, CGMainScreenDDMProtocol {
     
     let specialCellsOnFooter = 0
     
-    required init?(delegate: CGMainScreenDelegate, catalog:CGCatalogModel) {
+    required init(delegate: CGMainScreenDelegate, catalog: CGCatalogModel) {
         self.mainScreenDelegate = delegate;
         self.catalog = catalog
         
         super.init()
     }
     
-    func configureHeaderView( headerView : CGHeaderView, title: String, pictureImage: UIImage?) {
+    func configureHeaderView(_ headerView : CGHeaderView, title: String, pictureImage: UIImage?) {
         headerView.headerImage.image = pictureImage
         headerView.headerSubtitle.text = title
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 {
-            if let headerView : CGHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(String(CGHeaderView)) as? CGHeaderView {
-                
-                self.configureHeaderView(headerView,
-                                         title:mainScreenDelegate.birthdayString(),
-                                         pictureImage: catalog?.pictureImage)
-                
-                return headerView
-            }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        switch CGMainScreenTableSections(rawValue: section)! {
+        case .MainSection:
+            let headerView = CGHeaderView.dequeueReusableHeaderFooterView(in: tableView)
+            
+            let title = mainScreenDelegate.birthdayString()
+            let pictureImage = catalog?.pictureImage
+            headerView.configureHeaderView(title, pictureImage: pictureImage)
+            
+            return headerView
+        default:
+            return nil
         }
-        return nil
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if( section == CGMainScreenTableSections.MainSection.rawValue ) {
-            if let headerView : CGHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(String(CGHeaderView)) as? CGHeaderView
-            {
-                
-                self.configureHeaderView(headerView,
-                                         title:mainScreenDelegate.birthdayString(),
-                                         pictureImage: catalog?.pictureImage)
-                
-                headerView.setNeedsUpdateConstraints()
-                headerView.updateConstraints()
-                
-                headerView.setNeedsLayout()
-                headerView.layoutIfNeeded()
-                
-                let height = headerView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
-                return height.height
-            }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch CGMainScreenTableSections(rawValue: section)! {
+        case .MainSection:
+            let title = mainScreenDelegate.birthdayString()
+            let pictureImage = catalog?.pictureImage
+            
+            let headerView = CGHeaderView.dequeueReusableHeaderFooterView(in: tableView)
+            headerView.configureHeaderView(title, pictureImage: pictureImage)
+            headerView.setNeedsUpdateConstraints()
+            headerView.updateConstraints()
+            
+            headerView.setNeedsLayout()
+            headerView.layoutIfNeeded()
+            let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+            return height.height
         }
         return 0.0
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var groupName = "Ошибка загрузки группы"
-        
-        if let groupModel = catalog?.groups?[indexPath.row] {
+        if let groupModel = group(for: indexPath) {
             groupName = groupModel.groupName
         }
         mainScreenDelegate.didSelectedGroup(groupName, selectedRow: indexPath.row)
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let count = catalog?.groups?.count {
             return count + specialCellsOnFooter
         } else {
@@ -89,10 +87,24 @@ class CGMainScreenDDM : NSObject, CGMainScreenDDMProtocol {
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let group = catalog?.groups?[indexPath.row] where indexPath.row < catalog?.groups?.count {
-            let cell = tableView.dequeueReusableCellWithIdentifier(String(CGMainScreenCell), forIndexPath: indexPath) as! CGMainScreenCell
+    func group(for indexPath: IndexPath) -> CGGroupModel? {
+        return catalog?.groups?[indexPath.row]
+    }
+    
+    var countOfGroups: Int {
+        guard let groups = catalog?.groups else {
+            return 0
+        }
+        return groups.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let group = group(for: indexPath),
+            indexPath.row < countOfGroups {
+            
+            let cell = CGMainScreenCell.dequeueReusableCell(in: tableView, forIndexPath: indexPath)
             cell.configureForGroup(group)
+            
             return cell
         }
         return UITableViewCell()

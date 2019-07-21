@@ -10,38 +10,44 @@ import Foundation
 import Firebase
 
 @objc protocol CGAnalyticsTrackerProtocol {
-    func sendOpenScreen( screenName : String );
-    func sendAction( actionName: String, actionTitle : String, categoryName : String, label: String, value: NSNumber );
+    func sendOpenScreen(_ screenName : String );
+    func sendAction(withName actionName: String, actionTitle : String, categoryName : String, label: String, value: NSNumber );
 }
 
 public class CGAnalyticsTracker: NSObject, CGAnalyticsTrackerProtocol {
-    func sendOpenScreenGoogleAnalytics(screenName: String) {
+    func sendOpenScreenGoogleAnalytics(_ screenName: String) {
         if let tracker = GAI.sharedInstance().defaultTracker {
             tracker.allowIDFACollection = true
             tracker.set(kGAIScreenName, value: screenName)
             
-            let builder = GAIDictionaryBuilder.createScreenView()
-            tracker.send(builder.build() as [NSObject : AnyObject])
+            guard let builder = GAIDictionaryBuilder.createScreenView() else {
+                assertionFailure("failed with createScreenView inside sendOpenScreenGoogleAnalytics")
+                return
+            }
+            tracker.send(builder.build() as? [AnyHashable : Any])
         }
     }
-    func sendOpenScreen(screenName : String) {
+    func sendOpenScreen(_ screenName : String) {
         self.sendOpenScreenGoogleAnalytics(screenName)
-        FIRAnalytics.logEventWithName("openScreen", parameters: ["screeName" : screenName])
+        FIRAnalytics.logEvent(withName: "openScreen", parameters: ["screeName" : screenName])
     }
     
-    func sendAction(actionName: String,
+    func sendAction(withName actionName: String,
                     actionTitle : String,
                     categoryName : String,
                     label: String,
                     value: NSNumber ) {
         if let tracker = GAI.sharedInstance().defaultTracker {
             tracker.allowIDFACollection = true
-            let builder = GAIDictionaryBuilder.createEventWithCategory(categoryName, action: actionName, label: label, value: value);
             
-            tracker.send( builder.build() as [NSObject : AnyObject])
+            guard let builder = GAIDictionaryBuilder.createEvent(withCategory: categoryName, action: actionName, label: label, value: value) else {
+                assertionFailure("failed with createScreenView inside sendAction")
+                return
+            }
+            tracker.send( builder.build() as? [AnyHashable : Any])
         }
         
-        FIRAnalytics.logEventWithName(actionName,
+        FIRAnalytics.logEvent(withName: actionName,
                                       parameters:
             ["category" : categoryName,
                 "label" : label, "value":value])

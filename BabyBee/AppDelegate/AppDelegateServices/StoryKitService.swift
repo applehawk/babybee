@@ -9,17 +9,18 @@
 import Foundation
 import SwiftyStoreKit
 
-class StoryKitService: NSObject, AppDelegateServiceProtocol {
+class StoryKitService: NSObject, UIApplicationDelegate {
     
     func application(application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         SwiftyStoreKit.completeTransactions() { completedTransactions in
+            /*
             for completedTransaction in completedTransactions {
-                if completedTransaction.transactionState == .Purchased || completedTransaction.transactionState == .Restored {
+                if completedTransaction.transactionState == .purchased || completedTransaction.transactionState == .restored {
                     print("purchased: \(completedTransaction.productId)")
                 }
-            }
+            }*/
         }
         return true;
     }

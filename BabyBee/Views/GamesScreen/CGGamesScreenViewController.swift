@@ -14,7 +14,7 @@ class CGGamesScreenViewController: UIViewController, CGGamesScreenProtocol {
     // Injected by Typhoon
     var gamesScreenDDM : CGGamesScreenDDMProtocol!
     var tracker : CGAnalyticsTrackerProtocol!
-    var assembly : ApplicationAssembly!
+    //var assembly : ApplicationAssembly!
     
     // My custom Properties
     var catalog : CGCatalogModel!
@@ -24,49 +24,58 @@ class CGGamesScreenViewController: UIViewController, CGGamesScreenProtocol {
     var selectedGameId : String?
     
     // MARK: - CGGamesScreenProtocol methods
-    func didSelectedGame(gameName : String, gameId: String) {
+    func didSelectedGame(_ gameName: String, gameId: String) {
         selectedGameId = gameId
         let selectedAction = String(format: CGAnalyticsEventGameSelectedFmt, gameName)
-        tracker.sendAction( CGAnalyticsFirebaseEventGameSelected,
+        tracker.sendAction( withName: CGAnalyticsFirebaseEventGameSelected,
                   actionTitle: selectedAction,
                    categoryName: CGAnalyticsCategoryClick,
                    label: gameId,
                    value: 0)
         
-        self.performSegueWithIdentifier(CGContentScreenSegueName, sender: self)
+        self.performSegue(withIdentifier: CGContentScreenSegueName, sender: self)
     }
     
     
     // MARK: - UIViewController methods
-    override func viewWillAppear(animated: Bool) {
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
         
         tracker.sendOpenScreen( currentGroup.groupName )
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.gamesScreenDDM = assembly?.gamesScreenDDM(catalog, group: currentGroup) as? CGGamesScreenDDM
+        self.gamesScreenDDM = DIResolver.resolve(CGGamesScreenDDM.self, arguments: catalog, currentGroup)
         self.navigationItem.title = currentGroup.groupName
 
-        let nib = UINib(nibName: String(CGGamesScreenCell), bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: String(CGGamesScreenCell));
+        let nib = UINib(nibName: "CGGamesScreenCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "CGGamesScreenCell");
         
-        let headerNib = UINib(nibName: String(CGHeaderView), bundle: nil)
-        tableView.registerNib(headerNib, forHeaderFooterViewReuseIdentifier: String(CGHeaderView))
+        let headerNib = UINib(nibName: "CGHeaderView", bundle: nil)
+        tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: "CGHeaderView")
         
         tableView.delegate = gamesScreenDDM;
         tableView.dataSource = gamesScreenDDM;
         
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == CGContentScreenSegueName {
-            if let destinationVC = segue.destinationViewController as? CGContentScreenViewController {
-                if let selectedGameId = selectedGameId {
-                    destinationVC.game = catalog.games?[selectedGameId]
-                }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch (segue.destination, segue.identifier) {
+            
+        case let (destVC, segueID) as (CGContentScreenViewController, String) where segueID == CGContentScreenSegueName:
+            
+            guard let selectedGameId = selectedGameId else {
+                break
             }
+            destVC.game = catalog.games?[selectedGameId]
+            
+        default:
+            break
         }
+        
+        return super.prepare(for: segue, sender: sender)
     }
 }

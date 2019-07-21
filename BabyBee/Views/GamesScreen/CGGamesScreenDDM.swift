@@ -9,7 +9,7 @@
 import UIKit
 
 @objc protocol CGGamesScreenProtocol {
-    func didSelectedGame(gameName: String, gameId : String);
+    func didSelectedGame(_ gameName: String, gameId : String);
 }
 
 @objc protocol CGGamesScreenDDMProtocol : UITableViewDelegate, UITableViewDataSource {
@@ -28,7 +28,7 @@ class CGGamesScreenDDM : NSObject, CGGamesScreenDDMProtocol {
         super.init()
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         /*if let contentList = group.contentList {
             return contentList.count
         }*/
@@ -38,19 +38,19 @@ class CGGamesScreenDDM : NSObject, CGGamesScreenDDMProtocol {
         return 0
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("CGGamesScreenCell", forIndexPath: indexPath) as! CGGamesScreenCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = CGGamesScreenCell.dequeueReusableCell(in: tableView, forIndexPath: indexPath)
         
         guard let game_id = group.games_ids?[ indexPath.row ] else {
             return UITableViewCell()
         }
         if let content = catalog.games?[game_id] {
-            cell.configureForContent( content )
+            cell.configureCell(with: content)
         }
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let game_id = group.games_ids?[ indexPath.row ] else {
             return
         }
@@ -61,45 +61,39 @@ class CGGamesScreenDDM : NSObject, CGGamesScreenDDMProtocol {
         }
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
-    {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50.0;
     }
     
-    func configureHeaderView( headerView : CGHeaderView ) {
-        headerView.headerImage.image = catalog.pictureImage
-        headerView.headerSubtitle.text = catalog.title
-    }
-    
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 {
-            if let headerView : CGHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(String(CGHeaderView)) as? CGHeaderView {
-    
-                self.configureHeaderView(headerView)
-                
-                return headerView
-            }
-        }
-        return nil
-    }
-    
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if( section == CGMainScreenTableSections.MainSection.rawValue ) {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        switch CGMainScreenTableSections(rawValue: section) {
+        case .MainSection?:
             
-            if let headerView : CGHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(String(CGHeaderView)) as? CGHeaderView {
-                
-                self.configureHeaderView(headerView)
-                
-                headerView.layoutIfNeeded()
-                headerView.layoutSubviews()
-                
-                let height = headerView.headerImageHeightConstraint.constant + headerView.headerSubtitle.frame.height
-                
-                return height
-            } else {
-                return 250.0
-            }
+            let headerView = CGHeaderView.dequeueReusableHeaderFooterView(in: tableView)
+            headerView.configureHeaderView(self.catalog)
+            
+            return headerView
+        default:
+            return nil
         }
-        return 0.0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        switch CGMainScreenTableSections(rawValue: section) {
+        case .MainSection?:
+            
+            let headerView = CGHeaderView.dequeueReusableHeaderFooterView(in: tableView)
+            headerView.configureHeaderView(self.catalog)
+            
+            headerView.layoutIfNeeded()
+            headerView.layoutSubviews()
+            
+            let height = headerView.headerImageHeightConstraint.constant + headerView.headerSubtitle.frame.height
+            
+            return height
+        default:
+            return 250.0
+        }
     }
 }

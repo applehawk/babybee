@@ -17,26 +17,26 @@ class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainS
     var tracker : CGAnalyticsTracker!
     var mainScreenDDM : CGMainScreenDDMProtocol!
     var catalogService : CGCatalogServiceProtocol!
-    var userDefaults : NSUserDefaults!
-    var assembly : ApplicationAssembly!
+    var userDefaults : UserDefaults!
+    //var assembly : ApplicationAssembly!
     
-    var selectedGroupId = 0
-    var resultBirthDayStr = ""
-    var catalog : CGCatalogModel?
+    fileprivate var selectedGroupId = 0
+    fileprivate var resultBirthDayStr = ""
+    fileprivate var catalog : CGCatalogModel?
     
     // MARK: - CGAgeAskingDelegate
-    func ageConfirm( birthDate: NSDate ) {
-        let now = NSDate()
-        let components = birthDate.numberOfMonthsAndDaysToTime(now)
-        let pluralBirthDay = String().convertDateComponentsToPluralDate(components)
+    func ageConfirm(_ birthDate: Date ) {
+        let now = Date(timeIntervalSinceNow: 0)
+        let components = birthDate.numberOfMonthsAndDaysToTime(toDateTile: now)
+        let pluralBirthDay = String().convertDateComponentsToPluralDate(components: components)
         
         resultBirthDayStr = CGBirthDayPrefix + " " + pluralBirthDay
         
-        userDefaults.setObject(birthDate, forKey: CGBabyBirthDateUserDefaults)
+        userDefaults.set(birthDate, forKey: CGBabyBirthDateUserDefaults)
         
         let dateString = birthDate.convertDateToGOSTDateString()
         // Send to Analytics confirm Action
-        tracker.sendAction(CGAnalyticsFirebaseEventBirthdayOk,
+        tracker.sendAction(withName: CGAnalyticsFirebaseEventBirthdayOk,
                         actionTitle: CGAnalyticsEventBirthdayOk + " " + dateString,
                         categoryName: CGAnalyticsCategoryClick,
                         label: dateString,
@@ -46,13 +46,13 @@ class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainS
     }
     func ageCancelled() {
         self.resultBirthDayStr = CGBirthdayAltText
-        tracker.sendAction(CGAnalyticsFirebaseEventBirthdayCancel,
+        tracker.sendAction(withName: CGAnalyticsFirebaseEventBirthdayCancel,
                         actionTitle: CGAnalyticsEventBirthdayCancel,
                         categoryName: CGAnalyticsCategoryClick,
                         label: "",
                         value: 0)
         
-        self.userDefaults.setObject(NSNumber(bool: true),
+        self.userDefaults.set(NSNumber(value: true),
                                     forKey: CGBabyBirthCancelUserDefaults)
         tableView.reloadData()
     }
@@ -62,45 +62,49 @@ class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainS
         return resultBirthDayStr
     }
     
-    func didSelectedGroup(groupName : String, selectedRow: Int) {
+    func didSelectedGroup(_ groupName : String, selectedRow: Int) {
         selectedGroupId = selectedRow
         let actionName = String(format: CGAnalyticsEventGroupSelectFmt,
-                                NSNumber(integer: selectedRow))
+                                NSNumber(value: selectedRow))
         
-        tracker.sendAction(CGAnalyticsFirebaseEventGroupSelected,
+        tracker.sendAction(withName: CGAnalyticsFirebaseEventGroupSelected,
                     actionTitle: actionName,
                    categoryName: CGAnalyticsCategoryClick,
                    label: "\(groupName)",
-                   value: selectedRow)
+                    value: NSNumber(value: selectedRow))
         
-        performSegueWithIdentifier(CGGamesScreenSegueName, sender: self)
+        performSegue(withIdentifier: CGGamesScreenSegueName, sender: self)
     }
     
     // MARK: - UIViewController
-    override func viewWillAppear(animated: Bool) {
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationItem.backBarButtonItem =
+            UIBarButtonItem(title: "", style: .plain,
+                            target: nil, action: nil)
         
         tracker.sendOpenScreen(CGMainScreenTitle)
     }
     
-    func refreshHandler() {
+    @objc func refreshHandler() {
         refreshControl.beginRefreshing()
         catalogService.updateCatalog { (error) in
             if let catalog = self.catalogService.obtainCatalog() {
                 self.catalog = catalog
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async {
                     if let title = catalog.title {
                         self.navigationItem.title = catalog.title
                     }
-                })
-                self.mainScreenDDM = self.assembly.mainScreenDDM(catalog) as? CGMainScreenDDM
+                }
+                self.mainScreenDDM = DIResolver.resolve(CGMainScreenDDM.self, argument: catalog)
                 self.tableView.delegate = self.mainScreenDDM;
                 self.tableView.dataSource = self.mainScreenDDM;
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
                     self.refreshControl.endRefreshing()
                     self.tableView.reloadData()
-                })
+                }
             }
         }
     }
@@ -109,24 +113,20 @@ class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainS
         super.viewDidLoad()
         self.navigationItem.title = CGMainScreenTitle;
         
-        let nibHeaderView = UINib(nibName: String(CGHeaderView), bundle: nil)
-        tableView.registerNib(nibHeaderView, forHeaderFooterViewReuseIdentifier: String(CGHeaderView))
+        CGHeaderView.registerNib(in: tableView)
+        CGMainScreenCell.registerNib(in: tableView)
+        CGAboutUsCell.registerNib(in: tableView)
         
-        let nibMainScreenCell = UINib(nibName: String(CGMainScreenCell), bundle: nil)
-        tableView.registerNib(nibMainScreenCell, forCellReuseIdentifier: String(CGMainScreenCell));
-        
-        let nibAboutUsCell = UINib(nibName: String(CGAboutUsCell), bundle: nil)
-        tableView.registerNib(nibAboutUsCell, forCellReuseIdentifier: String(CGAboutUsCell));
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        tableView.scrollEnabled = true
+        tableView.isScrollEnabled = true
         
-        self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        self.activityIndicator = UIActivityIndicatorView(style: .gray)
         activityIndicator.hidesWhenStopped = true
         tableView.backgroundView = activityIndicator
         activityIndicator.startAnimating()
         
         self.refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: "refreshHandler", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: Selector("refreshHandler"), for: .valueChanged)
         
         self.tableView.addSubview(refreshControl)
         self.refreshHandler()
@@ -134,10 +134,9 @@ class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainS
         self.askAgeIfNeeded()
     }
     
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == CGGamesScreenSegueName {
-            guard let destinationVC = segue.destinationViewController as? CGGamesScreenViewController else {
+            guard let destinationVC = segue.destination as? CGGamesScreenViewController else {
                 print("Where is destinationVC? of CGGamesScreenViewController")
                 return
             }
@@ -146,20 +145,21 @@ class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainS
         }
     }
     
+    
     // MARK: Helper Methods
-    func askAgeIfNeeded() {
+    fileprivate func askAgeIfNeeded() {
         // Show birthday Popup
-        if let isCanceledBirthDay = userDefaults.objectForKey(CGBabyBirthCancelUserDefaults) as? NSNumber where isCanceledBirthDay == true {
+        if let isCanceledBirthDay = userDefaults.object(forKey: CGBabyBirthCancelUserDefaults) as? NSNumber, isCanceledBirthDay == true {
             resultBirthDayStr = CGBirthdayAltText
         } else {
-            if let birthDate = userDefaults.objectForKey(CGBabyBirthDateUserDefaults) as? NSDate {
+            if let birthDate = userDefaults.object(forKey: CGBabyBirthDateUserDefaults) as? Date {
                 self.ageConfirm(birthDate)
             } else {
                 let ageAskVC = CGAgeAskingController(title: CGBirthAlertTitle,
                                                      message: CGBirthAlertMessage,
-                                                     preferredStyle: .Alert)
+                                                     preferredStyle: .alert)
                 ageAskVC.ageAskingDelegate = self
-                self.presentViewController(ageAskVC, animated: true, completion: nil)
+                self.present(ageAskVC, animated: true, completion: nil)
             }
         }
     }

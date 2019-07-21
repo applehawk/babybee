@@ -14,30 +14,40 @@ class CGCatalogServiceFirebase: NSObject, CGCatalogServiceProtocol {
     var fabricRequest : CGFabricRequestProtocol!
     var imageService : CGImageService!
     
-    enum Errors : ErrorType {
-        case SerializationProblem
+    enum CatalogServiceError: Error, CustomStringConvertible {
+        case SerializationProblem(error: String)
+        
+        var description: String {
+            switch self {
+            case .SerializationProblem(let error):
+                return "SerializationProblem \(error)"
+            }
+        }
     }
     // MARK: Helper Method
-    func serializationJSONDataToCatalog(data: NSData) -> CGCatalogModel? {
+    func serializationJSONDataToCatalog(_ data: Data) -> CGCatalogModel? {
         do {
-            let jsonResult = try NSJSONSerialization.JSONObjectWithData(data, options:[NSJSONReadingOptions.MutableContainers]) as? [String: AnyObject]
-            if let jsonResult = jsonResult, let catalog = CGCatalogModel(JSON: jsonResult) {
-                return catalog
+            guard let jsonResult = try JSONSerialization.jsonObject(with: data, options: [.mutableContainers]) as? [String: Any] else {
+                throw CatalogServiceError.SerializationProblem(error: "")
+                return nil
             }
+            let catalog = CGCatalogModel(JSON: jsonResult)
+            return catalog
         } catch {
             print(error)
         }
         return nil
     }
     
-    func updateCatalog( completionHandler:((error:NSError?) -> Void)? ) {
+    func updateCatalog( completionHandler:((_ error: NSError?) -> Void)? ) {
         if let request = fabricRequest.requestWithCatalog() {
             
-            print(request.URL?.absoluteURL)
-            let session = NSURLSession.sharedSession()
-            let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) in
+            print(request.url?.absoluteString)
+            let session = URLSession.shared
+            let dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) in
                 // 1: Check HTTP Response for successful GET request
-                guard let httpResponse = response as? NSHTTPURLResponse, receivedData = data
+                guard let httpResponse = response as? HTTPURLResponse,
+                    let receivedData = data
                     else {
                         print("error: not a valid http response")
                         return
@@ -49,7 +59,7 @@ class CGCatalogServiceFirebase: NSObject, CGCatalogServiceProtocol {
                             catalog.pictureImage = image
                         })
                         self.localStorage.saveObject(catalog, name: CGLocalStorageCatalogModelKey)
-                        completionHandler?(error: nil)
+                        completionHandler?(nil)
                     }
                 default:
                     print("GET request got response \(httpResponse.statusCode)")
@@ -65,13 +75,13 @@ class CGCatalogServiceFirebase: NSObject, CGCatalogServiceProtocol {
         return catalogModel as? CGCatalogModel
     }
     
-    func updateContentData( contentUrl: String, completionHandler:() -> Void ) {
+    func updateContentData(_ contentUrl: String, completionHandler:() -> Void ) {
         if let content = self.obtainContentData(contentUrl) {
             completionHandler()
         } else {
             do {
-                let path = NSBundle.mainBundle().pathForResource(contentUrl, ofType: nil)
-                let stringContent = try String(contentsOfFile: path!, encoding: NSUTF8StringEncoding)
+                let path = Bundle.main.path(forResource: contentUrl, ofType: nil)
+                let stringContent = try String(contentsOfFile: path!, encoding: String.Encoding.utf8)
                 let key = String("\(CGLocalStorageContentKey)_\(contentUrl)")
                 self.localStorage.saveObject(stringContent, name: key)
                 completionHandler()
@@ -81,7 +91,7 @@ class CGCatalogServiceFirebase: NSObject, CGCatalogServiceProtocol {
         }
     }
     
-    func obtainContentData( contentUrl: String ) -> String? {
+    func obtainContentData(_ contentUrl: String ) -> String? {
         let key = String("\(CGLocalStorageContentKey)_\(contentUrl)")
         return self.localStorage.loadObject(key) as? String
     }

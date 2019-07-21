@@ -34,12 +34,12 @@ extension NSArray : JSONValue {
 }
 
 extension NSDictionary : JSONValue {
-    public subscript(key: String) -> JSONValue? { return JSON(self[key]) }
+    public subscript(key: String) -> JSONValue? { return JSON(self[key] as Any?) }
     public subscript(index: Int) -> JSONValue? { return nil }
 }
 
-public func JSON(object: AnyObject?) -> JSONValue? {
-    if let some: AnyObject = object {
+public func JSON(_ object: Any?) -> JSONValue? {
+    if let some: Any = object {
         switch some {
         case let null as NSNull:        return null
         case let number as NSNumber:    return number

@@ -9,6 +9,6 @@
 import Foundation
 
 @objc protocol CGStorageProtocol {
-    func saveObject( object: AnyObject, name : String)
-    func loadObject( name: String) -> AnyObject?
+    func saveObject(_ object: Any, name : String)
+    func loadObject(_ name: String) -> Any?
 }

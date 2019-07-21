@@ -14,7 +14,7 @@ class CGContentModel : NSObject, Mappable {
     var contentUrl : String!
     var payment : Bool!
     
-    required init?(_ map: Map) {
+    required init?(map: Map) {
     }
     
     func mapping(map: Map) {

@@ -18,7 +18,7 @@ class CGCatalogModel : NSObject, Mappable {
     //Downloadable content
     var pictureImage: UIImage?
     
-    required init?(_ map: Map) {
+    required init?(map: Map) {
     }
     
     // Mappable

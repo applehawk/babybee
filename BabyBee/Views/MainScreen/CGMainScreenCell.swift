@@ -9,22 +9,21 @@
 import UIKit
 
 class CGMainScreenCell: UITableViewCell {
-
     @IBOutlet weak var cellTitleLabel: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
-    func configureForGroup( groupModel : CGGroupModel ) {
+    func configureForGroup(_ groupModel : CGGroupModel ) {
         self.cellTitleLabel.text = groupModel.groupName
     }
-    
+}
+
+extension CGMainScreenCell {
+    static func registerNib(in tableView: UITableView) -> UINib {
+        let nibMainScreenCell = UINib(nibName: "CGMainScreenCell", bundle: nil)
+        tableView.register(nibMainScreenCell, forCellReuseIdentifier: "mainScreenCell")
+        return nibMainScreenCell
+    }
+    static func dequeueReusableCell(in tableView: UITableView, forIndexPath indexPath: IndexPath) -> CGMainScreenCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "mainScreenCell", for: indexPath) as! CGMainScreenCell
+        return cell
+    }
 }

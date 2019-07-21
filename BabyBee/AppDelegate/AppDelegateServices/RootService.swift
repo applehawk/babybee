@@ -8,10 +8,8 @@
 
 import Foundation
 
-class RootService: NSObject, AppDelegateServiceProtocol {
-    func application(application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
-        
-        return true
+class RootService: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+                return true
     }
 }

@@ -12,6 +12,5 @@ target 'BabyBee' do
     pod 'Firebase/Core'
     pod 'Firebase/Messaging'
     pod 'Firebase/Database'
-    pod 'ObjectMapper', '~> 1.3'
-    pod 'Typhoon'
+    pod 'ObjectMapper'
 end

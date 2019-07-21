@@ -10,8 +10,8 @@ import UIKit
 
 
 protocol CGAgeAskingDelegate {
-    func ageConfirm( date: NSDate );
-    func ageCancelled();
+    func ageConfirm(_ date: Date )
+    func ageCancelled()
 }
 
 class CGAgeAskingController : UIAlertController {
@@ -20,20 +20,20 @@ class CGAgeAskingController : UIAlertController {
     var textFieldBirthDate : UITextField?
     var datePicker : UIDatePicker = UIDatePicker()
     
-    let userDefaults = NSUserDefaults.standardUserDefaults()
+    let userDefaults = UserDefaults.standard
     var ageAskingDelegate : CGAgeAskingDelegate? = nil;
 
-    func dataChanged(picker: UIDatePicker) {
+    @objc func dataChanged(_ picker: UIDatePicker) {
         if let textField = textFieldBirthDate {
             textField.text = picker.date.convertDateToGOSTDateString()
-            confirmAction?.enabled = textField.text != ""
+            confirmAction?.isEnabled = textField.text != ""
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.addTextFieldWithConfigurationHandler { (textField) in
+        addTextField { textField in
             self.textFieldBirthDate = textField
             textField.inputView = self.datePicker
             textField.placeholder = CGBirthDatePlaceholder
@@ -43,19 +43,18 @@ class CGAgeAskingController : UIAlertController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        datePicker.datePickerMode = .Date
-        datePicker.maximumDate = NSDate()
-        datePicker.addTarget(self, action: #selector(CGAgeAskingController.dataChanged(_:)),
-                             forControlEvents: UIControlEvents.ValueChanged );
+        datePicker.datePickerMode = .date
+        datePicker.maximumDate = Date(timeIntervalSinceNow: 0)
+        datePicker.addTarget(self, action: #selector(CGAgeAskingController.dataChanged(_:)), for: .valueChanged)
         
-        let cancelAction = UIAlertAction(title: CGCancelTitle, style: .Cancel) { (action) in
+        let cancelAction = UIAlertAction(title: CGCancelTitle, style: .cancel) { (action) in
             if let delegate = self.ageAskingDelegate {
                 delegate.ageCancelled()
             }
         }
         self.addAction(cancelAction)
         
-        let confirmAction = UIAlertAction(title: CGConfirmTitle, style: .Default) { (action) in
+        let confirmAction = UIAlertAction(title: CGConfirmTitle, style: .default) { (action) in
             let birthDate = self.datePicker.date;
             // Send to delegate Confirmation
             if let delegate = self.ageAskingDelegate {
@@ -63,7 +62,7 @@ class CGAgeAskingController : UIAlertController {
             }
         }
         self.confirmAction = confirmAction
-        confirmAction.enabled = false
+        confirmAction.isEnabled = false
         self.addAction(confirmAction)
     }
 

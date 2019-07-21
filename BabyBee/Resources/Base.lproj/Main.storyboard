@@ -1,14 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sMR-rj-IlX">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="sMR-rj-IlX">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Развивающие игры для ребенка-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="mainScreen" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="CGMainScreenViewController" customModule="BabyBee" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainScreen" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="CGMainScreenViewController" customModule="BabyBee" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -19,10 +23,10 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="5" sectionFooterHeight="5" translatesAutoresizingMaskIntoConstraints="NO" id="r14-5Z-6eG">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="r14-5Z-6eG" secondAttribute="trailing" id="MhW-wY-cQG"/>
                             <constraint firstItem="r14-5Z-6eG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Nu7-A0-uGE"/>
@@ -31,10 +35,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Развивающие игры для ребенка" id="iNE-VT-NO8"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="typhoonKey" value="mainScreenViewController"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="tableView" destination="r14-5Z-6eG" id="zYA-xa-aLn"/>
                         <segue destination="eaq-LA-20N" kind="show" identifier="showGamesScreenSegue" id="gUg-vg-Fla"/>
@@ -42,12 +42,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="347.5" y="323.5"/>
+            <point key="canvasLocation" x="521" y="296"/>
         </scene>
         <!--Games Screen View Controller-->
         <scene sceneID="oC4-YK-thU">
             <objects>
-                <viewController storyboardIdentifier="gamesScreen" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eaq-LA-20N" customClass="CGGamesScreenViewController" customModule="BabyBee" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="gamesScreen" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eaq-LA-20N" customClass="CGGamesScreenViewController" customModule="BabyBee" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Oo5-H8-diF"/>
                         <viewControllerLayoutGuide type="bottom" id="FEv-bH-tTh"/>
@@ -58,10 +58,10 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Op2-3a-TwV">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Op2-3a-TwV" firstAttribute="leading" secondItem="Ak2-bW-zJE" secondAttribute="leading" id="XwG-ay-cLm"/>
                             <constraint firstAttribute="trailing" secondItem="Op2-3a-TwV" secondAttribute="trailing" id="YwP-4f-bYp"/>
@@ -69,10 +69,6 @@
                             <constraint firstItem="Op2-3a-TwV" firstAttribute="top" secondItem="Oo5-H8-diF" secondAttribute="bottom" id="fue-Qe-AvL"/>
                         </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="typhoonKey" value="gamesScreenViewController"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="tableView" destination="Op2-3a-TwV" id="lG0-CH-LHm"/>
                         <segue destination="goS-ya-gec" kind="show" identifier="showContentScreenSegue" id="0Z2-Is-Ojd"/>
@@ -80,7 +76,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a6j-6c-iNh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="879.5" y="323.5"/>
+            <point key="canvasLocation" x="1409" y="296"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DK1-eL-hnR">
@@ -88,9 +84,8 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sMR-rj-IlX" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9gg-JV-LPz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -100,12 +95,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ePy-wa-BtF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-192.5" y="322.5"/>
+            <point key="canvasLocation" x="-332" y="296"/>
         </scene>
         <!--Content Screen View Controller-->
         <scene sceneID="H12-oz-7pM">
             <objects>
-                <viewController storyboardIdentifier="contentScreen" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="goS-ya-gec" customClass="CGContentScreenViewController" customModule="BabyBee" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="contentScreen" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="goS-ya-gec" customClass="CGContentScreenViewController" customModule="BabyBee" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bjs-Qq-82f"/>
                         <viewControllerLayoutGuide type="bottom" id="6et-qH-fST"/>
@@ -116,10 +111,10 @@
                         <subviews>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="udo-9j-5yl">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6et-qH-fST" firstAttribute="top" secondItem="udo-9j-5yl" secondAttribute="bottom" id="73s-ev-RfS"/>
                             <constraint firstItem="udo-9j-5yl" firstAttribute="leading" secondItem="QNJ-vR-Ag8" secondAttribute="leading" id="CmU-qR-LB4"/>
@@ -127,10 +122,6 @@
                             <constraint firstAttribute="trailing" secondItem="udo-9j-5yl" secondAttribute="trailing" id="Eui-zW-Zas"/>
                         </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="typhoonKey" value="contentScreenViewController"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="containerView" destination="QNJ-vR-Ag8" id="uzP-0e-0VI"/>
                         <outlet property="contentView" destination="udo-9j-5yl" id="hab-Zh-NxE"/>
@@ -138,7 +129,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bnk-te-Rry" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1396.5" y="314.5"/>
+            <point key="canvasLocation" x="2348" y="296"/>
         </scene>
     </scenes>
 </document>

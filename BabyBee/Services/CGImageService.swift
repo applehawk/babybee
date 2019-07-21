@@ -8,16 +8,19 @@
 
 import Foundation
 
+typealias CompletionImageDownloaded = (_ image: UIImage?) -> Void
+
 class CGImageService : NSObject {
     var fabricRequest : CGFabricRequestProtocol!
     
-    func downloadImage( pictureUrl: String?, completionHandler:(image:UIImage?)->Void) {
-        if let pictureUrl = pictureUrl, let imageRequest = fabricRequest.requestWithContentName(pictureUrl) {
+    func downloadImage(_ pictureUrl: String?, completionHandler: @escaping CompletionImageDownloaded) {
+        if let pictureUrl = pictureUrl, let imageRequest = fabricRequest.request(with: pictureUrl) {
             
-            let session = NSURLSession.sharedSession()
-            let dataTask = session.dataTaskWithRequest(imageRequest, completionHandler: { (data, response, error) in
+            let session = URLSession.shared
+            let dataTask = session.dataTask(with: imageRequest, completionHandler: { (data, response, error) in
                 // 1: Check HTTP Response for successful GET request
-                guard let httpResponse = response as? NSHTTPURLResponse, receivedData = data
+                guard let httpResponse = response as? HTTPURLResponse,
+                    let receivedData = data
                     else {
                         print("error: not a valid http response")
                         return
@@ -25,7 +28,7 @@ class CGImageService : NSObject {
                 switch (httpResponse.statusCode) {
                 case 200:
                 
-                    completionHandler(image: UIImage(data: receivedData) )
+                    completionHandler(UIImage(data: receivedData))
                 default:
                     print("GET request got response \(httpResponse.statusCode)")
                 }

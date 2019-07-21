@@ -9,7 +9,7 @@
 import Foundation
 
 extension String {
-    func pluralForm(n:Int, form1:String, form2:String, form3:String) -> String
+    func pluralForm(_ n: Int, form1: String, form2: String, form3: String) -> String
     {
         let n = n % 100;
         let n1 = n % 10;
@@ -28,28 +28,40 @@ extension String {
         return form3;
     }
     
-    func convertDateComponentsToPluralDate( components: NSDateComponents ) -> String {
-        let pluralMonths = String().pluralForm(components.month, form1: "месяц", form2: "месяца", form3: "месяцев")
-        let pluralDays = String().pluralForm(components.day, form1: "день", form2: "дня", form3: "дней")
-        let pluralYears = String().pluralForm(components.year, form1: "годик", form2: "годика", form3: "годиков")
+    func convertDateComponentsToPluralDate( components: DateComponents ) -> String {
+        
+        var years = 0, months = 0, days = 0
+        if let year = components.year {
+            years = year
+        }
+        if let month = components.month {
+            months = month
+        }
+        if let day = components.day {
+            days = day
+        }
+        
+        let pluralMonths = String().pluralForm(months, form1: "месяц", form2: "месяца", form3: "месяцев")
+        let pluralDays = String().pluralForm(days, form1: "день", form2: "дня", form3: "дней")
+        let pluralYears = String().pluralForm(years, form1: "годик", form2: "годика", form3: "годиков")
         
         var resultString = ""
-        if components.year > 0 {
-            resultString += "\(components.year) \(pluralYears)"
+        if years > 0 {
+            resultString += "\(years) \(pluralYears)"
         }
-        if components.year > 0 && components.month > 0 && components.day == 0{
+        if years > 0 && months > 0 && days == 0{
             resultString += " и "
-        } else if components.year > 0 && components.month > 0 {
+        } else if years > 0 && months > 0 {
             resultString += " "
         }
-        if components.month > 0 {
-            resultString += "\(components.month) \(pluralMonths)"
+        if months > 0 {
+            resultString += "\(months) \(pluralMonths)"
         }
-        if (components.month > 0 || components.year > 0) && components.day > 0  {
+        if (months > 0 || years > 0) && days > 0  {
             resultString += " и "
         }
-        if components.day > 0 {
-            resultString += "\(components.day) \(pluralDays)"
+        if days > 0 {
+            resultString += "\(days) \(pluralDays)"
         }
         return resultString
     }

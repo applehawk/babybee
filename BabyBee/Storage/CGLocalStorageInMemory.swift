@@ -10,12 +10,12 @@ import Foundation
 
 class CGLocalStorageInMemory : NSObject, CGStorageProtocol {
     
-    var memory : [String: AnyObject] = [:]
+    var memory : [String: Any] = [:]
     
-    func saveObject( object: AnyObject, name : String) {
+    func saveObject(_ object: Any, name : String) {
         memory[name] = object
     }
-    func loadObject( name: String) -> AnyObject? {
+    func loadObject(_ name: String) -> Any? {
         return memory[name]
     }
 }

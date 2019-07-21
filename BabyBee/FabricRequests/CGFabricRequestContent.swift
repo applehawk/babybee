@@ -10,26 +10,35 @@ import Foundation
 
 class CGFabricRequestContent: NSObject, CGFabricRequestProtocol {
     
-    func requestWithContentName( contentUrl: String ) -> NSURLRequest? {
-        if let defaultHostUrl = NSBundle.mainBundle().infoDictionary?["RemoteHost"] as? String {
+    func request(with contentUrl: String ) -> URLRequest? {
+        if let defaultHostUrl = Bundle.main.infoDictionary?["RemoteHost"] as? String {
             print("\(defaultHostUrl)")
             
-            if let url = NSURL(scheme: "https", host: defaultHostUrl, path: "/\(contentUrl)") {
-                return NSURLRequest(URL: url)
+            let urlComponents = NSURLComponents()
+            urlComponents.scheme = "https"
+            urlComponents.host = defaultHostUrl
+            urlComponents.path = "/\(contentUrl)"
+            
+            if let url = urlComponents.url(relativeTo: nil) {
+                return URLRequest(url: url)
             }
         }
         
         return nil
     }
     
-    func requestWithCatalog() -> NSURLRequest? {
-        if let defaultHostUrl = NSBundle.mainBundle().infoDictionary?["RemoteRestHost"] as? String {
+    func requestWithCatalog() -> URLRequest? {
+        if let defaultHostUrl = Bundle.main.infoDictionary?["RemoteRestHost"] as? String {
             print("\(defaultHostUrl)")
             
-            if let url = NSURL(scheme: "https", host: defaultHostUrl, path: "/catalog.json?auth=16WSBrMaTx5CFgBskcgjCg1UntBbzrbvM5cRr8uV") {
-                
-                
-                return NSURLRequest(URL: url)
+            
+            let urlComponents = NSURLComponents()
+            urlComponents.scheme = "https"
+            urlComponents.host = defaultHostUrl
+            urlComponents.path = "/catalog.json?auth=16WSBrMaTx5CFgBskcgjCg1UntBbzrbvM5cRr8uV"
+            
+            if let url = urlComponents.url(relativeTo: nil) {
+                return URLRequest(url: url)
             }
         }
         

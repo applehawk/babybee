@@ -20,11 +20,15 @@ class CGContentScreenViewController: UIViewController {
     
     // Setted by previous ViewController
     var game : CGContentModel!
-    
     var webView : WKWebView!
     
-    override func viewWillAppear(animated: Bool) {
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationItem.backBarButtonItem =
+            UIBarButtonItem(title: "",
+                            style: UIBarButtonItem.Style.plain,
+                            target: nil, action: nil)
         
         if let title = self.navigationItem.title {
             let screenName = String(format: CGAnalyticsOpenScreenContentScreenFmt, title)
@@ -32,7 +36,8 @@ class CGContentScreenViewController: UIViewController {
         }
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
     }
     
     override func loadView() {
@@ -70,10 +75,11 @@ class CGContentScreenViewController: UIViewController {
     
     var alertController : UIAlertController?
     
-    func closeAlert() {
+    @objc func closeAlert() {
         if let alertController = alertController {
-            alertController.dismissViewControllerAnimated(true, completion: nil)
-            self.navigationController?.popViewControllerAnimated(true)
+            alertController.dismiss(animated: true, completion: nil)
+            
+            self.navigationController?.popViewController(animated: true)
         }
         
     }
@@ -85,19 +91,21 @@ class CGContentScreenViewController: UIViewController {
         self.navigationItem.title = game.name
         service.updateContentData(game.contentUrl) {
             if let htmlContent = self.service.obtainContentData(self.game.contentUrl) {
-                self.loadHTMLContentIntoWebView(htmlContent)
+                self.loadHTMLContentIntoWebView(htmlContent: htmlContent)
             } else {
-                let alert = UIAlertController(title: "Ошибка запроса данных",
-                                              message: "Проверьте ваше интернет соединение",
-                                              preferredStyle: UIAlertControllerStyle.Alert)
+                let alert = UIAlertController(
+                    title: "Ошибка запроса данных",
+                    message: "Проверьте ваше интернет соединение",
+                    preferredStyle: .alert)
+                
                 self.alertController = alert
-                let tapGesture = UITapGestureRecognizer(target: self, action: "closeAlert")
+                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(closeAlert))
                 alert.view.addGestureRecognizer(tapGesture)
-                alert.addAction( UIAlertAction(title: "Хорошо", style: .Default, handler: { (action) in
-                    self.alertController?.dismissViewControllerAnimated(true, completion: nil)
-                    self.navigationController?.popViewControllerAnimated(true)
+                alert.addAction( UIAlertAction(title: "Хорошо", style: .default, handler: { (action) in
+                    self.alertController?.dismiss(animated: true, completion: nil)
+                    self.navigationController?.popViewController(animated: true)
                 }))
-                self.presentViewController(alert, animated: true, completion: {
+                self.present(alert, animated: true, completion: {
                 })
             }
         }

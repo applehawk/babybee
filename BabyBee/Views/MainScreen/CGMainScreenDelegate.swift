@@ -10,5 +10,5 @@ import Foundation
 
 @objc protocol CGMainScreenDelegate {
     func birthdayString() -> String;
-    func didSelectedGroup(groupName : String, selectedRow: Int);
+    func didSelectedGroup(_ groupName : String, selectedRow: Int);
 }

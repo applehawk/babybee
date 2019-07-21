@@ -16,15 +16,25 @@ class CGGamesScreenCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
-    func configureForContent( content: CGContentModel ) {
+    override var isSelected: Bool {
+        didSet {
+            
+        }
+    }
+}
+
+extension CGGamesScreenCell {
+    func configureCell(with content: CGContentModel) {
         self.titleGameLabel.text = content.name
     }
-
+    static func registerNib(in tableView: UITableView) -> UINib {
+        let nibGamesScreenCell = UINib(nibName: "CGGamesScreenCell", bundle: nil)
+        tableView.register(nibGamesScreenCell, forCellReuseIdentifier: "gamesScreenCell")
+        return nibGamesScreenCell
+    }
+    static func dequeueReusableCell(in tableView: UITableView, forIndexPath indexPath: IndexPath) -> CGGamesScreenCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "gamesScreenCell", for: indexPath) as! CGGamesScreenCell
+        return cell
+    }
 }

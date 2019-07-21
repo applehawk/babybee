@@ -18,7 +18,7 @@ class CGGroupModel : NSObject, Mappable {
     var minMonth : Int!
     var maxMonth : Int!
     
-    required init?(_ map: Map) {
+    required init?(map: Map) {
     }
     
     // Mappable

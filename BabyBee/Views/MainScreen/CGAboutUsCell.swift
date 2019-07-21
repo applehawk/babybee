@@ -9,16 +9,13 @@
 import UIKit
 
 class CGAboutUsCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
 }
+
+extension CGAboutUsCell {
+    static func registerNib(in tableView: UITableView) -> UINib {
+        let nibAboutUsCell = UINib(nibName: "CGAboutUsCell", bundle: nil)
+        tableView.register(nibAboutUsCell, forCellReuseIdentifier: "aboutUsCell")
+        return nibAboutUsCell
+    }
+}
+
