@@ -99,7 +99,7 @@ class CGContentScreenViewController: UIViewController {
                     preferredStyle: .alert)
                 
                 self.alertController = alert
-                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(closeAlert))
+                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.closeAlert))
                 alert.view.addGestureRecognizer(tapGesture)
                 alert.addAction( UIAlertAction(title: "Хорошо", style: .default, handler: { (action) in
                     self.alertController?.dismiss(animated: true, completion: nil)
@@ -109,16 +109,5 @@ class CGContentScreenViewController: UIViewController {
                 })
             }
         }
-        /*
-        do {
-            if let url = fabricRequest.requestWithContentName(game.contentUrl)?.URL {
-                let htmlContent = try String(contentsOfURL: url)
-                loadHTMLContentIntoWebView(htmlContent)
-            } else {
-                self.navigationController?.popViewControllerAnimated(true)
-            }
-        } catch {
-            print(error)
-        }*/
     }
 }

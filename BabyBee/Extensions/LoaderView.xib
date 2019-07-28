@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="hXB-z0-Yoe" customClass="LoaderView" customModule="AtomInvestMailApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="356" height="331"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Le-3M-gAd">
+                    <rect key="frame" x="142" y="129.5" width="72" height="72"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="gWp-Ei-0Zl">
+                            <rect key="frame" x="26" y="26" width="20" height="20"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="72" id="Ija-Nz-VgJ"/>
+                        <constraint firstItem="gWp-Ei-0Zl" firstAttribute="centerY" secondItem="8Le-3M-gAd" secondAttribute="centerY" id="ayO-ZA-Z9L"/>
+                        <constraint firstAttribute="height" constant="72" id="pIh-Kg-qhZ"/>
+                        <constraint firstItem="gWp-Ei-0Zl" firstAttribute="centerX" secondItem="8Le-3M-gAd" secondAttribute="centerX" id="r1P-Sc-QaJ"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="11"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="8Le-3M-gAd" firstAttribute="centerX" secondItem="hXB-z0-Yoe" secondAttribute="centerX" id="79r-pm-fh6"/>
+                <constraint firstItem="8Le-3M-gAd" firstAttribute="centerY" secondItem="hXB-z0-Yoe" secondAttribute="centerY" id="xNy-WO-CaP"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="iHF-lZ-mok"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="-52.173913043478265" y="-128.23660714285714"/>
+        </view>
+    </objects>
+</document>

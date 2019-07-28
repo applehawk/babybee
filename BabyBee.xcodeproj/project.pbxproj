@@ -32,8 +32,8 @@
 		0536AE771D7742F700941357 /* BeeAppIconiTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 0536AE6B1D7742F700941357 /* BeeAppIconiTunesArtwork.png */; };
 		0536AE781D7742F700941357 /* BeeAppIconiTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0536AE6C1D7742F700941357 /* BeeAppIconiTunesArtwork@2x.png */; };
 		0536AE7A1D77526900941357 /* OptJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536AE791D77526900941357 /* OptJSON.swift */; };
-		0536AE7E1D775F9600941357 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536AE7D1D775F9600941357 /* NSDate.swift */; };
-		0536AE821D77870B00941357 /* NSString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536AE811D77870B00941357 /* NSString.swift */; };
+		0536AE7E1D775F9600941357 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536AE7D1D775F9600941357 /* Date.swift */; };
+		0536AE821D77870B00941357 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536AE811D77870B00941357 /* String.swift */; };
 		0536AE841D7801A400941357 /* Cocon_Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0536AE831D7801A400941357 /* Cocon_Bold.otf */; };
 		0536AE871D780FDA00941357 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0536AE851D780FDA00941357 /* GoogleService-Info.plist */; };
 		0536AE941D78309900941357 /* headerScreen0.png in Resources */ = {isa = PBXBuildFile; fileRef = 0536AE921D78309900941357 /* headerScreen0.png */; };
@@ -84,9 +84,18 @@
 		7EE3ED5A1D8C0D9500776A96 /* content.json in Resources */ = {isa = PBXBuildFile; fileRef = 7EE3ED591D8C0D9500776A96 /* content.json */; };
 		7EE3ED5E1D8C2A3500776A96 /* CGImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE3ED5D1D8C2A3500776A96 /* CGImageService.swift */; };
 		85B7691405C442402447056B /* Pods_BabyBee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 800F6E1A8D50C44163695A6A /* Pods_BabyBee.framework */; };
+		FA55D97322EC36E200FD6027 /* CircleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA55D96F22EC36E200FD6027 /* CircleCell.swift */; };
+		FA55D97422EC36E200FD6027 /* CirclesLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA55D97022EC36E200FD6027 /* CirclesLayout.swift */; };
+		FA55D97522EC36E200FD6027 /* CirclesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA55D97122EC36E200FD6027 /* CirclesCollectionView.swift */; };
+		FA55D97622EC36E200FD6027 /* CircleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA55D97222EC36E200FD6027 /* CircleCell.xib */; };
 		FA8E1C4C22E458470047A33E /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8E1C4B22E458470047A33E /* Swinject.framework */; };
 		FA8E1C4E22E458E40047A33E /* DIResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8E1C4D22E458E40047A33E /* DIResolver.swift */; };
 		FA8E1C5022E46E9D0047A33E /* SwinjectStoryboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8E1C4F22E46E9D0047A33E /* SwinjectStoryboard.framework */; };
+		FAE030FE22E781C6005B5BE8 /* UIViewController+Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE030FD22E781C6005B5BE8 /* UIViewController+Loader.swift */; };
+		FAE0310022E787BD005B5BE8 /* UIAlertController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE030FF22E787BD005B5BE8 /* UIAlertController+Alert.swift */; };
+		FAE0310522E7894B005B5BE8 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE0310322E7894B005B5BE8 /* LoaderView.swift */; };
+		FAE0310622E7894B005B5BE8 /* LoaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAE0310422E7894B005B5BE8 /* LoaderView.xib */; };
+		FAE0311322E78F73005B5BE8 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE0311222E78F73005B5BE8 /* MainVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,8 +125,8 @@
 		0536AE6B1D7742F700941357 /* BeeAppIconiTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BeeAppIconiTunesArtwork.png; path = Resources/AppIcon/BeeAppIconiTunesArtwork.png; sourceTree = "<group>"; };
 		0536AE6C1D7742F700941357 /* BeeAppIconiTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BeeAppIconiTunesArtwork@2x.png"; path = "Resources/AppIcon/BeeAppIconiTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		0536AE791D77526900941357 /* OptJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptJSON.swift; path = ThirdParty/OptJSON.swift; sourceTree = "<group>"; };
-		0536AE7D1D775F9600941357 /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSDate.swift; path = Extensions/NSDate.swift; sourceTree = "<group>"; };
-		0536AE811D77870B00941357 /* NSString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSString.swift; path = Extensions/NSString.swift; sourceTree = "<group>"; };
+		0536AE7D1D775F9600941357 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Date.swift; path = Extensions/Date.swift; sourceTree = "<group>"; };
+		0536AE811D77870B00941357 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = Extensions/String.swift; sourceTree = "<group>"; };
 		0536AE831D7801A400941357 /* Cocon_Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Cocon_Bold.otf; path = Resources/Fonts/Cocon_Bold.otf; sourceTree = "<group>"; };
 		0536AE851D780FDA00941357 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Resources/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0536AE861D780FDA00941357 /* BabyBee-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "BabyBee-Info.plist"; path = "Resources/BabyBee-Info.plist"; sourceTree = "<group>"; };
@@ -172,9 +181,18 @@
 		7EE3ED5D1D8C2A3500776A96 /* CGImageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGImageService.swift; path = Services/CGImageService.swift; sourceTree = "<group>"; };
 		800F6E1A8D50C44163695A6A /* Pods_BabyBee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BabyBee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A764E2BF1A11E0BC0620D11E /* Pods-BabyBee.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BabyBee.release.xcconfig"; path = "Pods/Target Support Files/Pods-BabyBee/Pods-BabyBee.release.xcconfig"; sourceTree = "<group>"; };
+		FA55D96F22EC36E200FD6027 /* CircleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircleCell.swift; path = Extensions/CirclesLayout/CircleCell.swift; sourceTree = "<group>"; };
+		FA55D97022EC36E200FD6027 /* CirclesLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CirclesLayout.swift; path = Extensions/CirclesLayout/CirclesLayout.swift; sourceTree = "<group>"; };
+		FA55D97122EC36E200FD6027 /* CirclesCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CirclesCollectionView.swift; path = Extensions/CirclesLayout/CirclesCollectionView.swift; sourceTree = "<group>"; };
+		FA55D97222EC36E200FD6027 /* CircleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CircleCell.xib; path = Extensions/CirclesLayout/CircleCell.xib; sourceTree = "<group>"; };
 		FA8E1C4B22E458470047A33E /* Swinject.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swinject.framework; path = Carthage/Build/iOS/Swinject.framework; sourceTree = "<group>"; };
 		FA8E1C4D22E458E40047A33E /* DIResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIResolver.swift; sourceTree = "<group>"; };
 		FA8E1C4F22E46E9D0047A33E /* SwinjectStoryboard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwinjectStoryboard.framework; path = Carthage/Build/iOS/SwinjectStoryboard.framework; sourceTree = "<group>"; };
+		FAE030FD22E781C6005B5BE8 /* UIViewController+Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+Loader.swift"; path = "Extensions/UIViewController+Loader.swift"; sourceTree = "<group>"; };
+		FAE030FF22E787BD005B5BE8 /* UIAlertController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Alert.swift"; sourceTree = "<group>"; };
+		FAE0310322E7894B005B5BE8 /* LoaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoaderView.swift; path = Extensions/LoaderView.swift; sourceTree = "<group>"; };
+		FAE0310422E7894B005B5BE8 /* LoaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoaderView.xib; path = Extensions/LoaderView.xib; sourceTree = "<group>"; };
+		FAE0311222E78F73005B5BE8 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainVC.swift; path = Views/MainVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -367,6 +385,7 @@
 				0534FEC61D725B6800FE964A /* ContentScreen */,
 				0534FE8C1D70D67D00FE964A /* GamesScreen */,
 				0534FE8B1D70D67400FE964A /* MainScreen */,
+				FAE0311222E78F73005B5BE8 /* MainVC.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -401,8 +420,10 @@
 		0536AE7C1D775F8800941357 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				0536AE7D1D775F9600941357 /* NSDate.swift */,
-				0536AE811D77870B00941357 /* NSString.swift */,
+				FAE0310A22E78A33005B5BE8 /* CollectionLayouts */,
+				FAE0310922E789EA005B5BE8 /* System */,
+				FAE0310822E789E3005B5BE8 /* Alert */,
+				FAE0310722E789DB005B5BE8 /* Loader */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -517,6 +538,76 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		FA55D96C22EC2FF000FD6027 /* FlipLayout */ = {
+			isa = PBXGroup;
+			children = (
+				FA55D96E22EC2FFF00FD6027 /* Books */,
+				FA55D96D22EC2FFB00FD6027 /* Book */,
+			);
+			name = FlipLayout;
+			sourceTree = "<group>";
+		};
+		FA55D96D22EC2FFB00FD6027 /* Book */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Book;
+			sourceTree = "<group>";
+		};
+		FA55D96E22EC2FFF00FD6027 /* Books */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Books;
+			sourceTree = "<group>";
+		};
+		FAE0310722E789DB005B5BE8 /* Loader */ = {
+			isa = PBXGroup;
+			children = (
+				FAE0310322E7894B005B5BE8 /* LoaderView.swift */,
+				FAE0310422E7894B005B5BE8 /* LoaderView.xib */,
+				FAE030FD22E781C6005B5BE8 /* UIViewController+Loader.swift */,
+			);
+			name = Loader;
+			sourceTree = "<group>";
+		};
+		FAE0310822E789E3005B5BE8 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				FAE030FF22E787BD005B5BE8 /* UIAlertController+Alert.swift */,
+			);
+			name = Alert;
+			sourceTree = "<group>";
+		};
+		FAE0310922E789EA005B5BE8 /* System */ = {
+			isa = PBXGroup;
+			children = (
+				0536AE7D1D775F9600941357 /* Date.swift */,
+				0536AE811D77870B00941357 /* String.swift */,
+			);
+			name = System;
+			sourceTree = "<group>";
+		};
+		FAE0310A22E78A33005B5BE8 /* CollectionLayouts */ = {
+			isa = PBXGroup;
+			children = (
+				FA55D96C22EC2FF000FD6027 /* FlipLayout */,
+				FAE0310B22E78A3B005B5BE8 /* CirclesLayout */,
+			);
+			name = CollectionLayouts;
+			sourceTree = "<group>";
+		};
+		FAE0310B22E78A3B005B5BE8 /* CirclesLayout */ = {
+			isa = PBXGroup;
+			children = (
+				FA55D96F22EC36E200FD6027 /* CircleCell.swift */,
+				FA55D97222EC36E200FD6027 /* CircleCell.xib */,
+				FA55D97122EC36E200FD6027 /* CirclesCollectionView.swift */,
+				FA55D97022EC36E200FD6027 /* CirclesLayout.swift */,
+			);
+			name = CirclesLayout;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -592,8 +683,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAE0310622E7894B005B5BE8 /* LoaderView.xib in Resources */,
 				0534FE971D70D97E00FE964A /* Arimo-BoldItalic.ttf in Resources */,
 				0534FEC41D7238A200FE964A /* bg_mainScreen.png in Resources */,
+				FA55D97622EC36E200FD6027 /* CircleCell.xib in Resources */,
 				0534FEC11D72389900FE964A /* mums.json in Resources */,
 				7EE3ECFC1D89F65400776A96 /* CGGamesScreenCell.xib in Resources */,
 				0536AE701D7742F700941357 /* BeeAppIconIcon-76@2x.png in Resources */,
@@ -742,7 +835,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EE3ECF41D89F63200776A96 /* CGContentScreenViewController.swift in Sources */,
+				FA55D97422EC36E200FD6027 /* CirclesLayout.swift in Sources */,
 				7EE3ED011D89F68300776A96 /* CGMainScreenViewController.swift in Sources */,
+				FAE0310022E787BD005B5BE8 /* UIAlertController+Alert.swift in Sources */,
+				FAE0310522E7894B005B5BE8 /* LoaderView.swift in Sources */,
 				7E9CA2D91D89E96700156A25 /* CGCatalogServiceProtocol.swift in Sources */,
 				7EE3ED0C1D89F6C800776A96 /* CGAboutUsCell.swift in Sources */,
 				7EBD2AEA1D83F08500FD6FF8 /* GoogleSignInService.swift in Sources */,
@@ -750,7 +846,7 @@
 				7EE3ED081D89F6B300776A96 /* CGHeaderView.swift in Sources */,
 				7EE3ED231D8A246400776A96 /* CGStorageProtocol.swift in Sources */,
 				7EE3ED581D8AF05600776A96 /* CGLocalStorageInLocalFiles.swift in Sources */,
-				0536AE821D77870B00941357 /* NSString.swift in Sources */,
+				0536AE821D77870B00941357 /* String.swift in Sources */,
 				7EE3ED021D89F68300776A96 /* CGMainScreenDDM.swift in Sources */,
 				7E9CA2D81D89E96700156A25 /* CGCatalogServiceLocal.swift in Sources */,
 				7EE3ED5E1D8C2A3500776A96 /* CGImageService.swift in Sources */,
@@ -764,16 +860,20 @@
 				7EE3ECFB1D89F65400776A96 /* CGGamesScreenCell.swift in Sources */,
 				7EE3ECF81D89F64000776A96 /* CGGamesScreenViewController.swift in Sources */,
 				7E25BE361D88212E00ED372E /* BabyBee-Constants.swift in Sources */,
+				FA55D97522EC36E200FD6027 /* CirclesCollectionView.swift in Sources */,
 				7EE3ED101D89F6D300776A96 /* CGMainScreenCell.swift in Sources */,
 				7EE3ED131D8A0EBD00776A96 /* CGFabricRequestProtocol.swift in Sources */,
 				7EE3ED251D8A978D00776A96 /* CGFabricRequestContent.swift in Sources */,
 				7E9CA2D41D89E90100156A25 /* CGContentModel.swift in Sources */,
+				FAE0311322E78F73005B5BE8 /* MainVC.swift in Sources */,
 				7EE3ED041D89F68300776A96 /* CGMainScreenDelegate.swift in Sources */,
 				7E9CA2D31D89E90100156A25 /* CGGroupModel.swift in Sources */,
+				FAE030FE22E781C6005B5BE8 /* UIViewController+Loader.swift in Sources */,
 				7EE3ED211D8A245600776A96 /* CGLocalStorageInMemory.swift in Sources */,
 				7EBD2AED1D83F08500FD6FF8 /* StoryKitService.swift in Sources */,
 				7EBD2AEE1D83F08500FD6FF8 /* FirebaseNotificationService.swift in Sources */,
-				0536AE7E1D775F9600941357 /* NSDate.swift in Sources */,
+				FA55D97322EC36E200FD6027 /* CircleCell.swift in Sources */,
+				0536AE7E1D775F9600941357 /* Date.swift in Sources */,
 				FA8E1C4E22E458E40047A33E /* DIResolver.swift in Sources */,
 				7EBD2AF11D83F09100FD6FF8 /* AppDelegate.swift in Sources */,
 				7EA0FF351D84884B002775DF /* CGAnalyticsTracker.swift in Sources */,

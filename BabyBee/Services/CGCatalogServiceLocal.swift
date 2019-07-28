@@ -57,16 +57,16 @@ class CGCatalogServiceLocal: NSObject, CGCatalogServiceProtocol {
         return catalogModel as? CGCatalogModel
     }
     
-    func updateContentData(_ contentUrl: String, completionHandler:() -> Void ) {
+    func updateContentData(_ contentUrl: String, completionHandler: (() -> Void)? ) {
         if let content = self.obtainContentData(contentUrl) {
-            completionHandler()
+            completionHandler?()
         } else {
             do {
                 let path = Bundle.main.path(forResource: contentUrl, ofType: nil)
                 let stringContent = try String(contentsOfFile: path!, encoding: String.Encoding.utf8)
                 let key = String("\(CGLocalStorageContentKey)_\(contentUrl)")
                 self.localStorage.saveObject(stringContent, name: key)
-                completionHandler()
+                completionHandler?()
             } catch {
                 print(error)
             }

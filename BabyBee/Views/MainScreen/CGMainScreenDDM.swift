@@ -67,7 +67,6 @@ class CGMainScreenDDM : NSObject, CGMainScreenDDMProtocol {
             let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
             return height.height
         }
-        return 0.0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -59,6 +59,8 @@ class CirclesLayout: UICollectionViewLayout {
 
     // Caching layout attributes.
     override func prepare() {
+        super.prepare()
+        
         var newLayoutInfo: LayoutAttributes = [:]
         contentHeight = viewInsets.top
         initialX = viewInsets.left
@@ -119,7 +121,7 @@ class CirclesLayout: UICollectionViewLayout {
         initialX = originX + (width / 2)
         initialY = originY
         
-        return CGRect(x: CGFloat(originX), y: CGFloat(originY), width: CGFloat(width), height: CGFloat(width))
+        return CGRect(x: originX, y: originY, width: width, height: width)
     }
     
     func distanceCondition(forItem circle: CGRect, at indexPath: IndexPath, inLayout newLayoutInfo: LayoutAttributes) -> Bool {
@@ -130,6 +132,11 @@ class CirclesLayout: UICollectionViewLayout {
             numPredecessors = kMaxPredecessorNum
         }
         
+        print("indexPath.row: \(indexPath.row)")
+        
+        if numPredecessors == 0 {
+            return condition
+        }
         for i in 1...numPredecessors {
             let ip = IndexPath(item: (max(indexPath.row - i, 0)), section: 0)
             

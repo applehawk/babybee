@@ -14,12 +14,12 @@ class CGFabricRequestContent: NSObject, CGFabricRequestProtocol {
         if let defaultHostUrl = Bundle.main.infoDictionary?["RemoteHost"] as? String {
             print("\(defaultHostUrl)")
             
-            let urlComponents = NSURLComponents()
+            var urlComponents = URLComponents()
             urlComponents.scheme = "https"
             urlComponents.host = defaultHostUrl
             urlComponents.path = "/\(contentUrl)"
             
-            if let url = urlComponents.url(relativeTo: nil) {
+            if let url = urlComponents.url {
                 return URLRequest(url: url)
             }
         }
@@ -32,12 +32,15 @@ class CGFabricRequestContent: NSObject, CGFabricRequestProtocol {
             print("\(defaultHostUrl)")
             
             
-            let urlComponents = NSURLComponents()
+            var urlComponents = URLComponents()
             urlComponents.scheme = "https"
-            urlComponents.host = defaultHostUrl
-            urlComponents.path = "/catalog.json?auth=16WSBrMaTx5CFgBskcgjCg1UntBbzrbvM5cRr8uV"
             
-            if let url = urlComponents.url(relativeTo: nil) {
+            urlComponents.queryItems = [ URLQueryItem(name: "auth", value: "16WSBrMaTx5CFgBskcgjCg1UntBbzrbvM5cRr8uV") ]
+            
+            urlComponents.host = defaultHostUrl
+            urlComponents.path = "/catalog.json"
+            
+            if let url = urlComponents.url {
                 return URLRequest(url: url)
             }
         }

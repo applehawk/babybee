@@ -89,18 +89,18 @@ class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainS
     
     @objc func refreshHandler() {
         refreshControl.beginRefreshing()
+        let delegate: CGMainScreenDelegate = self
         catalogService.updateCatalog { (error) in
             if let catalog = self.catalogService.obtainCatalog() {
                 self.catalog = catalog
+                
+                self.mainScreenDDM = DIResolver.resolve(CGMainScreenDDM.self, arguments: delegate, catalog)
+                
                 DispatchQueue.main.async {
-                    if let title = catalog.title {
-                        self.navigationItem.title = catalog.title
-                    }
-                }
-                self.mainScreenDDM = DIResolver.resolve(CGMainScreenDDM.self, argument: catalog)
-                self.tableView.delegate = self.mainScreenDDM;
-                self.tableView.dataSource = self.mainScreenDDM;
-                DispatchQueue.main.async {
+                    self.navigationItem.title = catalog.title
+                    self.tableView.delegate = self.mainScreenDDM;
+                    self.tableView.dataSource = self.mainScreenDDM;
+                    
                     self.activityIndicator.stopAnimating()
                     self.refreshControl.endRefreshing()
                     self.tableView.reloadData()
@@ -113,9 +113,9 @@ class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainS
         super.viewDidLoad()
         self.navigationItem.title = CGMainScreenTitle;
         
-        CGHeaderView.registerNib(in: tableView)
-        CGMainScreenCell.registerNib(in: tableView)
-        CGAboutUsCell.registerNib(in: tableView)
+        _ = CGHeaderView.registerNib(in: tableView)
+        _ = CGMainScreenCell.registerNib(in: tableView)
+        _ = CGAboutUsCell.registerNib(in: tableView)
         
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.isScrollEnabled = true
@@ -126,7 +126,7 @@ class CGMainScreenViewController: UIViewController, CGAgeAskingDelegate, CGMainS
         activityIndicator.startAnimating()
         
         self.refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: Selector("refreshHandler"), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(refreshHandler), for: .valueChanged)
         
         self.tableView.addSubview(refreshControl)
         self.refreshHandler()

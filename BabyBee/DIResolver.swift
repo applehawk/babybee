@@ -41,14 +41,17 @@ extension Container {
 extension Container {
     func registerServices() -> Container {
         let container = self
+        
         container.register(CGImageService.self) { r in
             let imageService = CGImageService()
             imageService.fabricRequest = r.resolve(CGFabricRequestContent.self)
             return imageService
         }
         
-        container.register(CGCatalogServiceLocal.self) { r in
-            let catalogService = CGCatalogServiceLocal()
+        container.register(CGCatalogServiceProtocol.self) { r in
+            
+            let catalogService = CGCatalogServiceFirebase()
+            
             catalogService.localStorage = r.resolve(CGLocalStorageInMemory.self)
             catalogService.fabricRequest = r.resolve(CGFabricRequestContent.self)
             catalogService.imageService = r.resolve(CGImageService.self)
@@ -59,85 +62,55 @@ extension Container {
 }
 
 extension Container {
-    private func registerMainScreen() -> Container {
-        let container = self
-        container.register(CGMainScreenDDM.self) { (r, catalog: CGCatalogModel) in
-            let mainScreen = r.resolve(CGMainScreenViewController.self)!
-            return CGMainScreenDDM(delegate: mainScreen, catalog: catalog)
+    fileprivate static func registerMainScreen(in container: Container) {
+        container.register(CGMainScreenDDM.self) { (r, delegate: CGMainScreenDelegate, catalog: CGCatalogModel) in
+            return CGMainScreenDDM(delegate: delegate, catalog: catalog)
         }
         container.storyboardInitCompleted(CGMainScreenViewController.self) { r, mainScreen in
-            mainScreen.catalogService = r.resolve(CGCatalogServiceLocal.self)
+            mainScreen.catalogService = r.resolve(CGCatalogServiceProtocol.self)
             mainScreen.tracker = r.resolve(CGAnalyticsTracker.self)
             mainScreen.userDefaults = r.resolve(UserDefaults.self)
             
-            self.register(CGMainScreenViewController.self) { _ in
+            container.register(CGMainScreenViewController.self) { _ in
                 return mainScreen
             }
         }
-        /*
-        container.register(CGMainScreenViewController.self) {
-            r in
-            let mainScreen = CGMainScreenViewController()
-            mainScreen.catalogService = r.resolve(CGCatalogServiceLocal.self)
-            mainScreen.tracker = r.resolve(CGAnalyticsTracker.self)
-            mainScreen.userDefaults = r.resolve(UserDefaults.self)
-            //mainScreen.mainScreenDDM = r.resolve(CGMainScreenDDM.self)
-            //we should setup mainScreenDDM inside CGMainScreenVC
-            return mainScreen
-        }*/
-        return container
     }
-    private func registerContentScreen() -> Container {
-        let container = self
-    
+    fileprivate static func registerContentScreen(in container: Container) {
         container.storyboardInitCompleted(CGContentScreenViewController.self)
         { r, contentScreen in
-            contentScreen.service = r.resolve(CGCatalogServiceLocal.self)
+            contentScreen.service = r.resolve(CGCatalogServiceProtocol.self)
             contentScreen.tracker = r.resolve(CGAnalyticsTracker.self)
             contentScreen.fabricRequest = r.resolve(CGFabricRequestContent.self)
             
-            self.register(CGContentScreenViewController.self) { _ in
+            container.register(CGContentScreenViewController.self) { _ in
                 return contentScreen
             }
         }
-        /*
-        container.register(CGContentScreenViewController.self) { r in
-            let contentScreen = CGContentScreenViewController()
-            contentScreen.service = r.resolve(CGCatalogServiceLocal.self)
-            contentScreen.tracker = r.resolve(CGAnalyticsTracker.self)
-            contentScreen.fabricRequest = r.resolve(CGFabricRequestContent.self)
-            return contentScreen
-        }*/
-        return container
     }
-    private func registerGamesScreen() -> Container {
-        let container = self
-        container.register(CGGamesScreenDDM.self) { (r, catalog: CGCatalogModel, group: CGGroupModel) in
-            let gamesScreen = r.resolve(CGGamesScreenViewController.self)!
-            return CGGamesScreenDDM(delegate: gamesScreen , catalog: catalog, group: group)
+    fileprivate static func registerGamesScreen(in container: Container) {
+        
+        container.register(CGGamesScreenDDM.self) { (r, delegate: CGGamesScreenProtocol, catalog: CGCatalogModel, group: CGGroupModel) in
+            return CGGamesScreenDDM(delegate: delegate, catalog: catalog, group: group)
         }
+        
         container.storyboardInitCompleted(CGGamesScreenViewController.self)
         { r, gamesScreen in
             gamesScreen.tracker = r.resolve(CGAnalyticsTracker.self)
-            self.register(CGGamesScreenViewController.self) { _ in
+            
+            container.register(CGGamesScreenViewController.self) { _ in
                 return gamesScreen
             }
-        }
-        /*
-        container.register(CGGamesScreenViewController.self) { r in
-            let gameScreen = CGGamesScreenViewController()
-            gameScreen.tracker = r.resolve(CGAnalyticsTracker.self)
-            return gameScreen
-        }*/
-        return container
-    }
+        }    }
     
     func registerViewControllers() -> Container {
         let container = self
+        
+        Container.registerMainScreen(in: container)
+        Container.registerGamesScreen(in: container)
+        Container.registerContentScreen(in: container)
+        
         return container
-            .registerMainScreen()
-            .registerGamesScreen()
-            .registerContentScreen()
     }
 }
 
@@ -151,6 +124,10 @@ final class DIResolver: NSObject {
     
     static func resolve<T>(_ type: T.Type) -> T {
         return r.container.resolve(type)!
+    }
+    
+    static func resolve<T, Arg1, Arg2, Arg3>(_ type: T.Type, arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3) -> T? {
+        return r.container.resolve(type, arguments: arg1, arg2, arg3)
     }
     
     static func resolve<T, Arg1, Arg2>(_ type: T.Type, arguments arg1: Arg1, _ arg2: Arg2) -> T? {
